@@ -1,0 +1,63 @@
+// Breakpoints
+$breakpoint-desktop: 891px;
+
+// header height
+$headerMoHeight : 55px;
+$headerDesktopHeight : 130px;
+$headerDesktopSubShowHeight : 398px;
+
+// mobile docker height
+$dockerMoHeight: 65px;
+
+// 폰트 기본
+$fontDefault: 'Montserrat', 'Pretendard', "SF Pro Display", AppleSDGothicNeo-Light, Helvetica,"Malgun Gothic", 'MalgunGothic', '맑은고딕', sans-serif !important;
+$fontEngDefault: "NewYork", serif !important;
+$letterSpacing: -.025em;
+
+$colorDefault : #004be2; // 파랑
+
+// s : 폰트 컬러
+$textColorDarkGray: #666;
+$textColorGray: #999;
+// e : 폰트 컬러
+
+// s : 공통 컬러
+$colorBlack: #000;
+$colorWhite: #fff;
+$colorGray01: #80878D;
+$colorGray02: #EFF1F3;
+$colorGray03: #C2C7CC;
+$colorLineGray: #DDE0E3;
+$colorLightGray: #AAA;
+// e : 공통 컬러
+
+// s : 폰트 굵기
+$fontWeightRegular: 400;
+$fontWeightMedium: 500;
+$fontWeightSemibold: 600;
+// e : 폰트 굵기
+
+// s : 텍스트 레벨
+$fontSizeXxxl: 26px;
+$fontSizeXxxlLineHeight: 34px;
+$fontSizeXxl: 22px;
+$fontSizeXxlLineHeight: 28px;
+$fontSizeXl: 18px;
+$fontSizeXlLineHeight: 24px;
+$fontSizeLg: 16px;
+$fontSizeLgLineHeight: 22px;
+$fontSizeMd: 15px;
+$fontSizeMdLineHeight: 20px;
+$fontSizeRgl: 14px;
+$fontSizeRglLineHeight: 18px;
+$fontSizeSm: 13px;
+$fontSizeSmLineHeight: 18px;
+$fontSizeXs: 12px;
+$fontSizeXsLineHeight: 16px;
+$fontSizeXxs: 10px;
+$fontSizeXxsLineHeight: 13px;
+// e : 텍스트 레벨
+
+
+// 트렌지션
+$transEaseBounceBack: cubic-bezier(.17, .67, .29, 1.32);

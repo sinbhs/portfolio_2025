@@ -1,0 +1,14 @@
+// DESC : import 이외 다른 코드 사용하지 말 것!
+@import url('https://fonts.googleapis.com/css2?family=Jost&amp;family=Montserrat:wght@400;500;600;700&amp;family=Rozha+One&amp;display=swap');
+@import url(font.css);
+
+@import 'base/reset';
+
+// layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// components
+@import url(components.css);
+

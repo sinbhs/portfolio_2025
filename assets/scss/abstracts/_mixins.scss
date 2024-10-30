@@ -1,0 +1,382 @@
+@use '../abstracts/variables';
+
+
+// float하는 상위 DOM에 선언
+@mixin clearfix {
+	&:after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 0;
+		clear: both;
+	}
+}
+
+// 한줄 말줄임표
+@mixin ellipsis($autoWidth: true, $isInline: true) {
+	overflow: hidden;
+
+	@if ($isInline) {
+		display: inline-block;
+		vertical-align: top;
+	} @else {
+		display: block;
+	}
+
+	@if ($autoWidth) {
+		width: 100%;
+	}
+	max-width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// n줄 말줄임표
+@mixin multi_ellipsis($line-height, $lines: 2, $useHeight: false) {
+	display: block;
+	display: -webkit-box;
+	overflow: hidden;
+	@if $useHeight {
+		height: $line-height * $lines;
+	}
+	max-height: $line-height * $lines;
+	line-height: $line-height;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+
+// 멀티 라인 값 클리어
+@mixin clear_multi_ellipsis {
+	height: auto;
+	max-height: none;
+	-webkit-box-orient: inherit;
+	-webkit-line-clamp: inherit;
+}
+
+// 벤더 프리픽스
+@mixin prefix($property, $value, $prefixes: moz webkit) {
+	@each $prefix in $prefixes {
+		-#{$prefix}-#{$property}: $value;
+	}
+	#{$property}: $value;
+}
+
+// Display Flex를 활용한 영역대비 사이즈 자동 조절
+// $colAlign : align-items, $rowAlign : justify-contents, $direction: fles-direction, $isInline : display
+@mixin justify_width($colAlign: start, $rowAlign: start, $direction: row, $isInline: false) {
+	@if ($isInline) {
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		display: -webkit-inline-flex;
+	} @else {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		display: -webkit-flex;
+	}
+
+	@if ($rowAlign == between) {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		-webkit-justify-content: space-between;
+	} @else if ($rowAlign == around) {
+		justify-content: space-around;
+		-webkit-justify-content: space-around;
+	} @else if ($rowAlign == center) {
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-justify-content: center;
+	} @else if ($rowAlign == start) {
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	} @else if ($rowAlign == end) {
+		-webkit-box-pack: end;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
+	}
+
+	@if ($colAlign == center) {
+		-webkit-box-align: center;
+		-moz-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+	} @else if ($colAlign == start) {
+		-webkit-box-align: start;
+		-moz-box-align: start;
+		-ms-flex-align: start;
+		-webkit-align-items: flex-start;
+		align-items: flex-start;
+	} @else if ($colAlign == end) {
+		-webkit-box-align: end;
+		-moz-box-align: end;
+		-ms-flex-align: end;
+		-webkit-align-items: flex-end;
+		align-items: flex-end;
+	} @else if ($colAlign == stretch) {
+		-webkit-box-align: stretch;
+		-moz-box-align: stretch;
+		-ms-flex-align: stretch;
+		align-items: stretch;
+	}
+
+	@if ($direction == row) {
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-moz-box-orient: horizontal;
+		-moz-box-direction: normal;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	} @else if ($direction == row-reverse) {
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-moz-box-orient: horizontal;
+		-moz-box-direction: normal;
+		-ms-flex-direction: row-reverse;
+		-webkit-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+	} @else if ($direction == column) {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		-moz-box-orient: vertical;
+		-moz-box-direction: reverse;
+		-ms-flex-direction: column;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+	}
+}
+
+@mixin set_placeholder_color($color: rgba(255, 255, 255, .65)) {
+	&::-webkit-input-placeholder {
+		font-size: inherit;
+		color: $color;
+	}
+
+	&:-ms-input-placeholder {
+		font-size: inherit;
+		color: $color;
+	}
+
+	&::-ms-input-placeholder {
+		font-size: inherit;
+		color: $color;
+	}
+
+	&::placeholder {
+		font-size: inherit;
+		color: $color;
+	}
+
+	&:-ms-input-placeholder {
+		font-size: inherit;
+		color: $color;
+	}
+
+	&::-ms-input-placeholder { // Microsoft Edge
+		font-size: inherit;
+		color: $color;
+	}
+}
+
+@mixin no_select_text {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin ratio_images($file, $sizes: cover, $position: 0 0, $color: '', $type: 'svg', $repeat: no-repeat ) {
+	$urls: $file + '.' + $type;
+	@if ($color == '') {
+		background: url($urls) $position $repeat;
+	} @else {
+		background: url($urls) $position $repeat $color;
+	}
+	background-size: $sizes;
+}
+
+@mixin ratio_images_change($file, $type: 'png' ) {
+	$urls: $file + '.' + $type;
+	background-image: url($urls);
+}
+
+// ==== 프로젝트 MIXIN ====
+
+// 텍스트 레벨별 설정
+// H2 - font-size: 26px
+@mixin font_size_xxxl($lineHeight : 'default') {
+	font-size: variables.$fontSizeXxxl;
+	line-height: variables.$fontSizeXxxlLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+// H3 - font-size: 22px
+@mixin font_size_xxl($lineHeight : 'default') {
+	font-size: variables.$fontSizeXxl;
+	line-height: variables.$fontSizeXxlLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// H1 - font-size: 18px
+@mixin font_size_xl($lineHeight : 'default') {
+	font-size: variables.$fontSizeXl;
+	line-height: variables.$fontSizeXlLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// H4 - font-size: 16px
+@mixin font_size_lg($lineHeight : 'default') {
+	font-size: variables.$fontSizeLg;
+	line-height: variables.$fontSizeLgLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// Regular(H5, B0, B1) - font-size: 15px
+@mixin font_size_md($lineHeight : 'default') {
+	font-size: variables.$fontSizeMd;
+	line-height: variables.$fontSizeMdLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// B2, B3, B4 - font-size: 14px
+@mixin font_size_rgl($lineHeight : 'default') {
+	font-size: variables.$fontSizeRgl;
+	line-height: variables.$fontSizeRglLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// B5, B6, B7 - font-size: 13px
+@mixin font_size_sm($lineHeight : 'default') {
+	font-size: variables.$fontSizeSm;
+	line-height: variables.$fontSizeSmLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+// B8, B9, B10 - font-size: 12px
+@mixin font_size_xs($lineHeight : 'default') {
+	font-size: variables.$fontSizeXs;
+	line-height: variables.$fontSizeXsLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+// B8, B9, B10 - font-size: 10px
+@mixin font_size_xxs($lineHeight : 'default') {
+	font-size: variables.$fontSizeXxs;
+	line-height: variables.$fontSizeXxsLineHeight;
+	letter-spacing: variables.$letterSpacing;
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+
+// ==== 반응형 / 앱 분리 ====
+// size : breakpoint desktop
+@mixin size_desktop {
+	@media (min-width: variables.$breakpoint-desktop) {
+		@content;
+	}
+}
+
+@mixin size_tablet {
+	@media (min-width: variables.$breakpoint-desktop ) and (max-width: 1150px) {
+		@content;
+	}
+}
+
+// size : breakpoint mobile
+@mixin size_mobile {
+	@media (max-width: variables.$breakpoint-desktop - 1) {
+		@content;
+	}
+}
+
+// mobile : app only
+@mixin app_only($show:false) {
+	@if( $show ) {
+		.wrapper[data-app-show] &[data-app-only] {
+			@content;
+		}
+	}@else {
+		body &[data-app-only] {
+			@content;
+		}
+	}
+
+}
+
+// mobile : device mobile only
+// ** 개발파트와 협의 필요
+@mixin device_mobile_only($show:false) {
+	@if( $show ) {
+		@include size_desktop {
+			&[data-mobile-only] {
+				@content;
+			}
+		}
+	}@else {
+		body &[data-mobile-only] {
+			@content;
+		}
+	}
+}
+
+// mobile : device mobile - ios only
+@mixin device_mobile_ios {
+	body.ios &, body.mac & {
+		@content;
+	}
+}
+
+// mobile : device mobile - aos only
+@mixin device_mobile_aos {
+	body.aos & {
+		@content;
+	}
+}
+
+@mixin transition($props...) {
+	transition: $props;
+}
+
+@mixin transform($props...) {
+	transform: $props;
+}

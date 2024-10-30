@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/* s : header */
+.header-wrapper {
+    z-index: 25;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(255,255,255,0);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 12px rgba(variables.$colorBlack, 5%);
+    
+    .header-inner {
+        height: variables.$headerMoHeight;
+        padding: 0 20px;
+        @include mixins.justify_width(center, between);
+
+        .link-logo {
+            display: block;
+            width: 40px;
+            height: 40px;
+            @include mixins.ratio_images('/assets/images/common/comm_memoji', cover, 0 0, '', 'png');
+        }
+
+        .header-menu {
+            font-size: 0;
+
+            .menu-item {
+                display: inline-block;
+                vertical-align: top;
+
+                .link-menu {
+                    padding: {
+                        top: 5px;
+                        bottom: 5px;
+                    }
+                    
+                    .text {
+                        font-weight: 700;
+                    }
+                }
+                
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    &.scroll-down {
+        border-bottom: 1px solid variables.$colorLineGray;
+    }
+
+    @include mixins.size_desktop {
+        .header-inner {
+            max-width: 1150px;   
+            margin: 0 auto;
+        }
+    }
+}
+/* e : header */

@@ -1,0 +1,72 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/* s : keyframes */
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+@keyframes popAnimation {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        @include mixins.prefix(transform, translateY(5px));
+    }
+    100% {
+        @include mixins.prefix(transform, translateY(0));
+        opacity: 1;
+    }
+}
+
+@keyframes popUpAnimation {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        @include mixins.prefix(transform, translateY(-5px));
+    }
+    100% {
+        @include mixins.prefix(transform, translateY(0));
+        opacity: 1;
+    }
+}
+
+
+@keyframes opacityActive {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes goTopIcoActive {
+    0% {
+        opacity: 0;
+        @include mixins.prefix(transform, translateY(10px));
+    }
+    100% {
+        opacity: 1;
+        @include mixins.prefix(transform, translateY(0));
+    }
+}
+
+@keyframes topHide {
+    0% {
+        @include mixins.prefix(transform, scale(1));
+    }
+    100% {
+        @include mixins.prefix(transform, scale(0));
+    }
+}
+
+/* e : keyframes */

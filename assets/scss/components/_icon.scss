@@ -1,0 +1,20 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/* s : icon */
+%icon {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+
+// about me
+.ico-sparkles {
+    @extend %icon;
+    width: 73px;
+    height: 73px;
+    @include mixins.ratio_images('../images/common/comm_ico_sparkles');
+}
+/* e : icon */
