@@ -130,7 +130,7 @@ span {
     counter-reset: list-number 0;
 
     .experience-item {
-        border: 1px solid variables.$colorLineGray;
+        border: 1px solid transparent;
         border-radius: 22px;
         overflow: hidden;
         opacity: 0;
@@ -164,12 +164,23 @@ span {
         }
 
         .thumb-box {
+            position: relative;
+            width: 100%;
+            padding-top: 56.1643%;
+            overflow: hidden;
+            border-bottom-left-radius: 22px;
+            border-bottom-right-radius: 22px;
+
             img {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                @include mixins.prefix(transform, translateX(-50%));
                 width: 100%;
+                height: 100%;
                 -o-object-fit: cover;
                 object-fit: cover;
-                border-bottom-left-radius: 22px;
-                border-bottom-right-radius: 22px;
+                @include mixins.prefix(transition, .42s cubic-bezier(.28, .11, .32, 1));
             }
         }
 
@@ -305,12 +316,8 @@ span {
 .header-wrapper {
     &.scroll-down ~ .container-wrapper {
         .intro-box {
-            .intro-floating:not(.ico-memoji-thinking) {
+            .ico-sparkles {
                 @include mixins.prefix(transform, translateY(30px));
-            }
-
-            .ico-memoji-thinking {
-                @include mixins.prefix(transform, translate(-50%, 30px));
             }
         }
     }
@@ -334,16 +341,14 @@ span {
         }
     }
 
-    .intro-floating {
+    .ico-sparkles {
         position: absolute;
         z-index: 0;
+        top: 40px;
+        left: -20px;
         @include mixins.prefix(transform, translateY(0));
         @include mixins.prefix(transition, transform 0.5s ease-out);
-
-        &.ico-sparkles {
-            top: 40px;
-            left: -20px;
-        }
+        opacity: .8;
     }
 
     .intro-text-box {
@@ -378,11 +383,40 @@ span {
 // work experience
 .work-box {
     margin-bottom: 300px;
+
+    @media (min-width: 600px) {
+        .experience-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px 20px;
+
+            .experience-item {
+                &:hover {
+                    .thumb-box {
+                        img {
+                            @include mixins.prefix(transform, translateX(-50%) scale(1.1));
+                        }
+                    }
+                }
+
+                & ~ .experience-item {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }
 
 // contact
 .contact-box {
     .link-email {
+        display: inline-block;
+        margin-bottom: 20px;
+        vertical-align: top;
         @include mixins.font_size_xxxl;
+    }
+
+    .btext {
+        color: variables.$textColorDarkGray;
     }
 }

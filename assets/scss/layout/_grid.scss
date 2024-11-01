@@ -104,20 +104,6 @@ body {
                     padding-bottom: calc(65px + env(safe-area-inset-bottom));
                 }
             }
-
-            &.type-search-only {
-                .cont-inner {
-                    padding-bottom: 20px;
-
-                    .search-form-wrap {
-                        margin-bottom: 0;
-                    }
-
-                    .store-header-wrap + .search-form-wrap {
-                        margin-bottom: 30px;
-                    }
-                }
-            }
         }
     }
 
@@ -127,20 +113,6 @@ body {
             top: 155px;
             bottom: 100px;
         }
-        .cont-box {
-            &.type-search-only {
-                .cont-inner {
-                    .search-form-wrap {
-                        margin-bottom: 0;
-                    }
-
-                    .store-header-wrap + .search-form-wrap {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-        }
-
     }
 }
 
