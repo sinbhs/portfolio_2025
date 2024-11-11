@@ -4,11 +4,22 @@
 
 /* s : footer */
 .footer-wrapper {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: variables.$colorBlack;
+    color: variables.$colorWhite;
+
     .footer-inner {
         max-width: 1150px;
         padding: 29px 20px;
         margin: 0 auto;
         @include mixins.justify_width(start, between);
+
+        .copyright {
+            font-size: 12px;
+        }
     }
 }
 /* e : footer */

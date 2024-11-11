@@ -184,11 +184,14 @@ portfolioPub.front = portfolioPub.front || (function () {
                 } else {
                     entry.target.classList.add('reveal');  
                 }
+
+                // 위 실행을 처리하고(1회) 관찰 중지
+                intersectionObserver.unobserve(entry.target)
             }
         });
     }, {
         rootMargin: `0px 0px 0px 0px`,
-        threshold: [0, 1],
+        threshold: 0,
     });
 
     document.querySelectorAll('.reveal-tg').forEach((item) => {
@@ -215,14 +218,14 @@ portfolioPub.front = portfolioPub.front || (function () {
             markers: false,
         
             onEnter: () => {
-                gsap.to("body", {
+                gsap.to(".cont-box", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
                 });
             },
             onEnterBack: () => {
-                gsap.to("body", {
+                gsap.to(".cont-box", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
@@ -242,6 +245,16 @@ portfolioPub.front = portfolioPub.front || (function () {
         })
             .fromTo(it,{y: 150 }, {y: 0, ease: 'none', duration: 5}, 0)
     })
+   }
+
+    /*
+    * date : 20241028
+    * last : 20241028
+    * name : setContBoxStack()
+    * pram :
+    * desc : cont-box stack gsap
+    */
+   function setContStack() {
    }
 
     /*
@@ -520,6 +533,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setMoHeader();
         setGoTop();
         setBgChange();
+        setContStack();
         revealIntersectionObserve();
 
         /* 맥 OS 또는 iOS / android 디바이스 체크 */

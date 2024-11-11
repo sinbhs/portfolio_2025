@@ -21,7 +21,6 @@ body {
     @include mixins.justify_width(end, start, column);
 
     .btn-go-top {
-        //@include mixins.justify_width(center);
         display: none;
         width: 42px;
         height: 42px;
@@ -43,7 +42,6 @@ body {
         &.is-hide {
             display: block;
             opacity: 1;
-            //@include mixins.prefix(animation, topHide 0.15s ease-in-out forwards);
             @include mixins.prefix(animation, topHide 0.1s cubic-bezier(0.445, 0.050, 0.550, 0.950) forwards);
         }
 
@@ -56,7 +54,6 @@ body {
                 @include mixins.prefix(animation, goTopIcoActive 0.3s 0.25s variables.$transEaseBounceBack forwards);
                 opacity: 0;
                 @include mixins.prefix(transform, translateY(10px));
-
             }
         }
     }
@@ -64,10 +61,7 @@ body {
     // desktop
     @include mixins.size_desktop {
         right: 20px;
-        /*right: auto;
-        left: calc( 100% - 64px );*/
         bottom: 20px;
-        margin-bottom: 0;
 
         .btn-go-top {
             margin: {
@@ -85,7 +79,6 @@ body {
     // mobile
     @include mixins.size_mobile {
         @include mixins.justify_width(stretch, between, column);
-        padding-top: variables.$headerMoHeight;
         min-height: var(--reVh, 1vh);
 
         .cont-box {
@@ -93,13 +86,11 @@ body {
 
             &:first-child {
                 .cont-inner {
-                    padding-top: 75px;
+                    padding-top: calc(75px + variables.$headerMoHeight);
                 }
             }
 
             &:nth-last-of-type(1) {
-                flex: 1;
-
                 .cont-inner {
                     padding-bottom: calc(65px + env(safe-area-inset-bottom));
                 }
@@ -110,7 +101,7 @@ body {
     // desktop
     @include mixins.size_desktop {
         padding: {
-            top: 155px;
+            top: 135px;
             bottom: 100px;
         }
     }
@@ -119,56 +110,25 @@ body {
 .cont-box {
     position: relative;
     max-width: 1150px;
-    padding: 0 20px;
     margin: 0 auto;
 
     .cont-inner {
         position: relative;
-        padding: 30px 0;
-
-        .cont-sps-wrap {
-            position: relative;
-        }
-
-        .cont-sm-wrap {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-    }
-
-    &.full {
-        max-width: none;
-    }
-
-    &.gray-box {
-        margin-top: 0;
-        background: #F9F9FA;
-        border-radius: 0;
-
-        .cont-inner {
-            padding-top: 20px;
-        }
-    }
-
-    // descktop
-    // desktop
-    @include mixins.size_desktop {
-        ~ .cont-box {
-            &.mo-gray-box.has-shadow {
-                .cont-inner {
-                    padding-top: 30px;
-                }
-            }
-        }
-        &.size-sm {
-            max-width: 520px;
+        padding: 0 20px;
+    } 
+    
+    // mobile
+    @include mixins.size_mobile {
+        padding: {
+            top: 30px;
+            bottom: 30px;
         }
     }
 }
 
 /* wrapper */
 //** resize 스타일 입히기 위해 최하단에 위치 필요
-.wrapper, .ui-dialog {
+.wrapper {
     // desktop
     @include mixins.size_desktop {
         background: transparent;
@@ -176,13 +136,7 @@ body {
             @include mixins.justify_width(stretch, start, column);
 
         }
-        /*min-height: 100vh;*/
-        [data-mobile-docker] {
-            position: relative !important;
-            bottom: auto;
-            left: auto;
-            right: auto;
-        }
+       
         .cont-box {
             padding-top: 0;
 
@@ -193,15 +147,11 @@ body {
             ~ .cont-box {
 
                 .cont-inner {
-                    padding-top: 40px;
-
-                }
-
-                &.full {
-                    padding: 0;
+                    padding-top: 120px;
                 }
             }
         }
+
         .footer-wrapper {
             margin-top: auto;
         }

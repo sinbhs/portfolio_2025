@@ -10,10 +10,11 @@
     left: 0;
     right: 0;
     width: 100%;
-    background: rgba(255,255,255,0);
+    /* background: rgba(255,255,255,0);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
-    box-shadow: 0 6px 12px rgba(variables.$colorBlack, 5%);
+    box-shadow: 0 6px 12px rgba(variables.$colorBlack, 5%); */
+    mix-blend-mode: difference;
     
     .header-inner {
         height: variables.$headerMoHeight;
@@ -22,12 +23,24 @@
 
         .link-logo {
             display: block;
-            width: 40px;
+            /* width: 40px;
             height: 40px;
-            @include mixins.ratio_images('/assets/images/common/comm_memoji', cover, 0 0, '', 'png');
+            @include mixins.ratio_images('/assets/images/common/comm_memoji', cover, 0 0, '', 'png'); */
+
+            .text {
+                font-weight: variables.$fontWeightMedium;
+                color: variables.$colorWhite;
+            }
         }
 
-        .header-menu {
+        .btn-scroll-to-contact {
+            .text {
+                font-weight: variables.$fontWeightMedium;
+                color: variables.$colorWhite;
+            }
+        }
+
+        /* .header-menu {
             font-size: 0;
 
             .menu-item {
@@ -49,11 +62,18 @@
                     margin-right: 10px;
                 }
             }
-        }
-    }
+        } */
 
-    &.scroll-down {
-        border-bottom: 1px solid variables.$colorLineGray;
+        &:after {
+            content: '';
+            display: inline-block;
+            width: calc(100% - 40px);
+            height: 1px;
+            background-color: variables.$colorWhite;
+            position: absolute;
+            left: 20px;
+            bottom: 0;
+        }
     }
 
     @include mixins.size_desktop {

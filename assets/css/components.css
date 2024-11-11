@@ -84,7 +84,7 @@ span {
 	letter-spacing: -0.025em;
 }
 .scont-tit ~ .scont-tit {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 /* 본문 텍스트 */
@@ -133,9 +133,9 @@ span {
 	-moz-transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	-moz-transform: translateY(50px);
-	-webkit-transform: translateY(50px);
-	transform: translateY(50px);
+	-moz-transform: translateY(100%);
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
 	/* &:before {
 	    display: inline-block;
 	    margin-bottom: 10px;
@@ -173,6 +173,8 @@ span {
 	overflow: hidden;
 	border-bottom-left-radius: 22px;
 	border-bottom-right-radius: 22px;
+	background: url("../images/common/comm_img_no_data.jpg") center no-repeat;
+	background-size: cover;
 }
 .experience-list .experience-item .thumb-box img {
 	position: absolute;
@@ -348,11 +350,19 @@ span {
 	font-size: 50px;
 	line-height: 59px;
 }
+.intro-box .cont-title-wrap .cont-tit .ft-eng .wave-name {
+	display: inline-block;
+	animation: wave-name 0.6s infinite alternate;
+	vertical-align: top;
+}
+.intro-box .cont-title-wrap .cont-tit .ft-eng .wave-name ~ .wave-name {
+	margin-left: 15px;
+}
 .intro-box .ico-sparkles {
 	position: absolute;
 	z-index: 0;
 	top: 40px;
-	left: -20px;
+	left: 0;
 	-moz-transform: translateY(0);
 	-webkit-transform: translateY(0);
 	transform: translateY(0);
@@ -363,6 +373,7 @@ span {
 }
 .intro-box .intro-text-box {
 	margin-bottom: 50px;
+	word-break: break-word;
 }
 @media (max-width: 890px) {
 	.intro-box .intro-text-box .intro-tit {
@@ -372,6 +383,45 @@ span {
 		font-size: 14px;
 		line-height: 18px;
 		letter-spacing: -0.025em;
+	}
+}
+@media (min-width: 891px) {
+	.intro-box .cont-inner {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		display: -webkit-flex;
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+		-webkit-box-align: end;
+		-moz-box-align: end;
+		-ms-flex-align: end;
+		-webkit-align-items: flex-end;
+		align-items: flex-end;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-moz-box-orient: horizontal;
+		-moz-box-direction: normal;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	}
+	.intro-box .cont-inner .left-area {
+		width: 50%;
+	}
+	.intro-box .cont-inner .left-area .cont-title-wrap .cont-tit {
+		font-size: 80px;
+		line-height: 80px;
+	}
+	.intro-box .cont-inner .left-area .cont-title-wrap .cont-tit .ft-eng {
+		font-size: 80px;
+		line-height: 89px;
+	}
+	.intro-box .cont-inner .left-area .intro-text-box {
+		width: 70%;
+		margin-bottom: 0;
+		word-break: break-word;
 	}
 }
 
@@ -426,29 +476,27 @@ span {
 @keyframes reveal {
 	0% {
 		opacity: 0;
+		-moz-transform: translateY(30px);
+		-webkit-transform: translateY(30px);
 		transform: translateY(30px);
 	}
 	100% {
 		opacity: 1;
+		-moz-transform: translateY(0);
+		-webkit-transform: translateY(0);
 		transform: translateY(0);
 	}
 }
-@keyframes glitter {
+@keyframes wave-name {
 	0% {
-		-webkit-transform: scale(0.8);
-		opacity: 0;
-	}
-	25% {
-		-webkit-transform: scale(1);
-		opacity: 1;
-	}
-	50% {
-		-webkit-transform: scale(0.8);
-		opacity: 0;
+		-moz-transform: rotateZ(2deg);
+		-webkit-transform: rotateZ(2deg);
+		transform: rotateZ(2deg);
 	}
 	100% {
-		-webkit-transform: scale(0.8);
-		opacity: 1;
+		-moz-transform: rotateZ(-2deg);
+		-webkit-transform: rotateZ(-2deg);
+		transform: rotateZ(-2deg);
 	}
 }
 @keyframes opacityActive {

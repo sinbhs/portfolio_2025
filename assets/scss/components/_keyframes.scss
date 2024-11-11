@@ -5,32 +5,22 @@
 @keyframes reveal {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        @include mixins.prefix(transform, translateY(30px));
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        @include mixins.prefix(transform, translateY(0));
     }
   }
   
-@keyframes glitter {
-    0% {
-      -webkit-transform: scale(0.8);
-      opacity: 0;
-    }
-    25% {
-      -webkit-transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      -webkit-transform: scale(0.8);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: scale(0.8);
-      opacity: 1;
-    }
+@keyframes wave-name {
+  0% {
+    @include mixins.prefix(transform, rotateZ(2deg));
   }
+  100% {
+    @include mixins.prefix(transform, rotateZ(-2deg));
+  }
+}
 
 
 @keyframes opacityActive {

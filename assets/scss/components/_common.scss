@@ -88,7 +88,7 @@ span {
     @extend %revealTitleStyle;
 
     ~ .scont-tit {
-        margin-top: 20px;
+        margin-top: 30px;
     }
 }
 
@@ -135,7 +135,7 @@ span {
         overflow: hidden;
         opacity: 0;
         @include mixins.prefix(transition, 1s cubic-bezier(.175,.885,.32,1.275));
-        @include mixins.prefix(transform, translateY(50px));
+        @include mixins.prefix(transform, translateY(100%));
 
         &:hover {
             box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
@@ -170,6 +170,7 @@ span {
             overflow: hidden;
             border-bottom-left-radius: 22px;
             border-bottom-right-radius: 22px;
+            @include mixins.ratio_images('../images/common/comm_img_no_data', cover, center, '', 'jpg');
 
             img {
                 position: absolute;
@@ -337,6 +338,16 @@ span {
             .ft-eng {
                 font-size: 50px;
                 line-height: 59px;
+
+                .wave-name {
+                    display: inline-block;
+                    animation: wave-name 0.6s infinite alternate;
+                    vertical-align: top;
+
+                    ~ .wave-name {
+                        margin-left: 15px;
+                    }
+                }
             }
         }
     }
@@ -345,7 +356,7 @@ span {
         position: absolute;
         z-index: 0;
         top: 40px;
-        left: -20px;
+        left: 0;
         @include mixins.prefix(transform, translateY(0));
         @include mixins.prefix(transition, transform 0.5s ease-out);
         opacity: .8;
@@ -353,6 +364,7 @@ span {
 
     .intro-text-box {
         margin-bottom: 50px;
+        word-break: break-word;
     }
 
     //mobile
@@ -367,6 +379,35 @@ span {
          }
        }
     }
+
+    //pc
+    @include mixins.size_desktop {
+        .cont-inner {
+            @include mixins.justify_width(end, start);
+
+            .left-area {
+                width: 50%;
+
+                .cont-title-wrap {
+                    .cont-tit {
+                        font-size: 80px;
+                        line-height: 80px;
+
+                        .ft-eng {
+                            font-size: 80px;
+                            line-height: 89px;
+                        }
+                    }
+                }
+
+                .intro-text-box {
+                    width: 70%;
+                    margin-bottom: 0;
+                    word-break: break-word;
+                }
+            }
+        }
+     }
 
    /*  &:after {
         content: '';
@@ -393,6 +434,7 @@ span {
             .experience-item {
                 &:hover {
                     .thumb-box {
+        
                         img {
                             @include mixins.prefix(transform, translateX(-50%) scale(1.1));
                         }
