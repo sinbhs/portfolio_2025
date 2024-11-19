@@ -213,6 +213,7 @@
 // H2 - font-size: 26px
 @mixin font_size_xxxl($lineHeight : 'default') {
 	font-size: variables.$fontSizeXxxl;
+	font-weight: variables.$fontWeightSemibold;
 	line-height: variables.$fontSizeXxxlLineHeight;
 	letter-spacing: variables.$letterSpacing;
 
@@ -225,6 +226,7 @@
 	font-size: variables.$fontSizeXxl;
 	line-height: variables.$fontSizeXxlLineHeight;
 	letter-spacing: variables.$letterSpacing;
+	font-weight: variables.$fontWeightSemibold;
 
 	@if not($lineHeight == 'default') {
 		line-height: $lineHeight;

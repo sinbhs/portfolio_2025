@@ -81,7 +81,7 @@ body {
         @include mixins.justify_width(stretch, between, column);
         min-height: var(--reVh, 1vh);
 
-        .cont-box {
+        .cont-box, .gcont-box {
             width: 100%;
 
             &:first-child {
@@ -107,7 +107,7 @@ body {
     }
 }
 
-.cont-box {
+.cont-box, .gcont-box {
     position: relative;
     max-width: 1150px;
     margin: 0 auto;
@@ -126,6 +126,10 @@ body {
     }
 }
 
+.gcont-box {
+    background-color: #f7f7f7;
+}
+
 /* wrapper */
 //** resize 스타일 입히기 위해 최하단에 위치 필요
 .wrapper {
@@ -137,14 +141,10 @@ body {
 
         }
        
-        .cont-box {
+        .cont-box, .gcont-box {
             padding-top: 0;
 
-            .cont-inner {
-                padding: 0;
-            }
-
-            ~ .cont-box {
+            ~ .cont-box, ~ .gcont-box {
 
                 .cont-inner {
                     padding-top: 120px;

@@ -218,14 +218,14 @@ portfolioPub.front = portfolioPub.front || (function () {
             markers: false,
         
             onEnter: () => {
-                gsap.to(".cont-box", {
+                gsap.to("body", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
                 });
             },
             onEnterBack: () => {
-                gsap.to(".cont-box", {
+                gsap.to("body", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
@@ -245,6 +245,28 @@ portfolioPub.front = portfolioPub.front || (function () {
         })
             .fromTo(it,{y: 150 }, {y: 0, ease: 'none', duration: 5}, 0)
     })
+
+    $(".experience-item .link-site").on("mouseenter", function () {
+        const $emoji = $(this).find(".media-emoji");
+  
+        $(this).on("mousemove", function (event) {
+            const offsetX = event.pageX - $(this).offset().left - 50;
+            const offsetY = event.pageY - $(this).offset().top - 50;
+    
+            // GSAP 애니메이션 적용
+            gsap.to($emoji, {
+                left: offsetX.toFixed(0),
+                top: offsetY.toFixed(0),
+                duration: .9,
+                ease: "power3"
+            });
+        });
+      });
+  
+      $(".experience-item .link-site").on("mouseleave", function () {
+        const $emoji = $(this).find(".media-emoji");
+        $(this).off("mousemove"); // mousemove 이벤트 해제
+      });
    }
 
     /*
