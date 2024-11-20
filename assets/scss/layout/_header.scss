@@ -10,10 +10,6 @@
     left: 0;
     right: 0;
     width: 100%;
-    /* background: rgba(255,255,255,0);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 6px 12px rgba(variables.$colorBlack, 5%); */
     mix-blend-mode: difference;
     
     .header-inner {
@@ -23,9 +19,6 @@
 
         .link-logo {
             display: block;
-            /* width: 40px;
-            height: 40px;
-            @include mixins.ratio_images('/assets/images/common/comm_memoji', cover, 0 0, '', 'png'); */
 
             .text {
                 font-weight: variables.$fontWeightMedium;
@@ -39,30 +32,6 @@
                 color: variables.$colorWhite;
             }
         }
-
-        /* .header-menu {
-            font-size: 0;
-
-            .menu-item {
-                display: inline-block;
-                vertical-align: top;
-
-                .link-menu {
-                    padding: {
-                        top: 5px;
-                        bottom: 5px;
-                    }
-                    
-                    .text {
-                        font-weight: 700;
-                    }
-                }
-                
-                &:not(:last-child) {
-                    margin-right: 10px;
-                }
-            }
-        } */
 
         &:after {
             content: '';
@@ -78,6 +47,7 @@
 
     @include mixins.size_desktop {
         .header-inner {
+            position: relative;
             max-width: 1150px;   
             margin: 0 auto;
         }

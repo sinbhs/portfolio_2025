@@ -75,6 +75,7 @@ body {
 /* container */
 .container-wrapper {
     position: relative;
+    z-index: 2;
 
     // mobile
     @include mixins.size_mobile {
@@ -101,8 +102,11 @@ body {
     // desktop
     @include mixins.size_desktop {
         padding: {
-            top: 135px;
             bottom: 100px;
+        }
+
+        .intro-box {
+            padding-top: 135px;
         }
     }
 }
@@ -142,10 +146,7 @@ body {
         }
        
         .cont-box, .gcont-box {
-            padding-top: 0;
-
             ~ .cont-box, ~ .gcont-box {
-
                 .cont-inner {
                     padding-top: 120px;
                 }

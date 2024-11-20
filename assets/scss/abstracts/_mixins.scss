@@ -211,11 +211,16 @@
 
 // 텍스트 레벨별 설정
 // H2 - font-size: 26px
-@mixin font_size_xxxl($lineHeight : 'default') {
+@mixin font_size_xxxl($lineHeight : 'default', $fontWeight: 'default') {
 	font-size: variables.$fontSizeXxxl;
-	font-weight: variables.$fontWeightSemibold;
 	line-height: variables.$fontSizeXxxlLineHeight;
 	letter-spacing: variables.$letterSpacing;
+
+	@if ($fontWeight == 'default') {
+		font-weight: variables.$fontWeightSemibold;
+    } @else if ($fontWeight == 'rgl') {
+        font-weight: variables.$fontWeightRegular;
+    }
 
 	@if not($lineHeight == 'default') {
 		line-height: $lineHeight;
@@ -245,10 +250,18 @@
 }
 
 // H4 - font-size: 16px
-@mixin font_size_lg($lineHeight : 'default') {
+@mixin font_size_lg($lineHeight : 'default', $fontWeight: 'default') {
 	font-size: variables.$fontSizeLg;
 	line-height: variables.$fontSizeLgLineHeight;
 	letter-spacing: variables.$letterSpacing;
+
+	@if ($fontWeight == 'default') {
+        font-weight: variables.$fontWeightRegular;
+    } @else if ($fontWeight == 'sb') {
+        font-weight: variables.$fontWeightSemibold;
+    } @else if ($fontWeight == 'md') {
+        font-weight: variables.$fontWeightMedium;
+    }
 
 	@if not($lineHeight == 'default') {
 		line-height: $lineHeight;

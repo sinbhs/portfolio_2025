@@ -67,7 +67,6 @@ portfolioPub.front = portfolioPub.front || (function () {
     */
     function setGoTop() {
         var offset = $_headerWrapper.length > 0 ? $_headerWrapper.height() * 1.5 : 30;
-        //$_btnGoTop.addClass('is-hide');
         btnOnOff();
 
         $_btnGoTop.off('click').on('click', function (e) {
@@ -153,7 +152,7 @@ portfolioPub.front = portfolioPub.front || (function () {
     * desc : 타이틀 등장 애니메이션
     */
    function titleRevealAni(selector) {
-    selector = selector || '.cont-tit, .scont-tit';
+    selector = selector || '.cont-tit';
 
     selector.html(
     selector.text()
@@ -218,14 +217,14 @@ portfolioPub.front = portfolioPub.front || (function () {
             markers: false,
         
             onEnter: () => {
-                gsap.to("body", {
+                gsap.to(".container-wrapper", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
                 });
             },
             onEnterBack: () => {
-                gsap.to("body", {
+                gsap.to(".container-wrapper", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
                     duration: 1.4,
@@ -245,7 +244,16 @@ portfolioPub.front = portfolioPub.front || (function () {
         })
             .fromTo(it,{y: 150 }, {y: 0, ease: 'none', duration: 5}, 0)
     })
+   }
 
+    /*
+    * date : 20241028
+    * last : 20241028
+    * name : setWorkHoverCursor()
+    * pram :
+    * desc : cont-box stack gsap
+    */
+   function setWorkHoverCursor() {
     $(".experience-item .link-site").on("mouseenter", function () {
         const $emoji = $(this).find(".media-emoji");
   
@@ -267,16 +275,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         const $emoji = $(this).find(".media-emoji");
         $(this).off("mousemove"); // mousemove 이벤트 해제
       });
-   }
-
-    /*
-    * date : 20241028
-    * last : 20241028
-    * name : setContBoxStack()
-    * pram :
-    * desc : cont-box stack gsap
-    */
-   function setContStack() {
    }
 
     /*
@@ -555,7 +553,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setMoHeader();
         setGoTop();
         setBgChange();
-        setContStack();
+        setWorkHoverCursor();
         revealIntersectionObserve();
 
         /* 맥 OS 또는 iOS / android 디바이스 체크 */

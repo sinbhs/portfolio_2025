@@ -83,276 +83,62 @@ span {
 
 .cont-tit-sm {
     @include mixins.font_size_xxl;
+    @extend %revealTitleStyle;
 }
 
 .scont-tit {
     margin-bottom: 10px;
     overflow: hidden;
-    @include mixins.font_size_lg;
-    @extend %revealTitleStyle;
+    @include mixins.font_size_lg('default', 'md');
 
     ~ .scont-tit {
         margin-top: 30px;
     }
 }
 
-/* 본문 텍스트 */
-.intro-desc {
-    @include mixins.font_size_rgl;
-}
-
 .btext {
     @include mixins.font_size_rgl;
 }
 
-.info-text-list {
-    .info-text {
-        position: relative;
-        padding-left: 8px;
+// 버튼
+.btn {
+    @include mixins.justify_width(center, center, row);
+    height: 50px;
+    padding: 0 24px;
+    border-radius: 4px;
+    font-weight: variables.$fontWeightMedium;
+
+    .text {
         @include mixins.font_size_rgl;
-    
-        &:before {
-            display: block;
-            position: absolute;
-            left: 0;
-            content: '';
-            top: 7px;
-            width: 3px;
-            height: 3px;
-            border-radius: 2px;
-            background-color: #FFC366;
-        }
+        text-align: center;
+    }
 
-        + .info-text {
-            margin-top: 6px;
+    &.btn-black {
+        background-color: variables.$colorBlack;
+
+        .text {
+            color: variables.$colorWhite;
         }
+    }
+
+    &.btn-light-gray {
+        border: 1px solid variables.$colorBlack;
     }
 }
 
-// experience list
-.experience-list {
-    .experience-item {
-        border: 1px solid transparent;
-        border-radius: 22px;
-        overflow: hidden;
-        opacity: 0;
+.btn-wrap {
+    @include mixins.justify_width(center);
+    margin-top: 30px;
 
-        .link-site {
-            &:hover {
-                .fake-btn-text {
-                    background-color: #fff;
-
-                    .text {
-                        color: variables.$colorBlack;
-                    }
-
-                    .arrow path {
-                        &:last-child {
-                            @include mixins.prefix(transform, translateY(0));
-                        }
-    
-                        &:first-child {
-                            @include mixins.prefix(transform, translateY(100%));
-                        }
-                    }
-                }
-            }
-        }
-
-        .thumb-box {
-            position: relative;
-            width: 100%;
-            padding-top: 56.1643%;
-            overflow: hidden;
-            border-bottom-left-radius: 22px;
-            border-bottom-right-radius: 22px;
-            @include mixins.ratio_images('../images/common/comm_img_no_data', cover, center, '', 'jpg');
-
-            img {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                @include mixins.prefix(transform, translateX(-50%));
-                width: 100%;
-                height: 100%;
-                -o-object-fit: cover;
-                object-fit: cover;
-                @include mixins.prefix(transition, .42s cubic-bezier(.28, .11, .32, 1));
-            }
-        }
-
-        .info-box {
-            padding: 15px;
-
-            .title {
-                @include mixins.font_size_rgl;
-                font-weight: variables.$fontWeightMedium;
-                margin-bottom: 10px;
-                color: #fff;
-            }
-        }
-
-        .fake-btn-text {
-            @include mixins.justify_width(center, center, row, true);
-            padding: 10px 18px;
-            margin-top: 15px;
-            border: 1px solid #fff;
-            border-radius: 60px;
-            vertical-align: top;
-            background-color: transparent;
-            @include mixins.prefix(transition, background-color .23s);
-
-            .text {
-                @include mixins.font_size_xs;
-                color: #fff;
-            }
-
-            .arrow {
-                width: 14px;
-                height: 14px;
-                @include mixins.prefix(transform, rotate(-135deg));
-                fill: #fff;
-                position: relative;
-                z-index: 3;
-
-                path {
-                    fill: #ffdc1f;
-                    @include mixins.prefix(transition, transform .62s cubic-bezier(.28, .11, .32, 1));
-
-                    &:last-child {
-                        @include mixins.prefix(transform, translateY(-100%));
-                    }
-                }
-            }
+    .btn {
+        & ~ .btn {
+            margin-left: 10px;
         }
     }
-}
 
-.experiences-list {
-    .experience-item {
-        @include mixins.prefix(transition, 1s cubic-bezier(.175,.885,.32,1.275));
-        @include mixins.prefix(transform, translateY(100%));
-
-        .img-area {
-            position: relative;
-            @include mixins.justify_width(end, start);
-            width: 100%;
-            padding: 15px;
-            aspect-ratio: 960 / 612;
-            overflow: hidden;
-
-            .thumb-box {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border-radius: 8px;
-                @include mixins.ratio_images('../images/common/comm_img_no_data', cover, center, '', 'jpg');
-                overflow: hidden;
-    
-                img {
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    @include mixins.prefix(transform, translateX(-50%));
-                    width: 100%;
-                    height: 100%;
-                    -o-object-fit: cover;
-                    object-fit: cover;
-                    @include mixins.prefix(transition, .42s cubic-bezier(.28, .11, .32, 1));
-                }
-            }
-    
-            .fake-btn-text {
-                position: relative;
-                z-index: 5;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #FAFAFA;
-                border-radius: 5em;
-                padding: 6px;
-                max-width: 30px;
-                transition: .6s all cubic-bezier(.55,0,.1,1);
-    
-                .text {
-                    display: inline-flex;
-                    align-items: flex-end;
-                    overflow: hidden;
-                    opacity: 0;
-                    transition: .6s all cubic-bezier(.55,0,.1,1);
-                    white-space: nowrap;
-                    color: variables.$colorBlack;
-                    @include mixins.font_size_sm;
-                }
-    
-                svg {
-                    width: 18px;
-                    height: 18px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-shrink: 0;
-                    transform: rotate(-45deg);
-                    transition: .6s transform cubic-bezier(.55,0,.1,1);
-                }
-            }
-    
-            .media-emoji {
-                position: absolute;
-                z-index: 10;
-                top: 0;
-                left: 0;
-                font-size: 37px;
-                opacity: 0;
-                transition: .6s opacity cubic-bezier(.55,0,.1,1)
-            }
-        }
-
-        .info-area {
-            @include mixins.justify_width(start, between);
-            margin-top: 15px;
-
-            .title {
-                @include mixins.font_size_lg;
-            }
-        }
-
-        .link-site {
-            position: relative;
-
-            &:hover {
-                .fake-btn-text {
-                    max-width: 100%;
-                    padding: {
-                        right: 10px;
-                        left: 10px;
-                    }
-                }
-            
-                .fake-btn-text .text {
-                    padding-right: 11px;
-                    opacity: 1;
-                }
-            
-                .fake-btn-text svg {
-                    transform: rotate(0)
-                }
-
-                .media-emoji {
-                    opacity:1
-                }
-            }
-        }
-
-        &.reveal {
-            opacity: 1;
-            @include mixins.prefix(transform, translateY(0));
-        }
-
-        ~ .experience-item {
-            margin-top: 25px;
+    @include mixins.size_mobile {
+        .btn {
+            flex: 1 0 0;
         }
     }
 }
@@ -410,256 +196,6 @@ span {
             .tag {
                 line-height: 0;
             }
-        }
-    }
-}
-
-// about me
-.header-wrapper {
-    &.scroll-down ~ .container-wrapper {
-        .intro-box {
-            .ico-sparkles {
-                @include mixins.prefix(transform, translateY(30px));
-            }
-        }
-    }
-}
-
-.intro-box {
-    .cont-title-wrap {
-        margin-bottom: 56px;
-
-        .cont-tit {
-            position: relative;
-            z-index: 1;
-            font-size: 40px;
-            line-height: 40px;
-            font-weight: variables.$fontWeightSemibold;
-
-            .ft-eng {
-                font-size: 50px;
-                line-height: 59px;
-
-                .wave-name {
-                    display: inline-block;
-                    animation: wave-name 0.6s infinite alternate;
-                    vertical-align: top;
-
-                    ~ .wave-name {
-                        margin-left: 15px;
-                    }
-                }
-            }
-        }
-    }
-
-    .ico-sparkles {
-        position: absolute;
-        z-index: 0;
-        top: 90px;
-        left: 0;
-        @include mixins.prefix(transform, translateY(0));
-        @include mixins.prefix(transition, transform 0.5s ease-out);
-        opacity: .8;
-    }
-
-    .intro-text-box {
-        margin-bottom: 50px;
-        word-break: break-word;
-    }
-
-    //mobile
-    @include mixins.size_mobile {
-       .intro-text-box {
-         .intro-tit {
-            font-weight: variables.$fontWeightMedium;
-         }
-
-         .desc {
-            @include mixins.font_size_rgl;
-         }
-       }
-    }
-
-    //pc
-    @include mixins.size_desktop {
-        .cont-inner {
-            @include mixins.justify_width(end, start);
-
-            .left-area {
-                width: 50%;
-
-                .cont-title-wrap {
-                    .cont-tit {
-                        font-size: 80px;
-                        line-height: 80px;
-
-                        .ft-eng {
-                            font-size: 80px;
-                            line-height: 89px;
-                        }
-                    }
-                }
-
-                .intro-text-box {
-                    width: 70%;
-                    margin-bottom: 0;
-                    word-break: break-word;
-                }
-            }
-        }
-     }
-
-   /*  &:after {
-        content: '';
-        display: inline-block;
-        width: 100%;
-        height: 50px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(0deg, rgba(variables.$colorBlack, .08) 0%, rgba(variables.$colorBlack, 0) 100%);
-    } */
-}
-
-// work experience
-.work-box {
-    margin-bottom: 300px;
-
-    @media (min-width: 600px) {
-        .experience-list, .experiences-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px 20px;
-
-            .experience-item {
-                &:hover {
-                    .thumb-box {
-        
-                        img {
-                            @include mixins.prefix(transform, translateX(-50%) scale(1.1));
-                        }
-                    }
-                }
-
-                & ~ .experience-item {
-                    margin-top: 0;
-                }
-            }
-        }
-    }
-}
-
-// contact
-.contact-box {
-    .link-email {
-        display: inline-block;
-        margin-bottom: 20px;
-        vertical-align: top;
-        @include mixins.font_size_xxxl;
-    }
-
-    .btext {
-        color: variables.$textColorDarkGray;
-    }
-}
-
-// 상세
-.detail-wrap {
-    .img-box {
-        @include mixins.justify_width(center, center, column);
-        height: 60vh;
-        position: relative;
-        text-align: center;
-
-        &:after {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            content: '';
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(variables.$colorBlack, .45);
-        }
-
-        .title {
-            position: relative;
-            z-index: 1;
-            @include mixins.font_size_xxxl;
-            color: variables.$colorWhite;
-            text-align: center;
-        }
-
-        .sub-title {
-            position: relative;
-            z-index: 1;
-            margin-top: -17px;
-            @include mixins.font_size_xxxl;
-            color: rgba(variables.$colorWhite, 0.2);
-            text-align: center;
-        }
-
-        // 남양 기업사이트
-        &.namyang {
-            @include mixins.ratio_images('/assets/images/experience/namyang_company_detail_01', cover, center, '', 'jpg');
-            background-attachment: fixed;
-        }
-    }
-
-    .info-box {
-        .title {
-            @include mixins.font_size_xxl;
-            font-weight: variables.$fontWeightSemibold;
-        }
-
-        .tbl-info {
-            margin-top: 20px;
-            border-top: 2px solid #222;
-        }
-    }
-
-    .btext {
-        margin-top: 30px;
-    }
-}
-
-// 버튼
-.btn {
-    @include mixins.justify_width(center, center, row);
-    height: 50px;
-    padding: 0 24px;
-    border-radius: 4px;
-    font-weight: variables.$fontWeightMedium;
-
-    .text {
-        @include mixins.font_size_md;
-    }
-
-    &.btn-black {
-        background-color: variables.$colorBlack;
-
-        .text {
-            color: variables.$colorWhite;
-        }
-    }
-
-    &.btn-light-gray {
-        border: 1px solid variables.$colorBlack;
-    }
-}
-
-.btn-wrap {
-    @include mixins.justify_width(center, center);
-    margin-top: 30px;
-
-    .btn {
-        flex: 1 0 0;
-
-        & ~ .btn {
-            margin-left: 10px;
         }
     }
 }
