@@ -269,10 +269,16 @@
 }
 
 // Regular(H5, B0, B1) - font-size: 15px
-@mixin font_size_md($lineHeight : 'default') {
+@mixin font_size_md($lineHeight : 'default', $fontWeight: 'default') {
 	font-size: variables.$fontSizeMd;
 	line-height: variables.$fontSizeMdLineHeight;
 	letter-spacing: variables.$letterSpacing;
+
+	@if ($fontWeight == 'default') {
+        font-weight: variables.$fontWeightMedium;
+    } @else if ($fontWeight == 'sb') {
+        font-weight: variables.$fontWeightSemibold;
+    }
 
 	@if not($lineHeight == 'default') {
 		line-height: $lineHeight;

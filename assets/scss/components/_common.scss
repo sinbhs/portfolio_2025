@@ -96,8 +96,17 @@ span {
     }
 }
 
+.scont-tit-sm {
+    @include mixins.font_size_md;
+    margin-bottom: 10px;
+
+    ~ .scont-tit-sm {
+        margin-top: 25px;
+    }
+}
+
 .btext {
-    @include mixins.font_size_rgl;
+    @include mixins.font_size_rgl(22px);
 }
 
 // 버튼
@@ -196,6 +205,54 @@ span {
             .tag {
                 line-height: 0;
             }
+        }
+    }
+}
+
+// 정보성 리스트
+.info-text-list {
+    .info-text {
+        position: relative;
+        padding-left: 8px;
+        @include mixins.font_size_rgl(22px);
+    
+        &:before {
+            display: block;
+            position: absolute;
+            left: 0;
+            content: '';
+            top: 7px;
+            width: 3px;
+            height: 3px;
+            border-radius: 2px;
+            background-color: #FFC366;
+        }
+
+        + .info-text {
+            margin-top: 6px;
+        }
+    }
+}
+
+.info-sub-list {
+    margin-top: 6px;
+
+    .dash-text {
+        position: relative;
+        padding-left: 8px;
+        @include mixins.font_size_rgl(22px);
+        word-break: break-word;
+
+        &:before {
+            display: block;
+            position: absolute;
+            left: 0;
+            content: '-';
+            top: 0;
+        }
+
+        ~ .dash-text {
+            margin-top: 6px;
         }
     }
 }

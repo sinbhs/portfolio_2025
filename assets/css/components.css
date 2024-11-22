@@ -96,10 +96,22 @@ span {
 	margin-top: 30px;
 }
 
+.scont-tit-sm {
+	font-size: 15px;
+	line-height: 20px;
+	letter-spacing: -0.025em;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+.scont-tit-sm ~ .scont-tit-sm {
+	margin-top: 25px;
+}
+
 .btext {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	line-height: 22px;
 }
 
 .btn {
@@ -219,6 +231,52 @@ span {
 }
 .tbl-info tr td .tag {
 	line-height: 0;
+}
+
+.info-text-list .info-text {
+	position: relative;
+	padding-left: 8px;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: -0.025em;
+	line-height: 22px;
+}
+.info-text-list .info-text:before {
+	display: block;
+	position: absolute;
+	left: 0;
+	content: "";
+	top: 7px;
+	width: 3px;
+	height: 3px;
+	border-radius: 2px;
+	background-color: #FFC366;
+}
+.info-text-list .info-text + .info-text {
+	margin-top: 6px;
+}
+
+.info-sub-list {
+	margin-top: 6px;
+}
+.info-sub-list .dash-text {
+	position: relative;
+	padding-left: 8px;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: -0.025em;
+	line-height: 22px;
+	word-break: break-word;
+}
+.info-sub-list .dash-text:before {
+	display: block;
+	position: absolute;
+	left: 0;
+	content: "-";
+	top: 0;
+}
+.info-sub-list .dash-text ~ .dash-text {
+	margin-top: 6px;
 }
 
 /* s : icon */

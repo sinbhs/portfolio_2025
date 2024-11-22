@@ -44,6 +44,24 @@
             @include mixins.ratio_images('/assets/images/experience/namyang_company_detail_bg', cover, center, '', 'jpg');
             background-attachment: fixed;
         }
+
+        // 한솔홈데코 vhom
+        &.hansol-vhom {
+            @include mixins.ratio_images('/assets/images/experience/hansol_vhom_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
+        }
+
+        // 교보문고
+        &.kyobobook {
+            @include mixins.ratio_images('/assets/images/experience/kyobo_book_detail_bg', cover, center, '', 'jpg');
+            background-attachment: fixed;
+        }
+
+        // 롯데잇츠
+        &.lotte-eatz {
+            @include mixins.ratio_images('/assets/images/experience/lotte_eatz_detail_bg', cover, center, '', 'jpg');
+            background-attachment: fixed;
+        }
     }
 
     .info-box {
@@ -56,8 +74,10 @@
         }
     }
 
-    .btext {
-        margin-top: 30px;
+    @include mixins.size_mobile {
+        .right-area {
+            margin-top: 40px;
+        }
     }
 
     @include mixins.size_desktop {
@@ -79,7 +99,7 @@
         }
 
         .info-box {
-            @include mixins.justify_width(end);
+            @include mixins.justify_width;
 
             .left-area, .right-area {
                 flex: 1 0 0;
