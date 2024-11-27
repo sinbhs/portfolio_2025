@@ -59,7 +59,7 @@
 
         // 롯데잇츠
         &.lotte-eatz {
-            @include mixins.ratio_images('/assets/images/experience/lotte_eatz_detail_bg', cover, center, '', 'jpg');
+            @include mixins.ratio_images('/assets/images/experience/lotte_eatz_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
     }

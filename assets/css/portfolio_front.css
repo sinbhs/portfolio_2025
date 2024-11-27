@@ -937,7 +937,7 @@ span {
 	position: absolute;
 	left: 0;
 	content: "";
-	top: 7px;
+	top: 9px;
 	width: 3px;
 	height: 3px;
 	border-radius: 2px;
@@ -1410,7 +1410,7 @@ span {
 	background-attachment: fixed;
 }
 .detail-wrap .img-box.lotte-eatz {
-	background: url("/assets/images/experience/lotte_eatz_detail_bg.jpg") center no-repeat;
+	background: url("/assets/images/experience/lotte_eatz_detail_bg.png") center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 }
