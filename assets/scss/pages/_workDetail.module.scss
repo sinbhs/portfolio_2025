@@ -62,6 +62,27 @@
             @include mixins.ratio_images('/assets/images/experience/lotte_eatz_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
+
+        // KT CAIKE
+        &.kt-caike {
+            @include mixins.ratio_images('/assets/images/experience/kt_caike_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
+        }
+
+        // KT MRSS
+        &.kt-mrss {
+           background-color: #6941FF;
+        }
+
+        // 버킷스토어
+        &.bucket {
+           background-color: variables.$colorBlack;
+        }
+
+        // 구구스
+        &.gugus {
+           background-color: #012E29;
+        }
     }
 
     .info-box {

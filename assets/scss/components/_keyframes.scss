@@ -22,6 +22,15 @@
   }
 }
 
+@keyframes moving-sparkle {
+    0% {
+        @include mixins.prefix(transform, scale(.8));
+      }
+    100% {
+        @include mixins.prefix(transform, scale(1));
+    }
+}
+
 
 @keyframes opacityActive {
     0% {

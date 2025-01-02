@@ -1013,6 +1013,18 @@ span {
 		transform: rotateZ(-2deg);
 	}
 }
+@keyframes moving-sparkle {
+	0% {
+		-moz-transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		transform: scale(0.8);
+	}
+	100% {
+		-moz-transform: scale(1);
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
 @keyframes opacityActive {
 	0% {
 		opacity: 0;
@@ -1056,11 +1068,6 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
-}
-.wrapper.main .header-wrapper.scroll-down ~ .container-wrapper .intro-box .ico-sparkles {
-	-moz-transform: translateY(30px);
-	-webkit-transform: translateY(30px);
-	transform: translateY(30px);
 }
 .wrapper.main .intro-box .cont-title-wrap {
 	margin-bottom: 56px;
@@ -1143,6 +1150,10 @@ span {
 	.wrapper.main .intro-box .cont-inner .left-area .cont-title-wrap .cont-tit .ft-eng {
 		font-size: 80px;
 		line-height: 89px;
+	}
+	.wrapper.main .intro-box .cont-inner .left-area .ico-sparkles {
+		left: -27px;
+		animation: moving-sparkle 1s infinite alternate;
 	}
 	.wrapper.main .intro-box .cont-inner .left-area .intro-text-box {
 		width: 70%;
@@ -1334,6 +1345,13 @@ span {
 	left: 0;
 	z-index: 1;
 }
+@media (max-width: 890px) {
+	.wrapper.main .header-wrapper.scroll-down ~ .container-wrapper .intro-box .ico-sparkles {
+		-moz-transform: translateY(30px);
+		-webkit-transform: translateY(30px);
+		transform: translateY(30px);
+	}
+}
 
 /* e : main */
 /* s : detail */
@@ -1413,6 +1431,20 @@ span {
 	background: url("/assets/images/experience/lotte_eatz_detail_bg.png") center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
+}
+.detail-wrap .img-box.kt-caike {
+	background: url("/assets/images/experience/kt_caike_detail_bg.png") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.detail-wrap .img-box.kt-mrss {
+	background-color: #6941FF;
+}
+.detail-wrap .img-box.bucket {
+	background-color: #000;
+}
+.detail-wrap .img-box.gugus {
+	background-color: #012E29;
 }
 .detail-wrap .info-box .left-area .cont-tit-sm {
 	padding-bottom: 15px;

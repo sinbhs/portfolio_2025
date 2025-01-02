@@ -9,17 +9,6 @@
         .intro-desc {
             @include mixins.font_size_rgl;
         }
-
-        // about me
-        .header-wrapper {
-            &.scroll-down ~ .container-wrapper {
-                .intro-box {
-                    .ico-sparkles {
-                        @include mixins.prefix(transform, translateY(30px));
-                    }
-                }
-            }
-        }
         
         .intro-box {
             .cont-title-wrap {
@@ -95,6 +84,11 @@
                                     line-height: 89px;
                                 }
                             }
+                        }
+
+                        .ico-sparkles {
+                            left: -27px;
+                            animation: moving-sparkle 1s infinite alternate;
                         }
         
                         .intro-text-box {
@@ -272,6 +266,20 @@
             bottom: 0;
             left: 0;
             z-index: 1;
+        }
+
+        //mobile
+        @include mixins.size_mobile {
+            // about me
+            .header-wrapper {
+                &.scroll-down ~ .container-wrapper {
+                    .intro-box {
+                        .ico-sparkles {
+                            @include mixins.prefix(transform, translateY(30px));
+                        }
+                    }
+                }
+            }
         }
     }
 }
