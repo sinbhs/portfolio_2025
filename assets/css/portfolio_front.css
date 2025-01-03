@@ -500,6 +500,9 @@ button {
 
 /* e : footer */
 /* s : grid */
+body {
+	scroll-behavior: smooth;
+}
 @media (min-width: 891px) {
 	body {
 		overflow-y: scroll;

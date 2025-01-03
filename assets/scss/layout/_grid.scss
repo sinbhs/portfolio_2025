@@ -6,6 +6,8 @@
 
 /* s : grid */
 body {
+    scroll-behavior: smooth;
+    
     @include mixins.size_desktop {
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
