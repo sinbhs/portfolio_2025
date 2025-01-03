@@ -47,55 +47,55 @@
 
         // 한솔홈데코 vhom
         &.hansol-vhom {
-            @include mixins.ratio_images('../assets/images/experience/hansol_vhom_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/hansol_vhom_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // 교보문고
         &.kyobobook {
-            @include mixins.ratio_images('../assets/images/experience/kyobo_book_detail_bg', cover, center, '', 'jpg');
+            @include mixins.ratio_images('../images/experience/kyobo_book_detail_bg', cover, center, '', 'jpg');
             background-attachment: fixed;
         }
 
         // 롯데잇츠
         &.lotte-eatz {
-            @include mixins.ratio_images('../assets/images/experience/lotte_eatz_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/lotte_eatz_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // KT CAIKE
         &.kt-caike {
-            @include mixins.ratio_images('../assets/images/experience/kt_caike_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/kt_caike_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // KT MRSS
         &.kt-mrss {
-            @include mixins.ratio_images('../assets/images/experience/kt_mrss_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/kt_mrss_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // 버킷스토어
         &.bucket {
-            @include mixins.ratio_images('../assets/images/experience/bucket_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/bucket_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // 구구스
         &.gugus {
-            @include mixins.ratio_images('../assets/images/experience/gugus_detail_bg', cover, center, '', 'jpg');
+            @include mixins.ratio_images('../images/experience/gugus_detail_bg', cover, center, '', 'jpg');
             background-attachment: fixed;
         }
 
         // 글림
         &.glim {
-            @include mixins.ratio_images('../assets/images/experience/glim_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/glim_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
 
         // 데상트
         &.descente {
-            @include mixins.ratio_images('../assets/images/experience/descente_detail_bg', cover, center, '', 'png');
+            @include mixins.ratio_images('../images/experience/descente_detail_bg', cover, center, '', 'png');
             background-attachment: fixed;
         }
     }
