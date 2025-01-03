@@ -427,7 +427,7 @@ button {
 	font-weight: 500;
 	color: #fff;
 }
-.header-wrapper .header-inner .btn-scroll-to-contact .text {
+.header-wrapper .header-inner .btn-scroll-to-contact .text, .header-wrapper .header-inner .btn-link .text {
 	font-weight: 500;
 	color: #fff;
 }
@@ -681,8 +681,8 @@ button {
 		-webkit-flex-direction: column;
 		flex-direction: column;
 	}
-	.wrapper .cont-box ~ .cont-box .cont-inner, .wrapper .cont-box ~ .gcont-box .cont-inner, .wrapper .gcont-box ~ .cont-box .cont-inner, .wrapper .gcont-box ~ .gcont-box .cont-inner {
-		padding-top: 120px;
+	.wrapper .cont-box ~ .cont-box {
+		margin-top: 120px;
 	}
 	.wrapper .footer-wrapper {
 		margin-top: auto;
@@ -802,6 +802,7 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
 	line-height: 22px;
 }
 
@@ -835,6 +836,7 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
 	text-align: center;
 }
 .btn.btn-black {
@@ -912,6 +914,7 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
 	text-align: left;
 	vertical-align: top;
 	word-break: break-all;
@@ -930,6 +933,7 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
 	line-height: 22px;
 }
 .info-text-list .info-text:before {
@@ -956,6 +960,7 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
 	line-height: 22px;
 	word-break: break-word;
 }
@@ -1068,6 +1073,49 @@ span {
 	font-size: 14px;
 	line-height: 18px;
 	letter-spacing: -0.025em;
+	font-weight: 400;
+}
+.wrapper.main .tab-list {
+	font-size: 0;
+	margin-bottom: 20px;
+}
+.wrapper.main .tab-list .tab-item {
+	display: inline-block;
+	vertical-align: top;
+}
+.wrapper.main .tab-list .tab-item .btn-tab {
+	color: inherit;
+}
+.wrapper.main .tab-list .tab-item .btn-tab .text {
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: -0.025em;
+	font-weight: 500;
+	opacity: 0.3;
+}
+.wrapper.main .tab-list .tab-item.active .btn-tab {
+	cursor: text;
+}
+.wrapper.main .tab-list .tab-item.active .text {
+	opacity: 1;
+}
+.wrapper.main .tab-list .tab-item + .tab-item {
+	position: relative;
+	margin-left: 12px;
+	padding-left: 13px;
+}
+.wrapper.main .tab-list .tab-item + .tab-item:before {
+	content: "";
+	position: absolute;
+	display: inline-block;
+	width: 1px;
+	height: 12px;
+	background: #e5e5e5;
+	left: 0;
+	top: 50%;
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 .wrapper.main .intro-box .cont-title-wrap {
 	margin-bottom: 56px;
@@ -1116,6 +1164,7 @@ span {
 		font-size: 14px;
 		line-height: 18px;
 		letter-spacing: -0.025em;
+		font-weight: 400;
 	}
 }
 @media (min-width: 891px) {
@@ -1327,7 +1376,7 @@ span {
 @media (min-width: 600px) {
 	.wrapper.main .work-box .experience-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 		gap: 50px 30px;
 	}
 	.wrapper.main .work-box .experience-list .experience-item:hover .thumb-box img {
@@ -1438,13 +1487,29 @@ span {
 	background-attachment: fixed;
 }
 .detail-wrap .img-box.kt-mrss {
-	background-color: #6941FF;
+	background: url("/assets/images/experience/kt_mrss_detail_bg.png") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 }
 .detail-wrap .img-box.bucket {
-	background-color: #000;
+	background: url("/assets/images/experience/bucket_detail_bg.png") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 }
 .detail-wrap .img-box.gugus {
-	background-color: #012E29;
+	background: url("/assets/images/experience/gugus_detail_bg.jpg") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.detail-wrap .img-box.glim {
+	background: url("/assets/images/experience/glim_detail_bg.png") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.detail-wrap .img-box.descente {
+	background: url("/assets/images/experience/descente_detail_bg.png") center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 }
 .detail-wrap .info-box .left-area .cont-tit-sm {
 	padding-bottom: 15px;

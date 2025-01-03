@@ -9,7 +9,58 @@
         .intro-desc {
             @include mixins.font_size_rgl;
         }
+
+        .tab-list {
+            font-size: 0;
+            margin-bottom: 20px;
+
+            .tab-item {
+                display: inline-block;
+                vertical-align: top;
+
+                .btn-tab {
+                    color: inherit;
+                    
+                    .text {
+                        @include mixins.font_size_rgl('default', 'md');
+                        opacity: .3;
+                    }
+                }
+    
+                &.active {
+                    .btn-tab {
+                        cursor: text;
+                    }
+
+                    .text {
+                        opacity: 1;
+                    }
+                }
+
+                + .tab-item {
+                    position: relative;
+                    margin-left: 12px;
+                    padding-left: 13px;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        display: inline-block;
+                        width: 1px;
+                        height: 12px;
+                        background: #e5e5e5;
+                        left: 0;
+                        top: 50%;
+                        -moz-transform: translateY(-50%);
+                        -webkit-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                      }
+                }
+            }
+        }
         
+
+        // intro
         .intro-box {
             .cont-title-wrap {
                 margin-bottom: 56px;
@@ -240,7 +291,7 @@
             @media (min-width: 600px) {
                 .experience-list {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
                     gap: 50px 30px;
         
                     .experience-item {

@@ -286,10 +286,16 @@
 }
 
 // B2, B3, B4 - font-size: 14px
-@mixin font_size_rgl($lineHeight : 'default') {
+@mixin font_size_rgl($lineHeight : 'default', $fontWeight: 'default') {
 	font-size: variables.$fontSizeRgl;
 	line-height: variables.$fontSizeRglLineHeight;
 	letter-spacing: variables.$letterSpacing;
+
+	@if ($fontWeight == 'default') {
+        font-weight: variables.$fontWeightRegular;
+    } @else if ($fontWeight == 'md') {
+        font-weight: variables.$fontWeightMedium;
+    }
 
 	@if not($lineHeight == 'default') {
 		line-height: $lineHeight;

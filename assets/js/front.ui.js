@@ -208,7 +208,7 @@ portfolioPub.front = portfolioPub.front || (function () {
    function setBgChange() {
     gsap.utils.toArray(".cont-box").forEach((item) => {
         let bgColor = item.getAttribute("data-bgcolor");
-        let textColor = bgColor === "#000" ? "#fff" : "#000"; // 예: 검은 배경일 때 흰 텍스트, 그 외는 검은 텍스트
+        let textColor = bgColor === "#000" ? "#fff" : "#000"; // 검은 배경 흰 텍스트, 흰 배경 검은 텍스트
         
         ScrollTrigger.create({
             trigger: item,
@@ -220,14 +220,14 @@ portfolioPub.front = portfolioPub.front || (function () {
                 gsap.to(".container-wrapper", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
-                    duration: 1.4,
+                    duration: 1.2,
                 });
             },
             onEnterBack: () => {
                 gsap.to(".container-wrapper", {
                     backgroundColor: bgColor,
                     color: textColor, // 텍스트 색상 변경
-                    duration: 1.4,
+                    duration: 1.2,
                 });
             },
         });

@@ -71,17 +71,32 @@
 
         // KT MRSS
         &.kt-mrss {
-           background-color: #6941FF;
+            @include mixins.ratio_images('/assets/images/experience/kt_mrss_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
         }
 
         // 버킷스토어
         &.bucket {
-           background-color: variables.$colorBlack;
+            @include mixins.ratio_images('/assets/images/experience/bucket_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
         }
 
         // 구구스
         &.gugus {
-           background-color: #012E29;
+            @include mixins.ratio_images('/assets/images/experience/gugus_detail_bg', cover, center, '', 'jpg');
+            background-attachment: fixed;
+        }
+
+        // 글림
+        &.glim {
+            @include mixins.ratio_images('/assets/images/experience/glim_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
+        }
+
+        // 데상트
+        &.descente {
+            @include mixins.ratio_images('/assets/images/experience/descente_detail_bg', cover, center, '', 'png');
+            background-attachment: fixed;
         }
     }
 

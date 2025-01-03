@@ -65,6 +65,59 @@
     <!-- UI JavaScript
     ================================================== -->
     <script src="../../assets/js/front.ui.js"></script>
+    <script>
+        $(function() {
+            // contact 영역으로 스크롤
+            scrollToContact();
+
+            // experience sorting tab
+            experienceTab();
+	    })
+    
+        function scrollToContact() {
+            console.log($('.footer-wrapper').offset().top);
+            $('.btn-scroll-to-contact').off('click').on('click', function() {
+                $("html, body").animate(
+                    { scrollTop: $(document).height() },
+                    500 // 스크롤 속도 (600ms)
+                );
+            })
+        }
+        
+        function experienceTab() {
+            if(!!workTabList) return false;
+
+            let experienceItem = $('.experience-list .experience-item'),
+                experienceType = experienceItem.find('.service-type').text(); // 작업물 아이템 service-type
+
+            var workTabList = $('.tab-list'), // sorting 탭
+                experienceList = $('.experience-list'); // 작업물 리스트
+
+            $('.tab-list .tab-item .btn-tab').off('click').on('click', function(){
+
+                var btn = $(this),
+                    sortingTarget = btn.data('type'),
+                    tabItem = btn.closest('.tab-item');
+
+                // tab item에 'active' 없는 경우
+                if(!tabItem.hasClass('active')) {
+                    workTabList.find('.tab-item.active').removeClass('active');
+                    tabItem.addClass('active');
+
+                    // 리스트 필터링
+                    if (sortingTarget === 'all') {
+                        $('.experience-list .experience-item').show(); // 전체 항목 표시
+                    } else {
+                        $('.experience-list .experience-item').hide(); // 모두 숨기기
+
+                        $('.experience-item', experienceList).filter(function () {
+                            return $(this).find('.service-type').text().toLowerCase() === sortingTarget;
+                        }).show(); // 조건에 맞는 항목만 표시
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <!-- wrapper -->
@@ -152,10 +205,20 @@
         <!-- cont-box -->
         <div class="cont-box work-box" data-bgcolor="#fff">
             <div class="cont-inner">
+                <!-- cont-title-wrap -->
                 <div class="cont-title-wrap">
                     <h2 class="cont-tit reveal-tg">Work Experience</h2>    
                     <div class="stext reveal-tg">퍼블리셔 경력 4년</div>
                 </div>
+                <!-- // cont-title-wrap -->
+
+                <!-- tab-list -->
+                <ul class="tab-list">
+                    <li class="tab-item active"><button type="button" class="btn-tab" data-type="all"><span class="text">ALL</span></button></li>
+                    <li class="tab-item"><button type="button" class="btn-tab" data-type="fo"><span class="text">FO</span></button></li>
+                    <li class="tab-item"><button type="button" class="btn-tab" data-type="bo"><span class="text">BO</span></button></li>
+                </ul>
+                <!-- // tab-list -->
 
                 <ol class="experience-list">
                     <li class="experience-item reveal-tg">

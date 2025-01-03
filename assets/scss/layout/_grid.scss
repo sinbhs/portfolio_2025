@@ -145,11 +145,9 @@ body {
 
         }
        
-        .cont-box, .gcont-box {
-            ~ .cont-box, ~ .gcont-box {
-                .cont-inner {
-                    padding-top: 120px;
-                }
+        .cont-box {
+            ~ .cont-box {
+                margin-top: 120px;
             }
         }
 
