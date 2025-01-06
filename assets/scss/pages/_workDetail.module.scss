@@ -109,7 +109,7 @@
     @include mixins.size_desktop {
         .img-box {
             margin-bottom: 60px;
-            background-attachment: fixed;
+            background-attachment: fixed !important;
 
             .title {
                 font-size: 60px;

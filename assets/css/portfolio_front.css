@@ -1517,7 +1517,7 @@ span {
 @media (min-width: 891px) {
 	.detail-wrap .img-box {
 		margin-bottom: 60px;
-		background-attachment: fixed;
+		background-attachment: fixed !important;
 	}
 	.detail-wrap .img-box .title {
 		font-size: 60px;
