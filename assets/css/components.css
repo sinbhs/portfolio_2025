@@ -68,6 +68,7 @@ span {
 
 .cont-title-wrap {
 	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .cont-tit {

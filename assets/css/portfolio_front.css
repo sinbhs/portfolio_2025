@@ -634,6 +634,9 @@ body {
 	.container-wrapper {
 		padding-bottom: 100px;
 	}
+	.container-wrapper .cont-box ~ .cont-box {
+		margin-top: 120px;
+	}
 	.container-wrapper .intro-box {
 		padding-top: 135px;
 	}
@@ -652,43 +655,6 @@ body {
 	.cont-box, .gcont-box {
 		padding-top: 30px;
 		padding-bottom: 30px;
-	}
-}
-
-.gcont-box {
-	background-color: #f7f7f7;
-}
-
-/* wrapper */
-@media (min-width: 891px) {
-	.wrapper {
-		background: transparent;
-	}
-	.wrapper:not(.ui-dialog) {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		display: -webkit-flex;
-		-webkit-box-pack: start;
-		-ms-flex-pack: start;
-		justify-content: flex-start;
-		-webkit-box-align: stretch;
-		-moz-box-align: stretch;
-		-ms-flex-align: stretch;
-		align-items: stretch;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: reverse;
-		-moz-box-orient: vertical;
-		-moz-box-direction: reverse;
-		-ms-flex-direction: column;
-		-webkit-flex-direction: column;
-		flex-direction: column;
-	}
-	.wrapper .cont-box ~ .cont-box {
-		margin-top: 120px;
-	}
-	.wrapper .footer-wrapper {
-		margin-top: auto;
 	}
 }
 
@@ -762,6 +728,7 @@ span {
 
 .cont-title-wrap {
 	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .cont-tit {
@@ -1069,15 +1036,6 @@ span {
 }
 /* e : keyframes */
 /* s : main */
-.wrapper.main {
-	/* 본문 텍스트 */
-}
-.wrapper.main .intro-desc {
-	font-size: 14px;
-	line-height: 18px;
-	letter-spacing: -0.025em;
-	font-weight: 400;
-}
 .wrapper.main .tab-list {
 	font-size: 0;
 	margin-bottom: 20px;
@@ -1160,8 +1118,10 @@ span {
 	word-break: break-word;
 }
 @media (max-width: 890px) {
-	.wrapper.main .intro-box .intro-text-box .intro-tit {
-		font-weight: 500;
+	.wrapper.main .intro-box .ico-sparkles.is-down {
+		-moz-transform: translateY(30px);
+		-webkit-transform: translateY(30px);
+		transform: translateY(30px);
 	}
 	.wrapper.main .intro-box .intro-text-box .desc {
 		font-size: 14px;
@@ -1396,13 +1356,6 @@ span {
 	bottom: 0;
 	left: 0;
 	z-index: 1;
-}
-@media (max-width: 890px) {
-	.wrapper.main .header-wrapper.scroll-down ~ .container-wrapper .intro-box .ico-sparkles {
-		-moz-transform: translateY(30px);
-		-webkit-transform: translateY(30px);
-		transform: translateY(30px);
-	}
 }
 
 /* e : main */

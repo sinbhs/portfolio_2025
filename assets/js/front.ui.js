@@ -2,7 +2,7 @@
  * name : front.ui.js
  * desc : UI 공통 자바스크립트
  * writer : 송지우
- * date : 2024/10/18
+ * date : 2025/01/16
  * last : 
 */
 
@@ -35,35 +35,11 @@ portfolioPub.front = portfolioPub.front || (function () {
     _front = {};
 
     /*
-    * date : 20241028
-    * last : 20241028
-    * name : setMoHeader()
-    * pram :
-    * desc : mobile header - scroll up/down
-    */
-    function setMoHeader() {
-        var header = $('.header-wrapper');
-        if (header === undefined) return false;
-       
-        $(window).off('scroll', moHeaderScrollDown).on('scroll', moHeaderScrollDown);
-
-        function moHeaderScrollDown() {
-            offset = $_headerWrapper.length > 0 ? $_headerWrapper.height() * 1.5 : 30;
-            if (_scrollTop >= offset) {
-                if (!header.hasClass('scroll-down')) header.addClass('scroll-down');
-            } else {
-                if (header.hasClass('scroll-down')) header.removeClass('scroll-down');
-            }
-        }
-    }
-
-
-    /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : setGoTop()
     * pram :
-    * desc : set top button
+    * desc : 최상단 이동 버튼
     */
     function setGoTop() {
         var offset = $_headerWrapper.length > 0 ? $_headerWrapper.height() * 1.5 : 30;
@@ -92,8 +68,8 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : setTableCaption()
     * pram :
     * desc : 테이블 캡션 생성
@@ -145,62 +121,56 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 20241028
-    * last : 20241028
-    * name : titleRevealAni()
-    * pram :
-    * desc : 타이틀 등장 애니메이션
-    */
-   function titleRevealAni(selector) {
-    selector = selector || '.cont-tit';
-
-    selector.html(
-    selector.text()
-        .split("")
-        .map((letter, idx) => {
-        if (letter === " ") return " ";
-        return `<span style="animation-delay:${
-            idx * 45
-        }ms" class="reveal-item">${letter}</span>`;
-        })
-        .join("")
-    );
-   }
-
-    /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : revealIntersectionObserve()
     * pram :
     * desc : reveal intersection observer
     */
    function revealIntersectionObserve() {
-    const intersectionObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                if(entry.target.classList.contains('cont-tit')) {
-                    titleRevealAni($(entry.target));
-                } else {
-                    entry.target.classList.add('reveal');  
+        const intersectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    if(entry.target.classList.contains('cont-tit')) {
+                        titSplitRevealAni($(entry.target));
+                    } else {
+                        entry.target.classList.add('reveal');  
+                    }
+
+                    // 위 실행을 처리하고(1회) 관찰 중지
+                    intersectionObserver.unobserve(entry.target)
                 }
-
-                // 위 실행을 처리하고(1회) 관찰 중지
-                intersectionObserver.unobserve(entry.target)
-            }
+            });
+        }, {
+            rootMargin: `0px 0px 0px 0px`,
+            threshold: 0,
         });
-    }, {
-        rootMargin: `0px 0px 0px 0px`,
-        threshold: 0,
-    });
 
-    document.querySelectorAll('.reveal-tg').forEach((item) => {
-        intersectionObserver.observe(item);
-    });
+        document.querySelectorAll('.reveal-tg').forEach((item) => {
+            intersectionObserver.observe(item);
+        });
+
+        // 타이틀 split 애니메이션
+        function titSplitRevealAni(selector) {
+            selector = selector || '.cont-tit';
+
+            selector.html(
+            selector.text()
+                .split("")
+                .map((letter, idx) => {
+                if (letter === " ") return " ";
+                return `<span style="animation-delay:${
+                    idx * 45
+                }ms" class="reveal-item">${letter}</span>`;
+                })
+                .join("")
+            );
+        }
    }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : setBgChange()
     * pram :
     * desc : 배경색 변경 gsap
@@ -232,26 +202,14 @@ portfolioPub.front = portfolioPub.front || (function () {
             },
         });
     });
-
-    gsap.utils.toArray('.cont-tit .word').forEach(function (it){
-        gsap.timeline({
-            scrollTrigger : {
-                trigger : it,
-                start : '100% 100%',
-                end : '100% 100%',
-                scrub : 1,
-            }
-        })
-            .fromTo(it,{y: 150 }, {y: 0, ease: 'none', duration: 5}, 0)
-    })
    }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : setWorkHoverCursor()
     * pram :
-    * desc : cont-box stack gsap
+    * desc : work hover cursor
     */
    function setWorkHoverCursor() {
     $(".experience-item .link-site").on("mouseenter", function () {
@@ -278,8 +236,8 @@ portfolioPub.front = portfolioPub.front || (function () {
    }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : createScrollStopListener(element, callback)
     * pram :
     *		@param element  - 스크롤 영역 요소
@@ -315,8 +273,8 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : setSpsOffsetData()
     * pram :
     * desc : 스크롤 동작시 해당 요소에 도착하면 고정
@@ -424,8 +382,8 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : contentScrollMove()
     * pram :
      * desc : 해당 컨텐츠 영역으로 스크롤 이동
@@ -454,8 +412,8 @@ portfolioPub.front = portfolioPub.front || (function () {
     });
 
     /*
-    * date : 20241028
-    * last : 20241028
+    * date : 250106
+    * last : 250106
     * name : breakpointChangeInit()
     * pram :
      * desc : breakpoint 변경될때 초기화
@@ -550,7 +508,6 @@ portfolioPub.front = portfolioPub.front || (function () {
 
         setTableCaption();
         breakpointChangeInit();
-        setMoHeader();
         setGoTop();
         setBgChange();
         setWorkHoverCursor();

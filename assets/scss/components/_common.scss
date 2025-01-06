@@ -75,6 +75,7 @@ span {
 
 .cont-title-wrap {
     margin-bottom: 20px;
+    overflow: hidden;
 }
 .cont-tit {
     @include mixins.font_size_xxxl;

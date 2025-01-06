@@ -65,6 +65,9 @@
             // contact 영역으로 스크롤
             scrollToContact();
 
+            // sparkle 아이콘 scroll animation
+            setMoSparkleScrollAni();
+
             // experience sorting tab
             experienceTab();
 	    })
@@ -77,6 +80,21 @@
                     500 // 스크롤 속도 (600ms)
                 );
             })
+        }
+
+        function setMoSparkleScrollAni() {
+            var ico = $('.ico-sparkles');
+            if (ico === undefined) return false;
+        
+            $(window).off('scroll', moHeaderScrollDown).on('scroll', moHeaderScrollDown);
+
+            function moHeaderScrollDown() {
+                if (_scrollTop > 0) {
+                    if (!ico.hasClass('is-down')) ico.addClass('is-down');
+                } else {
+                    if (ico.hasClass('is-down')) ico.removeClass('is-down');
+                }
+            }
         }
         
         function experienceTab() {

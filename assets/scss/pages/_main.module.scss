@@ -5,11 +5,6 @@
 /* s : main */
 .wrapper {
     &.main {
-        /* 본문 텍스트 */
-        .intro-desc {
-            @include mixins.font_size_rgl;
-        }
-
         .tab-list {
             font-size: 0;
             margin-bottom: 20px;
@@ -59,7 +54,6 @@
             }
         }
         
-
         // intro
         .intro-box {
             .cont-title-wrap {
@@ -106,14 +100,15 @@
         
             //mobile
             @include mixins.size_mobile {
-               .intro-text-box {
-                 .intro-tit {
-                    font-weight: variables.$fontWeightMedium;
-                 }
-        
-                 .desc {
-                    @include mixins.font_size_rgl;
-                 }
+                .ico-sparkles {
+                    &.is-down {
+                        @include mixins.prefix(transform, translateY(30px));
+                    }
+                }
+                .intro-text-box {
+                    .desc {
+                        @include mixins.font_size_rgl;
+                    }
                }
             }
         
@@ -317,20 +312,6 @@
             bottom: 0;
             left: 0;
             z-index: 1;
-        }
-
-        //mobile
-        @include mixins.size_mobile {
-            // about me
-            .header-wrapper {
-                &.scroll-down ~ .container-wrapper {
-                    .intro-box {
-                        .ico-sparkles {
-                            @include mixins.prefix(transform, translateY(30px));
-                        }
-                    }
-                }
-            }
         }
     }
 }
