@@ -1467,52 +1467,42 @@ span {
 .detail-wrap .img-box.namyang {
 	background: url("../images/experience/namyang_company_detail_bg.jpg") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.hansol-vhom {
 	background: url("../images/experience/hansol_vhom_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.kyobobook {
 	background: url("../images/experience/kyobo_book_detail_bg.jpg") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.lotte-eatz {
 	background: url("../images/experience/lotte_eatz_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.kt-caike {
 	background: url("../images/experience/kt_caike_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.kt-mrss {
 	background: url("../images/experience/kt_mrss_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.bucket {
 	background: url("../images/experience/bucket_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.gugus {
 	background: url("../images/experience/gugus_detail_bg.jpg") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.glim {
 	background: url("../images/experience/glim_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .img-box.descente {
 	background: url("../images/experience/descente_detail_bg.png") center no-repeat;
 	background-size: cover;
-	background-attachment: fixed;
 }
 .detail-wrap .info-box .left-area .cont-tit-sm {
 	padding-bottom: 15px;
@@ -1527,6 +1517,7 @@ span {
 @media (min-width: 891px) {
 	.detail-wrap .img-box {
 		margin-bottom: 60px;
+		background-attachment: fixed;
 	}
 	.detail-wrap .img-box .title {
 		font-size: 60px;
