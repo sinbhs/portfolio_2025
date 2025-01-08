@@ -519,14 +519,6 @@ portfolioPub.front = portfolioPub.front || (function () {
                 _resizeVh = window.innerHeight;
                 setPropertyVh();
             }
-
-            if( _sizeViewSta === 'desktop') {
-                $('body').css({width: _resizeVw});
-            }
-            else {
-                $('body').css({width: '100%'});
-            }
-
         });
 
     });
