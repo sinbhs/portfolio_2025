@@ -532,7 +532,7 @@ button {
 .footer-wrapper .footer-inner .link-notion .text {
 	position: relative;
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	color: #fff;
@@ -833,7 +833,7 @@ span {
 
 .btext {
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	line-height: 22px;
@@ -867,7 +867,7 @@ span {
 }
 .btn .text {
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	text-align: center;
@@ -945,7 +945,7 @@ span {
 
 .tbl-info tr th, .tbl-info tr td {
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	text-align: left;
@@ -964,7 +964,7 @@ span {
 	position: relative;
 	padding-left: 8px;
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	line-height: 22px;
@@ -991,7 +991,7 @@ span {
 	position: relative;
 	padding-left: 8px;
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 400;
 	line-height: 22px;
@@ -1112,7 +1112,7 @@ span {
 }
 .wrapper.main .tab-list .tab-item .btn-tab .text {
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 20px;
 	letter-spacing: -0.025em;
 	font-weight: 500;
 	opacity: 0.3;
@@ -1188,7 +1188,7 @@ span {
 	}
 	.wrapper.main .intro-box .intro-text-box .desc {
 		font-size: 14px;
-		line-height: 18px;
+		line-height: 20px;
 		letter-spacing: -0.025em;
 		font-weight: 400;
 	}
