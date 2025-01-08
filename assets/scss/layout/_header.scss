@@ -45,6 +45,16 @@
         }
     }
 
+    &.scroll-up {
+        @include mixins.prefix(transform, translateY(0));
+        @include mixins.prefix(transition, transform 0.24s);
+    }
+
+    &.scroll-down {
+        @include mixins.prefix(transform, translateY(-100%));
+        @include mixins.prefix(transition, transform 0.2s);
+    }
+
     @include mixins.size_desktop {
         .header-inner {
             position: relative;

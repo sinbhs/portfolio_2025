@@ -441,6 +441,22 @@ button {
 	left: 20px;
 	bottom: 0;
 }
+.header-wrapper.scroll-up {
+	-moz-transform: translateY(0);
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	-moz-transition: transform 0.24s;
+	-webkit-transition: transform 0.24s;
+	transition: transform 0.24s;
+}
+.header-wrapper.scroll-down {
+	-moz-transform: translateY(-100%);
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+	-moz-transition: transform 0.2s;
+	-webkit-transition: transform 0.2s;
+	transition: transform 0.2s;
+}
 @media (min-width: 891px) {
 	.header-wrapper .header-inner {
 		position: relative;
@@ -490,10 +506,24 @@ button {
 	transform: scaleX(1);
 }
 .footer-wrapper .footer-inner .btext {
-	margin-bottom: 20px;
+	color: #fff;
+}
+.footer-wrapper .footer-inner .link-notion {
+	display: inline-block;
+	margin-top: 20px;
+	border: 1px solid rgb(56, 56, 56);
+	border-radius: 64px;
+	padding: 12px 16px;
+}
+.footer-wrapper .footer-inner .link-notion .text {
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: -0.025em;
+	font-weight: 400;
 	color: #fff;
 }
 .footer-wrapper .footer-inner .copyright {
+	margin-top: 20px;
 	font-size: 12px;
 	color: #666;
 }

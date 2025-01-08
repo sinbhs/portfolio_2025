@@ -35,6 +35,94 @@ portfolioPub.front = portfolioPub.front || (function () {
     _front = {};
 
     /*
+    * date : 20220809
+    * last : 20221101
+    * name : setMoHeader()
+    * pram :
+    * desc : mobile header - scroll up/down
+    */
+    function setMoHeader() {
+        if ($_headerWrapper === undefined) return false;
+        var $classList = [
+                    'header-wrapper',
+                ],
+                offset = $_headerWrapper.height() / 2, // scroll 사라지는 딜레이 시점을 주기 위해
+                pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight(),
+                prevScrollTop = 0;
+
+        var sensor = new ResizeSensor($_wrapper, function () {
+            if (_sizeViewSta === 'mobile') {
+                pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight();
+                scrollUpDown();
+                if( _scrollTop === 0 ) {
+                    $classList.forEach(function (target) {
+                        $('.' + target).removeClass('scroll-up scroll-down');
+                    });
+                }
+            }
+        });
+
+        createScrollStopListener(window, function () {
+            if (_sizeViewSta === 'desktop') {
+                $classList.forEach(function (target) {
+                    $('.' + target).removeClass('scroll-up scroll-down');
+                });
+                return false;
+            }
+            else {
+                scrollUpDown();
+            }
+        });
+
+        // scrollUp/down check
+        function scrollUpDown() {
+            pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight();
+            if ($_wrapper.outerHeight() <= _resizeVh + 31) return false;
+
+            if( _noScroll ) {
+                $classList.forEach(function (target) {
+                    var $target = $('.' + target);
+                    if( $target.is(':animated') ) return false;
+                    if (!$target.hasClass('scroll-down')) $target.removeClass('scroll-up').addClass('scroll-down');
+                });
+                return false;
+            }
+
+            $classList.forEach(function (target) {
+                var $target = $('.' + target);
+
+                if ( $target.hasClass('fixed') || $target.length === 0 ) return false;
+                if ( $('body').hasClass('dialog-open') || $('body').hasClass('sub-layer-open') ) return false;
+
+                // 스크롤 최상단
+                if (_scrollTop === 0 || _scrollTop < 0 || _scrollTop <= offset) {
+                    if ( $target.hasClass('scroll-up') || $target.hasClass('scroll-down') ) $target.removeClass('scroll-up scroll-down');
+                } else {
+                    // 스크롤 내릴	때
+                    if (prevScrollTop < _scrollTop && _scrollTop > offset) {
+                        if (!$target.hasClass('scroll-down')) {
+                            $target.removeClass('scroll-up').addClass('scroll-down');
+                        }
+                    }
+                    // 스크롤 올릴 때
+                    else {
+                        if (_scrollTop < pageHeight && _scrollTop > offset) {
+                            if (!$target.hasClass('scroll-up')) {
+                                $target.removeClass('scroll-down').addClass('scroll-up');
+                            }
+                        }
+                    }
+
+                }
+            });
+
+            prevScrollTop = _scrollTop;
+            return false;
+        }
+
+    }
+
+    /*
     * date : 250106
     * last : 250106
     * name : setGoTop()
@@ -212,27 +300,27 @@ portfolioPub.front = portfolioPub.front || (function () {
     * desc : work hover cursor
     */
    function setWorkHoverCursor() {
-    $(".experience-item .link-site").on("mouseenter", function () {
-        const $emoji = $(this).find(".media-emoji");
-  
-        $(this).on("mousemove", function (event) {
-            const offsetX = event.pageX - $(this).offset().left - 50;
-            const offsetY = event.pageY - $(this).offset().top - 50;
-    
-            // GSAP 애니메이션 적용
-            gsap.to($emoji, {
-                left: offsetX.toFixed(0),
-                top: offsetY.toFixed(0),
-                duration: .9,
-                ease: "power3"
+        $(".experience-item .link-site").on("mouseenter", function () {
+            const $emoji = $(this).find(".media-emoji");
+        
+            $(this).on("mousemove", function (event) {
+                const offsetX = event.pageX - $(this).offset().left - 50;
+                const offsetY = event.pageY - $(this).offset().top - 50;
+        
+                // GSAP 애니메이션 적용
+                gsap.to($emoji, {
+                    left: offsetX.toFixed(0),
+                    top: offsetY.toFixed(0),
+                    duration: .9,
+                    ease: "power3"
+                });
             });
         });
-      });
-  
-      $(".experience-item .link-site").on("mouseleave", function () {
-        const $emoji = $(this).find(".media-emoji");
-        $(this).off("mousemove"); // mousemove 이벤트 해제
-      });
+        
+        $(".experience-item .link-site").on("mouseleave", function () {
+            const $emoji = $(this).find(".media-emoji");
+            $(this).off("mousemove"); // mousemove 이벤트 해제
+        });
    }
 
     /*
@@ -241,7 +329,7 @@ portfolioPub.front = portfolioPub.front || (function () {
     * name : createScrollStopListener(element, callback)
     * pram :
     *		@param element  - 스크롤 영역 요소
-    *		@param callback - 마이페이지 스크롤이 끝나고 callback 함수
+    *		@param callback - 스크롤이 끝나고 callback 함수
     * desc : 스크롤이 끝난 후 callback 함수 실행
     */
     function createScrollStopListener(element, callback) {
@@ -272,133 +360,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         };
     }
 
-    /*
-    * date : 250106
-    * last : 250106
-    * name : setSpsOffsetData()
-    * pram :
-    * desc : 스크롤 동작시 해당 요소에 도착하면 고정
-    */
-    function setSpsOffsetData() {
-        if ($('[data-pc-sps]').length === 0 && $('[data-mobile-sps]').length === 0 && $('[data-sps]').length === 0) return false;
-        var ignoreClassList = [
-            // 'header_wrapper',
-        ];
-        var spsElem = $('[data-sps], [data-pc-sps], [data-mobile-sps]', $_container);
-        init();
-
-        $(window).on('resize', init);
-
-        // heightChangeTarget.forEach(function (target, idx) {
-        // 	var sensor = null;
-        // 	sensor = new ResizeSensor( $('.' + target), function() {
-        // 		fixData( $('.sps[data-height-change='+heightChangeTarget[idx]+']') );
-        // 	});
-        // });
-        var sensorContents = new ResizeSensor($('.cont-box', $_container), function () {
-            $('.sps').each(function (i) {
-                var that = this;
-                setTimeout(function () {
-                    fixData($(that));
-                }, 100);
-            })
-        });
-
-        $(window).off('scroll', moFixReData).on('scroll', moFixReData);
-
-        var scrollSta;
-
-        function moFixReData() {
-            if ($('.wrapper').hasClass('scroll-up') && scrollSta !== 'scroll-up') {
-                $('.sps').each(function (i) {
-                    var that = this;
-                    scrollSta = 'scroll-up';
-                    //fixData($(that));
-                })
-
-
-            } else if ($('.wrapper').hasClass('scroll-down') && scrollSta !== 'scroll-down') {
-                $('.sps').each(function (i) {
-                    var that = this;
-                    scrollSta = 'scroll-down';
-                    //fixData($(that));
-                })
-            }
-        }
-
-        function fixData(tg) {
-            var observerCont,
-                addOfs;
-            if (tg.siblings('.sps-observer').length === 0) tg.after('<div class="sps-observer"></div>');
-
-            observerCont = tg.siblings('.sps-observer');
-            addOfs = (tg.data('add-offset') !== undefined && !isNaN(tg.data('add-offset'))) ? tg.data('add-offset') : 0;
-
-            if (_sizeViewSta === 'mobile' && scrollSta === 'scroll-up' && parseInt(tg.attr('data-sps-offset')) !== Math.round(observerCont.offset().top - $_headerWrapper.outerHeight() - addOfs)) {
-                tg.attr('data-sps-offset', Math.round(observerCont.offset().top - $_headerWrapper.outerHeight() - addOfs));
-
-            }
-            else if (parseInt(tg.attr('data-sps-offset')) !== Math.round(observerCont.offset().top - addOfs)) {
-                tg.attr('data-sps-offset', Math.round(observerCont.offset().top - addOfs));
-            }
-        }
-
-        function init() {
-
-            // container_wrapper > sps 엘리먼트 타겟팅
-            if ((_sizeViewSta === 'desktop' && $(spsElem).attr('data-pc-sps') === 0) && (_sizeViewSta === 'mobile' && $(spsElem).attr('data-mobile-sps') === 0)) return false;
-
-            spsElem.each(function (i) {
-                var that = this, isIgnore;
-                isIgnore = ignoreClassList.some(function (element) {
-                    return $(that).hasClass(element);
-                });
-                if (!isIgnore) {
-                    //spsElem.push(that);
-                    // PC
-                    if (_sizeViewSta === 'desktop' && $(that).attr('data-pc-sps') !== undefined) {
-                        //console.log( $(that).attr('data-pc-sps') );
-                        $(that).addClass('sps');
-                        fixData($(that));
-                        ScrollPosStyler.init();
-                    }
-                    else if (_sizeViewSta === 'mobile' && $(that).attr('data-mobile-sps') !== undefined) {
-                        $(that).addClass('sps');
-                        fixData($(that));
-                        ScrollPosStyler.init();
-                    }
-                    else if ($(that).attr('data-sps') !== undefined) {
-                        $(that).addClass('sps');
-                        fixData($(that));
-                        ScrollPosStyler.init();
-                    }else {
-                        $(that).removeClass('sps sps-abv sps-blw');
-                    }
-
-                }
-
-            });
-        }
-    }
-
-    /*
-    * date : 250106
-    * last : 250106
-    * name : contentScrollMove()
-    * pram :
-     * desc : 해당 컨텐츠 영역으로 스크롤 이동
-    */
-    function contentScrollMove(target) {
-        if (target.length === 0) return false;
-        var movePos = target.offset().top;
-        var exceptValue = $_headerWrapper.length > 0 ? $_container.data('top-padding').outerHeight() : 0;
-
-        $('html, body').stop().queue('fx', []).animate({
-            scrollTop: movePos - exceptValue
-        }, 200, function () {
-        });
-    }
-
     // sps set
     if (window.ScrollPosStyler) {
         ScrollPosStyler.init({
@@ -423,8 +384,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         if (_resizeVw > _desktopWidth) {
             if (!$('body').hasClass('desktop') || $_headerWrapper === undefined) {
                 $('body').addClass('desktop');
-                $_headerWrapper = $('.header-wrapper[data-pc-only]');
-                $_container.data('top-padding', $_headerWrapper.outerHeight());
                 _sizeViewSta = 'desktop';
             }
 
@@ -433,8 +392,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         else {
             if ($('body').hasClass('desktop') || $_headerWrapper === undefined) {
                 $('body').removeClass('desktop');
-                $_headerWrapper = $('.header-wrapper[data-mobile-only]');
-                $_container.data('top-padding', $_headerWrapper.outerHeight());
                 _sizeViewSta = 'mobile';
             }
 
@@ -478,8 +435,7 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     _front.breakpointChangeInit = breakpointChangeInit;
-    _front.setSpsOffsetData = setSpsOffsetData;
-    _front.contentScrollMove = contentScrollMove;
+    
     _front.debounce = debounce;
 
     $(document).on("touchstart", function (e) {
@@ -499,6 +455,7 @@ portfolioPub.front = portfolioPub.front || (function () {
     });
 
     $(document).ready(function () {
+        $_headerWrapper = $('.header-wrapper');
         $_btnGoTop = $('.btn-go-top');
         $_container = $('.container-wrapper');
         $_wrapper = $('.wrapper');
@@ -506,6 +463,7 @@ portfolioPub.front = portfolioPub.front || (function () {
 
         _resizeVw = window.innerWidth || $(window).width() || document.body.clientWidth;
 
+        setMoHeader();
         setTableCaption();
         breakpointChangeInit();
         setGoTop();
@@ -562,17 +520,7 @@ portfolioPub.front = portfolioPub.front || (function () {
                 setPropertyVh();
             }
 
-            if ($(".ui-dialog-container:visible").length > 0) {
-                $(".ui-dialog-container:visible").each(function (i) {
-                    if ($('.ui-dialog-content', this).data('mobile-popup') !== undefined && _sizeViewSta === 'desktop') {
-                        dialogOnOff().popClose('#' + $('.ui-dialog', this).attr('aria-describedby'));
-                    } else if ($('.ui-dialog-content', this).data('pc-popup') !== undefined && _sizeViewSta === 'mobile') {
-                        dialogOnOff().popClose('#' + $('.ui-dialog', this).attr('aria-describedby'));
-                    }
-                });
-            }
-
-            if( _sizeViewSta === 'desktop' && $('body').hasClass('dialog-open') ) {
+            if( _sizeViewSta === 'desktop') {
                 $('body').css({width: _resizeVw});
             }
             else {
@@ -581,7 +529,6 @@ portfolioPub.front = portfolioPub.front || (function () {
 
         });
 
-        setSpsOffsetData();
     });
 
     return _front;
