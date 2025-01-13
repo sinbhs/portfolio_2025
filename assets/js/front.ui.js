@@ -284,8 +284,8 @@ portfolioPub.front = portfolioPub.front || (function () {
 
             ScrollTrigger.create({
                 trigger: item,
-                start: 'top 50%',
-                end: 'bottom 50%',
+                start: 'top 100%',
+                end: 'bottom 100%',
                 markers: false,
 
                 onEnter: () => {
