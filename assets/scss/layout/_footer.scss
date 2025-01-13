@@ -122,10 +122,13 @@
                     height: 400px;
                 }
             }
+
+            ~ .copyright {
+                margin-top: 20px;
+            }
         }
 
         .copyright {
-            margin-top: 20px;
             font-size: 12px;
             color: variables.$textColorDarkGray;
         }
