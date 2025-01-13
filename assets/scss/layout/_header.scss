@@ -86,13 +86,13 @@
             }
 
             .current-time {
-                font-weight: variables.$fontWeightSemibold;
                 color: variables.$colorWhite;
                 text-align: right;
     
                 .country {
                     position: relative;
                     padding-left: 18px;
+                    font-weight: variables.$fontWeightSemibold;
     
                     &:before, &:after {
                         content: "";

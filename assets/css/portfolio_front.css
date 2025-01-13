@@ -483,13 +483,13 @@ button {
 		width: 160px;
 	}
 	.header-wrapper .header-inner .current-time {
-		font-weight: 600;
 		color: #fff;
 		text-align: right;
 	}
 	.header-wrapper .header-inner .current-time .country {
 		position: relative;
 		padding-left: 18px;
+		font-weight: 600;
 	}
 	.header-wrapper .header-inner .current-time .country:before, .header-wrapper .header-inner .current-time .country:after {
 		content: "";
