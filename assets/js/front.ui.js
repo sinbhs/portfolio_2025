@@ -272,19 +272,19 @@ portfolioPub.front = portfolioPub.front || (function () {
 
     /*
      * date : 250106
-     * last : 250106
+     * last : 250113
      * name : setBgChange()
      * pram :
      * desc : 배경색 변경 gsap
      */
     function setBgChange() {
-        gsap.utils.toArray('.cont-box').forEach((item) => {
+        gsap.utils.toArray('.work-box, .about-box').forEach((item) => {
             let bgColor = item.getAttribute('data-bgcolor');
             let textColor = bgColor === "#000" ? "#fff" : "#000"; // 검은 배경 흰 텍스트, 흰 배경 검은 텍스트
 
             ScrollTrigger.create({
                 trigger: item,
-                start: 'top 30%',
+                start: 'top 80%',
                 end: 'bottom 30%',
                 markers: true,
 
