@@ -2,9 +2,9 @@
  * name : front.ui.js
  * desc : UI 공통 자바스크립트
  * writer : 송지우
- * date : 2025/01/16
+ * date : 2025/01/06
  * last : 
-*/
+ */
 
 
 var $_btnGoTop,
@@ -35,26 +35,28 @@ portfolioPub.front = portfolioPub.front || (function () {
     _front = {};
 
     /*
-    * date : 20220809
-    * last : 20221101
-    * name : setMoHeader()
-    * pram :
-    * desc : mobile header - scroll up/down
-    */
+     * date : 20250106
+     * last : 20250113
+     * name : setMoHeader()
+     * pram :
+     * desc : mobile header - scroll up/down, current time update
+     */
     function setMoHeader() {
         if ($_headerWrapper === undefined) return false;
+
+        // scroll up/down 인지
         var $classList = [
-                    'header-wrapper',
-                ],
-                offset = $_headerWrapper.height() / 2, // scroll 사라지는 딜레이 시점을 주기 위해
-                pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight(),
-                prevScrollTop = 0;
+                'header-wrapper',
+            ],
+            offset = $_headerWrapper.height() / 2, // scroll 사라지는 딜레이 시점을 주기 위해
+            pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight(),
+            prevScrollTop = 0;
 
         var sensor = new ResizeSensor($_wrapper, function () {
             if (_sizeViewSta === 'mobile') {
                 pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight();
                 scrollUpDown();
-                if( _scrollTop === 0 ) {
+                if (_scrollTop === 0) {
                     $classList.forEach(function (target) {
                         $('.' + target).removeClass('scroll-up scroll-down');
                     });
@@ -68,8 +70,7 @@ portfolioPub.front = portfolioPub.front || (function () {
                     $('.' + target).removeClass('scroll-up scroll-down');
                 });
                 return false;
-            }
-            else {
+            } else {
                 scrollUpDown();
             }
         });
@@ -79,10 +80,10 @@ portfolioPub.front = portfolioPub.front || (function () {
             pageHeight = $_wrapper.outerHeight() - getBodyHeight() - $_headerWrapper.outerHeight();
             if ($_wrapper.outerHeight() <= _resizeVh + 31) return false;
 
-            if( _noScroll ) {
+            if (_noScroll) {
                 $classList.forEach(function (target) {
                     var $target = $('.' + target);
-                    if( $target.is(':animated') ) return false;
+                    if ($target.is(':animated')) return false;
                     if (!$target.hasClass('scroll-down')) $target.removeClass('scroll-up').addClass('scroll-down');
                 });
                 return false;
@@ -91,12 +92,12 @@ portfolioPub.front = portfolioPub.front || (function () {
             $classList.forEach(function (target) {
                 var $target = $('.' + target);
 
-                if ( $target.hasClass('fixed') || $target.length === 0 ) return false;
-                if ( $('body').hasClass('dialog-open') || $('body').hasClass('sub-layer-open') ) return false;
+                if ($target.hasClass('fixed') || $target.length === 0) return false;
+                if ($('body').hasClass('dialog-open') || $('body').hasClass('sub-layer-open')) return false;
 
                 // 스크롤 최상단
                 if (_scrollTop === 0 || _scrollTop < 0 || _scrollTop <= offset) {
-                    if ( $target.hasClass('scroll-up') || $target.hasClass('scroll-down') ) $target.removeClass('scroll-up scroll-down');
+                    if ($target.hasClass('scroll-up') || $target.hasClass('scroll-down')) $target.removeClass('scroll-up scroll-down');
                 } else {
                     // 스크롤 내릴	때
                     if (prevScrollTop < _scrollTop && _scrollTop > offset) {
@@ -120,25 +121,38 @@ portfolioPub.front = portfolioPub.front || (function () {
             return false;
         }
 
+        //실시간 시간 반영
+        let koreaTarget = $('.current-time .time');
+
+        function getkoreaTime() {
+            var nD = new Date();
+            var koreaTime = ("0" + nD.getHours()).slice(-2) + ":" + ("0" + nD.getMinutes()).slice(-2) + ":" + ("0" + nD.getSeconds()).slice(-2);
+            koreaTarget.text(koreaTime);
+        }
+
+        getkoreaTime();
+        setInterval(getkoreaTime, 1000); // 1초마다 실행
     }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : setGoTop()
-    * pram :
-    * desc : 최상단 이동 버튼
-    */
+     * date : 250106
+     * last : 250106
+     * name : setGoTop()
+     * pram :
+     * desc : 최상단 이동 버튼
+     */
     function setGoTop() {
         var offset = $_headerWrapper.length > 0 ? $_headerWrapper.height() * 1.5 : 30;
         btnOnOff();
 
         $_btnGoTop.off('click').on('click', function (e) {
             e.preventDefault();
-            $('html, body').stop().queue('fx', []).animate({scrollTop: 0}, 250);
+            $('html, body').stop().queue('fx', []).animate({
+                scrollTop: 0
+            }, 250);
         });
 
-        
+
         $_btnGoTop.on(_transitionEnd, function () {
             if (!$_btnGoTop.hasClass('is-active')) $_btnGoTop.addClass('is-hide');
         })
@@ -156,12 +170,12 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : setTableCaption()
-    * pram :
-    * desc : 테이블 캡션 생성
-    */
+     * date : 250106
+     * last : 250106
+     * name : setTableCaption()
+     * pram :
+     * desc : 테이블 캡션 생성
+     */
     function setTableCaption() {
         $("table[class*='tbl-info']").each(function (index) {
             var table, captionComplex, theadHeader, tbodyHeader;
@@ -209,20 +223,20 @@ portfolioPub.front = portfolioPub.front || (function () {
     }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : revealIntersectionObserve()
-    * pram :
-    * desc : reveal intersection observer
-    */
-   function revealIntersectionObserve() {
+     * date : 250106
+     * last : 250106
+     * name : revealIntersectionObserve()
+     * pram :
+     * desc : reveal intersection observer
+     */
+    function revealIntersectionObserve() {
         const intersectionObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    if(entry.target.classList.contains('cont-tit')) {
+                    if (entry.target.classList.contains('cont-tit')) {
                         titSplitRevealAni($(entry.target));
                     } else {
-                        entry.target.classList.add('reveal');  
+                        entry.target.classList.add('reveal');
                     }
 
                     // 위 실행을 처리하고(1회) 관찰 중지
@@ -243,70 +257,70 @@ portfolioPub.front = portfolioPub.front || (function () {
             selector = selector || '.cont-tit';
 
             selector.html(
-            selector.text()
+                selector.text()
                 .split("")
                 .map((letter, idx) => {
-                if (letter === " ") return " ";
-                return `<span style="animation-delay:${
+                    if (letter === " ") return " ";
+                    return `<span style="animation-delay:${
                     idx * 45
                 }ms" class="reveal-item">${letter}</span>`;
                 })
                 .join("")
             );
         }
-   }
+    }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : setBgChange()
-    * pram :
-    * desc : 배경색 변경 gsap
-    */
-   function setBgChange() {
-    gsap.utils.toArray(".cont-box").forEach((item) => {
-        let bgColor = item.getAttribute("data-bgcolor");
-        let textColor = bgColor === "#000" ? "#fff" : "#000"; // 검은 배경 흰 텍스트, 흰 배경 검은 텍스트
-        
-        ScrollTrigger.create({
-            trigger: item,
-            start: "top 50%",
-            end: "bottom 50%",
-            markers: false,
-        
-            onEnter: () => {
-                gsap.to(".container-wrapper", {
-                    backgroundColor: bgColor,
-                    color: textColor, // 텍스트 색상 변경
-                    duration: 1.2,
-                });
-            },
-            onEnterBack: () => {
-                gsap.to(".container-wrapper", {
-                    backgroundColor: bgColor,
-                    color: textColor, // 텍스트 색상 변경
-                    duration: 1.2,
-                });
-            },
+     * date : 250106
+     * last : 250106
+     * name : setBgChange()
+     * pram :
+     * desc : 배경색 변경 gsap
+     */
+    function setBgChange() {
+        gsap.utils.toArray('.cont-box').forEach((item) => {
+            let bgColor = item.getAttribute('data-bgcolor');
+            let textColor = bgColor === "#000" ? "#fff" : "#000"; // 검은 배경 흰 텍스트, 흰 배경 검은 텍스트
+
+            ScrollTrigger.create({
+                trigger: item,
+                start: 'top 50%',
+                end: 'bottom 50%',
+                markers: false,
+
+                onEnter: () => {
+                    gsap.to('.container-wrapper', {
+                        backgroundColor: bgColor,
+                        color: textColor, // 텍스트 색상 변경
+                        duration: 1.2,
+                    });
+                },
+                onEnterBack: () => {
+                    gsap.to(".container-wrapper", {
+                        backgroundColor: bgColor,
+                        color: textColor, // 텍스트 색상 변경
+                        duration: 1.2,
+                    });
+                },
+            });
         });
-    });
-   }
+    }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : setWorkHoverCursor()
-    * pram :
-    * desc : work hover cursor
-    */
-   function setWorkHoverCursor() {
+     * date : 250106
+     * last : 250106
+     * name : setWorkHoverCursor()
+     * pram :
+     * desc : work hover cursor
+     */
+    function setWorkHoverCursor() {
         $(".experience-item .link-site").on("mouseenter", function () {
             const $emoji = $(this).find(".media-emoji");
-        
+
             $(this).on("mousemove", function (event) {
                 const offsetX = event.pageX - $(this).offset().left - 50;
                 const offsetY = event.pageY - $(this).offset().top - 50;
-        
+
                 // GSAP 애니메이션 적용
                 gsap.to($emoji, {
                     left: offsetX.toFixed(0),
@@ -316,22 +330,22 @@ portfolioPub.front = portfolioPub.front || (function () {
                 });
             });
         });
-        
+
         $(".experience-item .link-site").on("mouseleave", function () {
             const $emoji = $(this).find(".media-emoji");
             $(this).off("mousemove"); // mousemove 이벤트 해제
         });
-   }
+    }
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : createScrollStopListener(element, callback)
-    * pram :
-    *		@param element  - 스크롤 영역 요소
-    *		@param callback - 스크롤이 끝나고 callback 함수
-    * desc : 스크롤이 끝난 후 callback 함수 실행
-    */
+     * date : 250106
+     * last : 250106
+     * name : createScrollStopListener(element, callback)
+     * pram :
+     *		@param element  - 스크롤 영역 요소
+     *		@param callback - 스크롤이 끝나고 callback 함수
+     * desc : 스크롤이 끝난 후 callback 함수 실행
+     */
     function createScrollStopListener(element, callback) {
         var handle = null;
         var onScroll = function () {
@@ -373,12 +387,12 @@ portfolioPub.front = portfolioPub.front || (function () {
     });
 
     /*
-    * date : 250106
-    * last : 250106
-    * name : breakpointChangeInit()
-    * pram :
+     * date : 250106
+     * last : 250106
+     * name : breakpointChangeInit()
+     * pram :
      * desc : breakpoint 변경될때 초기화
-    */
+     */
     function breakpointChangeInit() {
         // desktop
         if (_resizeVw > _desktopWidth) {
@@ -424,7 +438,7 @@ portfolioPub.front = portfolioPub.front || (function () {
      */
     function debounce(func, wait) {
         var inDebounce;
-        return function() {
+        return function () {
             const context = this;
             const args = arguments;
             // setTimeout이 실행된 Timeout의 ID를 반환하고, clearTimeout()으로 이를 해제할 수 있음을 이용
@@ -434,8 +448,21 @@ portfolioPub.front = portfolioPub.front || (function () {
         };
     }
 
+    // smoothScroll
+    function smoothScroll() {
+        const lenis = new Lenis();
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000)
+        })
+
+        gsap.ticker.lagSmoothing(0);
+    }
+
     _front.breakpointChangeInit = breakpointChangeInit;
-    
+
     _front.debounce = debounce;
 
     $(document).on("touchstart", function (e) {
@@ -470,6 +497,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setBgChange();
         setWorkHoverCursor();
         revealIntersectionObserve();
+        smoothScroll();
 
         /* 맥 OS 또는 iOS / android 디바이스 체크 */
         _isIos = /(iPhone|iPod|iPad)/i.test(navigator.platform);
@@ -525,4 +553,3 @@ portfolioPub.front = portfolioPub.front || (function () {
 
     return _front;
 })();
-

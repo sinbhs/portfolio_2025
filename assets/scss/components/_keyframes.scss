@@ -2,6 +2,27 @@
 @use '../abstracts/mixins';
 
 /* s : keyframes */
+@keyframes headerTimeRound {
+    90% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }    
+}
+@-webkit-keyframes headerTimeRound {
+    90% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }    
+}
+
 @keyframes reveal {
     0% {
         opacity: 0;
@@ -11,9 +32,27 @@
         opacity: 1;
         @include mixins.prefix(transform, translateY(0));
     }
-  }
+}
+@-webkit-keyframes reveal {
+    0% {
+        opacity: 0;
+        @include mixins.prefix(transform, translateY(30px));
+    }
+    100% {
+        opacity: 1;
+        @include mixins.prefix(transform, translateY(0));
+    }
+}
   
-@keyframes wave-name {
+@keyframes waveName {
+  0% {
+    @include mixins.prefix(transform, rotateZ(2deg));
+  }
+  100% {
+    @include mixins.prefix(transform, rotateZ(-2deg));
+  }
+}
+@-webkit-keyframes waveName {
   0% {
     @include mixins.prefix(transform, rotateZ(2deg));
   }
@@ -30,9 +69,25 @@
         @include mixins.prefix(transform, scale(1));
     }
 }
+@-webkit-keyframes moving-sparkle {
+    0% {
+        @include mixins.prefix(transform, scale(.8));
+      }
+    100% {
+        @include mixins.prefix(transform, scale(1));
+    }
+}
 
 
 @keyframes opacityActive {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes opacityActive {
     0% {
         opacity: 0;
     }
@@ -51,6 +106,16 @@
         @include mixins.prefix(transform, translateY(0));
     }
 }
+@-webkit-keyframes goTopIcoActive {
+    0% {
+        opacity: 0;
+        @include mixins.prefix(transform, translateY(10px));
+    }
+    100% {
+        opacity: 1;
+        @include mixins.prefix(transform, translateY(0));
+    }
+}
 
 @keyframes topHide {
     0% {
@@ -60,5 +125,31 @@
         @include mixins.prefix(transform, scale(0));
     }
 }
+@-webkit-keyframes topHide {
+    0% {
+        @include mixins.prefix(transform, scale(1));
+    }
+    100% {
+        @include mixins.prefix(transform, scale(0));
+    }
+}
 
+@keyframes marquee {
+	0% {
+		@include mixins.prefix(transform, translateX(0));
+	}
+
+	100% {
+		@include mixins.prefix(transform, translateX(-100%));
+	}
+}
+@-webkit-keyframes marquee {
+	0% {
+		@include mixins.prefix(transform, translateX(0));
+	}
+
+	100% {
+		@include mixins.prefix(transform, translateX(-100%));
+	}
+}
 /* e : keyframes */

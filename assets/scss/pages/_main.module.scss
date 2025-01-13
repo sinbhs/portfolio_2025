@@ -5,6 +5,11 @@
 /* s : main */
 .wrapper {
     &.main {
+        .container-wrapper {
+            background-color: variables.$colorBlack;
+            color: variables.$colorWhite;
+        }
+
         .tab-list {
             font-size: 0;
             margin-bottom: 20px;
@@ -56,9 +61,65 @@
         
         // intro
         .intro-box {
+            position: relative;
+            height: 100vh;
+            @include mixins.justify_width(center, center);
+            background-color: variables.$colorBlack;
+            color: variables.$colorWhite;
+
+            .intro-tit {
+                position: relative;
+                text-align: center;
+                padding-bottom: 0.32em;
+                line-height: 1.2;
+                --introAfterOpacity: 1;
+                --introAfterScale: 1;
+
+                .reveal {
+                    position: relative;
+                    z-index: 2;
+                    display: block;
+                    overflow: hidden;
+
+                    .ft-eng {
+                        display: inline-block;
+                        font-size: inherit;
+                        font-weight: 300;
+                        vertical-align: top;
+                        font-weight: variables.$fontWeightSemibold;
+                    }
+
+                    span {
+                        display: inline-block;
+                        font-size: inherit;
+
+                        &:not(.ft-eng) {
+                            font-weight: variables.$fontWeightMedium;
+                        }
+                    }
+                }
+
+                &:after {
+                    position: absolute;
+                    bottom: 1.5em;
+                    right: -1vw;
+                    content: '';
+                    display: inline-block;
+                    width: 10vw;
+                    height: 10vw;
+                    opacity: var(--introAfterOpacity);
+                    @include mixins.ratio_images('../images/common/comm_ico_sparkles');
+                    @include mixins.prefix(transform, scale(var(--introAfterScale)));
+                    //animation: moving-sparkle 1s infinite alternate;
+                }
+            }
+        }
+
+        // about
+        .about-box {
             .cont-title-wrap {
-                margin-bottom: 56px;
-        
+                margin-bottom: 25px;
+
                 .cont-tit {
                     position: relative;
                     z-index: 1;
@@ -72,7 +133,7 @@
         
                         .wave-name {
                             display: inline-block;
-                            animation: wave-name 0.6s infinite alternate;
+                            animation: waveName 0.6s infinite alternate;
                             vertical-align: top;
         
                             ~ .wave-name {
@@ -115,8 +176,6 @@
             //pc
             @include mixins.size_desktop {
                 .cont-inner {
-                    @include mixins.justify_width(end, start);
-        
                     .left-area {
                         width: 50%;
         
@@ -312,6 +371,45 @@
             bottom: 0;
             left: 0;
             z-index: 1;
+        }
+
+        // size mobile
+        @include mixins.size_mobile {
+            .cont-box ~ .cont-box {
+                margin-top: 100px;
+            }
+
+            .intro-tit {
+                .reveal {
+                    font-size: 12vw;
+                }
+            }
+        }
+
+        //size desktop {
+        @include mixins.size_desktop {
+            .cont-box ~ .cont-box {
+                margin-top: 150px;
+            }
+
+            .intro-box {
+                .cont-inner {
+                    padding-top: 0;
+                    
+                    .intro-tit {
+                        .reveal {
+                            font-size: 8rem;
+                            line-height: 136px;
+                        }
+                    }
+                }
+            }
+
+            .about-box {
+                .cont-inner {
+                    @include mixins.justify_width(center, start);
+                }
+            }
         }
     }
 }

@@ -13,9 +13,10 @@
     mix-blend-mode: difference;
     
     .header-inner {
-        height: variables.$headerMoHeight;
+        height: variables.$headerHeight;
         padding: 0 20px;
         @include mixins.justify_width(center, between);
+        @include mixins.prefix(transition, all .3s linear);
 
         .link-logo {
             display: block;
@@ -42,6 +43,7 @@
             position: absolute;
             left: 20px;
             bottom: 0;
+            @include mixins.prefix(transition, width .3s linear);
         }
     }
 
@@ -55,11 +57,66 @@
         @include mixins.prefix(transition, transform 0.2s);
     }
 
+    // mobile
+    @include mixins.size_mobile {
+        .header-inner {
+            .current-time {
+                display: none;
+            }
+        }
+    }
+
+    // desktop
     @include mixins.size_desktop {
         .header-inner {
             position: relative;
-            max-width: 1150px;   
-            margin: 0 auto;
+            margin: 0 12vw;
+            padding: {
+                right: 0;
+                left: 0;
+            }
+
+            &:after {
+                width: 100%;
+                left: 0;
+            }
+
+            .logo, .current-time {
+                width: 160px;
+            }
+
+            .current-time {
+                font-weight: variables.$fontWeightSemibold;
+                color: variables.$colorWhite;
+                text-align: right;
+    
+                .country {
+                    position: relative;
+                    padding-left: 18px;
+    
+                    &:before, &:after {
+                        content: "";
+                        display: block;
+                        width: 9px;
+                        height: 9px;
+                        position: absolute;
+                        top: 5px;
+                        left: 0;
+                        background-color: #51ff00;
+                        border-radius: 50%;
+                    }
+        
+                    &:before {
+                        animation: headerTimeRound 2s infinite;
+                        transform-origin: 50% 50%;
+                    }
+                }
+    
+                .time {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
         }
     }
 }

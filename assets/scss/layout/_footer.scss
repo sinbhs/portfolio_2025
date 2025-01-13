@@ -6,8 +6,44 @@
 .footer-wrapper {
     background-color: variables.$colorBlack;
 
+    .footer-marquee {
+        padding: {
+            top: 1rem;
+            bottom: 1rem;
+        };
+        overflow: hidden;
+        background-color: #2502c7;
+
+        .marquee-box {
+            @include mixins.justify_width(stretch);
+        }
+        .marquee-item {
+            padding: 0 10px;
+
+            .text {
+                color: variables.$colorWhite;
+                white-space: nowrap;
+                min-width: fit-content;
+            }
+        }
+
+        &.initialized {
+            .marquee-box {
+                .marquee-item {
+                    -webkit-animation-name: marquee;
+                    animation-name: marquee;
+                    -webkit-animation-duration: 10s;
+                    animation-duration: 10s;
+                    -webkit-animation-timing-function: linear;
+                    animation-timing-function: linear;
+                    -webkit-animation-iteration-count: infinite;
+                    animation-iteration-count: infinite
+                }
+            }
+        }
+    }
+
     .footer-inner {
-        max-width: 1150px;
         padding: 29px 20px;
         margin: 0 auto;
 
@@ -92,6 +128,15 @@
             margin-top: 20px;
             font-size: 12px;
             color: variables.$textColorDarkGray;
+        }
+    }
+
+    @include mixins.size_desktop {
+        .footer-inner {
+            padding: {
+                right: 12vw;
+                left: 12vw;
+            }
         }
     }
 }
