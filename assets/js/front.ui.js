@@ -284,9 +284,9 @@ portfolioPub.front = portfolioPub.front || (function () {
 
             ScrollTrigger.create({
                 trigger: item,
-                start: 'top 100%',
-                end: 'bottom 100%',
-                markers: false,
+                start: 'top 30%',
+                end: 'bottom 30%',
+                markers: true,
 
                 onEnter: () => {
                     gsap.to('.container-wrapper', {
