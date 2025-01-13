@@ -95,9 +95,9 @@
                     ease: "power1",
                 })
                 .to(".intro-box .intro-tit", {
-                    "--introAfterScale": gsap.utils.random(0.5, 1), // 랜덤 scale
-                    "--introAfterOpacity": gsap.utils.random(0.4, 1), // 랜덤 opacity
-                    duration: 2, // 애니메이션 시간
+                    "--introAfterScale": gsap.utils.random(0.5, 1), 
+                    "--introAfterOpacity": gsap.utils.random(0.4, 1),
+                    duration: 2,
                     repeat: -1,
                     yoyo: true,
                     ease: "power1.inOut",
@@ -165,6 +165,7 @@
                     duplicateCnt,
                     duration,
                     weight;
+                    
                 wrapperWidth = wrap.outerWidth();
                 original = wrap.find(".original-wrap");
                 marquee = wrap.find(".marquee-box");
@@ -179,7 +180,7 @@
                     (Math.floor((marqueeText.outerWidth() / wrapperWidth) * 1000) /
                         100) *
                     weight;
-                // console4(duration);
+                // console.log(duration);
                 marquee.empty();
                 marquee.append(marqueeText);
                 marqueeTextCnt = 1;

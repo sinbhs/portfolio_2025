@@ -11,11 +11,7 @@ var $_btnGoTop,
     $_headerWrapper,
     $_container,
     $_wrapper,
-    _dialogCount = 0,
     _scrollTop = 0,
-    _isIos,
-    _isMac,
-    _isAndroid,
     _transitionEnd = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend',
     _fisHeight = 0,
     _vh,
@@ -382,10 +378,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         });
     }
 
-    $(document).on("touchstart", function (e) {
-        _fisHeight = window.innerHeight;
-    });
-
     /*
      * date : 250106
      * last : 250106
@@ -426,28 +418,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         document.documentElement.style.setProperty('--reVh', _resizeVh + 'px');
     }
 
-    /**
-     * date : 20220901
-     * last : 20220901
-     * name : debounce()
-     * pram :
-     *        @param func {function} 실행 함수
-     *        @param wait {number} 시간 지정 ( 지정 시간 지난 후 함수 실행 )
-     * desc : 지정 시간 끝난 후 함수 실행
-     * ex) $contWrap.on('scroll',portfolioPub.front.debounce(test, 400));
-     */
-    function debounce(func, wait) {
-        var inDebounce;
-        return function () {
-            const context = this;
-            const args = arguments;
-            // setTimeout이 실행된 Timeout의 ID를 반환하고, clearTimeout()으로 이를 해제할 수 있음을 이용
-            clearTimeout(inDebounce);
-
-            inDebounce = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
-
     // smoothScroll
     function smoothScroll() {
         const lenis = new Lenis();
@@ -463,22 +433,8 @@ portfolioPub.front = portfolioPub.front || (function () {
 
     _front.breakpointChangeInit = breakpointChangeInit;
 
-    _front.debounce = debounce;
-
     $(document).on("touchstart", function (e) {
         _fisHeight = window.innerHeight;
-    });
-
-    createScrollStopListener(window, function () {
-        if ($('.ui-dialog-container.open').length > 0) return false;
-        if (_isIos && _isMac && window.innerHeight !== _fisHeight) {
-            //_resizeVh = (window.innerHeight + 1);
-            _resizeVh = getBodyHeight * 0.01;
-            document.documentElement.style.setProperty('--reVh', _resizeVh + 'px');
-        } else if (_isAndroid && window.outerHeight !== _fisHeight) {
-            _resizeVh = window.outerHeight;
-            document.documentElement.style.setProperty('--reVh', _resizeVh + 'px');
-        }
     });
 
     $(document).ready(function () {
@@ -487,7 +443,8 @@ portfolioPub.front = portfolioPub.front || (function () {
         $_container = $('.container-wrapper');
         $_wrapper = $('.wrapper');
 
-
+        _vh = window.innerHeight;
+        _resizeVh = window.innerHeight;
         _resizeVw = window.innerWidth || $(window).width() || document.body.clientWidth;
 
         setMoHeader();
@@ -498,35 +455,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setWorkHoverCursor();
         revealIntersectionObserve();
         smoothScroll();
-
-        /* 맥 OS 또는 iOS / android 디바이스 체크 */
-        _isIos = /(iPhone|iPod|iPad)/i.test(navigator.platform);
-        _isMac = /(Mac)/i.test(navigator.platform);
-        _isAndroid = /Android/i.test(navigator.userAgent);
-
-
-        if (_isIos) {
-            _vh = getBodyHeight * 0.01;
-            _resizeVh = getBodyHeight * 0.01;
-            setPropertyVh();
-            $('body').addClass('ios');
-        }
-        if (_isMac) {
-            _vh = getBodyHeight * 0.01;
-            _resizeVh = getBodyHeight * 0.01;
-            setPropertyVh();
-            $('body').addClass('mac');
-        }
-        if (_isAndroid) {
-            _vh = window.outerHeight;
-            _resizeVh = window.outerHeight;
-            setPropertyVh();
-            $('body').addClass('android');
-        } else {
-            _vh = window.innerHeight;
-            _resizeVh = window.innerHeight;
-            setPropertyVh();
-        }
+        setPropertyVh();
 
 
         // 회전변경 이벤트 발생 시 : 100vh 스타일 지정
@@ -536,17 +465,8 @@ portfolioPub.front = portfolioPub.front || (function () {
             _scrollTop = $(window).scrollTop();
             breakpointChangeInit();
 
-            if (_isIos && _isMac) {
-                _resizeVh = getBodyHeight * 0.01;
-                setPropertyVh();
-            }
-            if (_isAndroid) {
-                _resizeVh = window.outerHeight;
-                setPropertyVh();
-            } else {
-                _resizeVh = window.innerHeight;
-                setPropertyVh();
-            }
+            _resizeVh = window.innerHeight;
+            setPropertyVh();
         });
 
     });
