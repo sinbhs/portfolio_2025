@@ -286,7 +286,7 @@ portfolioPub.front = portfolioPub.front || (function () {
                 trigger: item,
                 start: 'top 80%',
                 end: 'bottom 30%',
-                markers: true,
+                markers: false,
 
                 onEnter: () => {
                     gsap.to('.container-wrapper', {
