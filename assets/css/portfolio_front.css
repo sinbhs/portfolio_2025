@@ -1428,6 +1428,18 @@ span {
 	-webkit-transform: scale(var(--introAfterScale));
 	transform: scale(var(--introAfterScale));
 }
+.wrapper.main .intro-box:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url("../images/main/noise.gif") 0 0 no-repeat #000;
+	background-size: 100% 100%;
+	opacity: 0.05;
+	pointer-events: none;
+}
 .wrapper.main .about-box .cont-title-wrap {
 	margin-bottom: 25px;
 }
@@ -1668,7 +1680,7 @@ span {
 @media (min-width: 600px) {
 	.wrapper.main .work-box .experience-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
 		gap: 50px 30px;
 	}
 	.wrapper.main .work-box .experience-list .experience-item:hover .thumb-box img {

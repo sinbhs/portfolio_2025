@@ -12,49 +12,6 @@
 	}
 }
 
-// 한줄 말줄임표
-@mixin ellipsis($autoWidth: true, $isInline: true) {
-	overflow: hidden;
-
-	@if ($isInline) {
-		display: inline-block;
-		vertical-align: top;
-	} @else {
-		display: block;
-	}
-
-	@if ($autoWidth) {
-		width: 100%;
-	}
-	max-width: 100%;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-// n줄 말줄임표
-@mixin multi_ellipsis($line-height, $lines: 2, $useHeight: false) {
-	display: block;
-	display: -webkit-box;
-	overflow: hidden;
-	@if $useHeight {
-		height: $line-height * $lines;
-	}
-	max-height: $line-height * $lines;
-	line-height: $line-height;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: $lines;
-	text-overflow: ellipsis;
-	white-space: normal;
-}
-
-// 멀티 라인 값 클리어
-@mixin clear_multi_ellipsis {
-	height: auto;
-	max-height: none;
-	-webkit-box-orient: inherit;
-	-webkit-line-clamp: inherit;
-}
-
 // 벤더 프리픽스
 @mixin prefix($property, $value, $prefixes: moz webkit) {
 	@each $prefix in $prefixes {
@@ -150,46 +107,6 @@
 		-webkit-flex-direction: column;
 		flex-direction: column;
 	}
-}
-
-@mixin set_placeholder_color($color: rgba(255, 255, 255, .65)) {
-	&::-webkit-input-placeholder {
-		font-size: inherit;
-		color: $color;
-	}
-
-	&:-ms-input-placeholder {
-		font-size: inherit;
-		color: $color;
-	}
-
-	&::-ms-input-placeholder {
-		font-size: inherit;
-		color: $color;
-	}
-
-	&::placeholder {
-		font-size: inherit;
-		color: $color;
-	}
-
-	&:-ms-input-placeholder {
-		font-size: inherit;
-		color: $color;
-	}
-
-	&::-ms-input-placeholder { // Microsoft Edge
-		font-size: inherit;
-		color: $color;
-	}
-}
-
-@mixin no_select_text {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 @mixin ratio_images($file, $sizes: cover, $position: 0 0, $color: '', $type: 'svg', $repeat: no-repeat ) {

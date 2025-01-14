@@ -113,6 +113,18 @@
                     //animation: moving-sparkle 1s infinite alternate;
                 }
             }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                @include mixins.ratio_images('../images/main/noise', 100% 100%, 0 0, variables.$colorBlack, 'gif');
+                opacity: .05;
+                pointer-events: none;
+            }
         }
 
         // about
@@ -345,7 +357,7 @@
             @media (min-width: 600px) {
                 .experience-list {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
                     gap: 50px 30px;
         
                     .experience-item {
