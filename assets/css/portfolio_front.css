@@ -1384,6 +1384,18 @@ span {
 	flex-direction: row;
 	background-color: #000;
 	color: #fff;
+	/* &:before {
+	    content: '';
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    //@include mixins.ratio_images('../images/main/noise', 100% 100%, 0 0, variables.$colorBlack, 'gif');
+	    @include mixins.ratio_images('../images/main/bg_main', 100% 100%, 0 0, variables.$colorBlack, 'jpg');
+	    //opacity: .05;
+	    pointer-events: none;
+	} */
 }
 .wrapper.main .intro-box .intro-tit {
 	position: relative;
@@ -1392,6 +1404,7 @@ span {
 	line-height: 1.2;
 	--introAfterOpacity: 1;
 	--introAfterScale: 1;
+	z-index: 2;
 }
 .wrapper.main .intro-box .intro-tit .reveal {
 	position: relative;
@@ -1427,18 +1440,20 @@ span {
 	-moz-transform: scale(var(--introAfterScale));
 	-webkit-transform: scale(var(--introAfterScale));
 	transform: scale(var(--introAfterScale));
+	z-index: 1;
 }
-.wrapper.main .intro-box:before {
-	content: "";
+.wrapper.main .intro-box .three-bg {
 	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: url("../images/main/noise.gif") 0 0 no-repeat #000;
-	background-size: 100% 100%;
-	opacity: 0.05;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	left: 10px;
+	width: calc(100% - 20px);
+	height: calc(100% - 20px);
+	border-radius: 1vw;
+	overflow: hidden;
 	pointer-events: none;
+	opacity: 0.4;
 }
 .wrapper.main .about-box .cont-title-wrap {
 	margin-bottom: 25px;

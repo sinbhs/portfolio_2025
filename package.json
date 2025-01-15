@@ -1,6 +1,7 @@
 {
   "name": "pf-gulp",
   "version": "1.0.0",
+  "type": "module",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +19,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "three": "^0.172.0"
+  }
 }
