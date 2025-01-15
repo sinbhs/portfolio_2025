@@ -103,6 +103,27 @@
                     ease: "power1.inOut",
                 });
 
+            // intro 덮일 때 효과
+            gsap.to(".intro-box", {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: ".container",               // .container를 기준으로 스크롤 트리거
+                    start: "top top",                     // .container가 화면 상단에 닿을 때 시작
+                    end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`,  // .cover-contents의 높이만큼 스크롤이 진행될 때까지
+                    scrub: true,                          // 스크롤에 맞춰 애니메이션 진행
+                    onUpdate: (self) => {
+                        const introBoxHeight = document.querySelector(".intro-box").offsetHeight;  // .intro-box의 높이
+                        const coverHeight = document.querySelector(".cover-contents").offsetHeight; // .cover-contents의 높이
+                        const coveredPercentage = Math.min(self.progress * (coverHeight / introBoxHeight), 1); // 가려진 비율 계산 (최대 1로 제한)
+                        
+                        // opacity를 가려진 비율에 맞춰 조정
+                        gsap.set(".intro-box", {
+                            opacity: 1 - coveredPercentage  // 가려질수록 opacity가 0으로 줄어들도록 설정
+                        });
+                    }
+                }
+            });
+
             // contact 영역으로 스크롤
             $(".btn-scroll-to-contact")
                 .off("click")
@@ -270,487 +291,491 @@
             </section>
             <!-- // cont-box -->
 
-            <!-- cont-box -->
-            <section class="cont-box about-box" data-bgcolor="#000">
-                <div class="cont-inner">
-                    <!-- left-area -->
-                    <div class="left-area">
+            <!-- cover-contents -->
+            <div class="cover-contents">
+                <!-- cont-box -->
+                <section class="cont-box about-box" data-bgcolor="#000">
+                    <div class="cont-inner">
+                        <!-- left-area -->
+                        <div class="left-area">
+                            <!-- cont-title-wrap -->
+                            <div class="cont-title-wrap">
+                                <h3 class="cont-tit">
+                                    <span class="reveal-tg ft-eng"><span class="wave-name">Song</span><span
+                                            class="wave-name">Jiwoo</span></span><br />
+                                </h3>
+                            </div>
+                            <!-- // cont-title-wrap -->
+
+                            <div class="intro-text-box">
+                                <p class="desc reveal-tg">
+                                    안녕하세요! 웹퍼블리셔 송지우입니다. <br />
+                                    <br />
+                                    변화하는 디지털 환경과 사용자 경험에 대한 이해를 바탕으로
+                                    UI/UX를 구현하는 3년차 퍼블리셔입니다.<br />
+                                    주로 e-commerce 쇼핑몰 위주로 작업을 해왔으며, 그 외에도 FO/BO
+                                    등 다양한 서비스를 제공하는 프로젝트들을 수행해 왔습니다.<br />
+                                    <br />
+                                    다양한 프로젝트들을 경험하면서 화면을 구성하는 요소들의 의미와
+                                    목적에 맞게 페이지를 구조화하는 방법을 습득하였고 모션 및
+                                    인터렉션을 구현하며 웹접근성 준수를 통한 크로스 브라우징을
+                                    통해 고객에게 더 나은 경험을 제공합니다.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- // left-area -->
+
+                        <!-- right-area -->
+                        <div class="right-area">
+                            <h4 class="scont-tit reveal-tg">Used tool</h4>
+                            <ul class="info-text-list reveal-tg">
+                                <li class="info-text">디자인 : Photoshop, XD, Figma</li>
+                                <li class="info-text">개발 : VS code, WebStorm</li>
+                                <li class="info-text">
+                                    협업 : Slack, Notion, Google Workspace
+                                </li>
+                            </ul>
+
+                            <h4 class="scont-tit reveal-tg">Education</h4>
+                            <ul class="info-text-list reveal-tg">
+                                <li class="info-text">
+                                    2020.10 더조은컴퓨터학원 반응형 UI/UX 웹퍼블리셔 양성과정 수료
+                                </li>
+                                <li class="info-text">2020.02 강남대학교 행정학과 졸업</li>
+                                <li class="info-text">2016.02 동탄고등학교 졸업</li>
+                            </ul>
+
+                            <h4 class="scont-tit reveal-tg">Career</h4>
+                            <ul class="info-text-list reveal-tg">
+                                <li class="info-text">
+                                    2021.02 ~ 2024.08 (주)글림 인터렉티브팀 주임
+                                </li>
+                            </ul>
+
+                            <h4 class="scont-tit reveal-tg">Certification</h4>
+                            <ul class="info-text-list reveal-tg">
+                                <li class="info-text">2022 자동차운전면허증(2종보통)</li>
+                                <li class="info-text">2020 GTQ 1급</li>
+                            </ul>
+                        </div>
+                        <!-- // right-area -->
+                    </div>
+                    <!-- // cont-inner -->
+                </section>
+                <!-- // cont-box -->
+                <!-- cont-box -->
+                <section class="cont-box work-box" data-bgcolor="#fff">
+                    <div class="cont-inner">
                         <!-- cont-title-wrap -->
                         <div class="cont-title-wrap">
-                            <h3 class="cont-tit">
-                                <span class="reveal-tg ft-eng"><span class="wave-name">Song</span><span
-                                        class="wave-name">Jiwoo</span></span><br />
-                            </h3>
+                            <h3 class="cont-tit reveal-tg">Work Experience</h3>
+                            <div class="stext reveal-tg">퍼블리셔 경력 3년 7개월</div>
                         </div>
                         <!-- // cont-title-wrap -->
 
-                        <div class="intro-text-box">
-                            <p class="desc reveal-tg">
-                                안녕하세요! 웹퍼블리셔 송지우입니다. <br />
-                                <br />
-                                변화하는 디지털 환경과 사용자 경험에 대한 이해를 바탕으로
-                                UI/UX를 구현하는 3년차 퍼블리셔입니다.<br />
-                                주로 e-commerce 쇼핑몰 위주로 작업을 해왔으며, 그 외에도 FO/BO
-                                등 다양한 서비스를 제공하는 프로젝트들을 수행해 왔습니다.<br />
-                                <br />
-                                다양한 프로젝트들을 경험하면서 화면을 구성하는 요소들의 의미와
-                                목적에 맞게 페이지를 구조화하는 방법을 습득하였고 모션 및
-                                인터렉션을 구현하며 웹접근성 준수를 통한 크로스 브라우징을
-                                통해 고객에게 더 나은 경험을 제공합니다.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- // left-area -->
-
-                    <!-- right-area -->
-                    <div class="right-area">
-                        <h4 class="scont-tit reveal-tg">Used tool</h4>
-                        <ul class="info-text-list reveal-tg">
-                            <li class="info-text">디자인 : Photoshop, XD, Figma</li>
-                            <li class="info-text">개발 : VS code, WebStorm</li>
-                            <li class="info-text">
-                                협업 : Slack, Notion, Google Workspace
+                        <!-- tab-list -->
+                        <ul class="tab-list reveal-tg">
+                            <li class="tab-item active">
+                                <button type="button" class="btn-tab" data-type="all">
+                                    <span class="text">ALL</span>
+                                </button>
+                            </li>
+                            <li class="tab-item">
+                                <button type="button" class="btn-tab" data-type="fo">
+                                    <span class="text">FO</span>
+                                </button>
+                            </li>
+                            <li class="tab-item">
+                                <button type="button" class="btn-tab" data-type="bo">
+                                    <span class="text">BO</span>
+                                </button>
+                            </li>
+                            <li class="tab-item">
+                                <button type="button" class="btn-tab" data-type="portfolio">
+                                    <span class="text">PORTFOLIO</span>
+                                </button>
                             </li>
                         </ul>
+                        <!-- // tab-list -->
 
-                        <h4 class="scont-tit reveal-tg">Education</h4>
-                        <ul class="info-text-list reveal-tg">
-                            <li class="info-text">
-                                2020.10 더조은컴퓨터학원 반응형 UI/UX 웹퍼블리셔 양성과정 수료
+                        <!-- experience-list -->
+                        <ol class="experience-list">
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_10_dk.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box"></div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">👕</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">데상트 (미오픈)</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
                             </li>
-                            <li class="info-text">2020.02 강남대학교 행정학과 졸업</li>
-                            <li class="info-text">2016.02 동탄고등학교 졸업</li>
-                        </ul>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_09_appilogue.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box"></div>
+                                        <!-- // thumb-box -->
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
 
-                        <h4 class="scont-tit reveal-tg">Career</h4>
-                        <ul class="info-text-list reveal-tg">
-                            <li class="info-text">
-                                2021.02 ~ 2024.08 (주)글림 인터렉티브팀 주임
+                                        <span class="media-emoji">💻</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">글림 자사 프로젝트(미오픈)</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
                             </li>
-                        </ul>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_08_gugus.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/gugus.png" alt="구구스 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
 
-                        <h4 class="scont-tit reveal-tg">Certification</h4>
-                        <ul class="info-text-list reveal-tg">
-                            <li class="info-text">2022 자동차운전면허증(2종보통)</li>
-                            <li class="info-text">2020 GTQ 1급</li>
-                        </ul>
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">👜</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">구구스</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_07_bucket.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/bucketstore.jpg" alt="버킷스토어 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">👕</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">버킷스토어(구 크리스몰)</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_06_kt_mrss.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/kt_mrss.png" alt="KT MRSS 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">💻</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">KT MRSS</div>
+                                        <div class="service-type">BO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_05_kt_caike.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/kt_caike.png" alt="KT CAIKE 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">💻</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">KT CAIKE 고도화</div>
+                                        <div class="service-type">BO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_04_lotte.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/lotte_eatz.png" alt="롯데잇츠 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">🍔</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">롯데잇츠</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_03_kyobo.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/kyobo_book.png" alt="교보문고 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">📖</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">교보문고</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_02_vhom.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/hansol_vhom.png" alt="한솔홈데코 인테리어 플랫폼 사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">🏠</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">한솔홈데코 인테리어 플랫폼</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="html/experience/experience_01_ny.html">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="assets/images/experience/namyang_company.png" alt="남양유업 기업사이트" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VIEW DETAIL</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">🐮</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">남양유업 기업사이트 순차 리뉴얼</div>
+                                        <div class="service-type">FO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                            <li class="experience-item reveal-tg">
+                                <a class="link-site" href="https://sinbhs.github.io/portfolio" target="_blank">
+                                    <!-- img-area -->
+                                    <div class="img-area">
+                                        <!-- thumb-box -->
+                                        <div class="thumb-box">
+                                            <img src="https://sinbhs.github.io/portfolio/images/og_img.png"
+                                                alt="2021 송지우 개인 포트폴리오" />
+                                        </div>
+                                        <!-- // thumb-box -->
+
+                                        <!-- fake-btn-text -->
+                                        <div class="fake-btn-text">
+                                            <span class="text">VISIT SITE</span>
+                                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
+                                                    stroke-width="1.5">
+                                                </path>
+                                                <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <!-- // fake-btn-text -->
+
+                                        <span class="media-emoji">❤️</span>
+                                    </div>
+                                    <!-- // img-area -->
+                                    <!-- info-area -->
+                                    <div class="info-area">
+                                        <div class="title">2021 개인 포트폴리오</div>
+                                        <div class="service-type">PORTFOLIO</div>
+                                    </div>
+                                    <!-- // info-area -->
+                                </a>
+                            </li>
+                            <!-- // repeat -->
+                        </ol>
+                        <!-- // experience-list -->
                     </div>
-                    <!-- // right-area -->
-                </div>
-                <!-- // cont-inner -->
-            </section>
-            <!-- // cont-box -->
-            <!-- cont-box -->
-            <section class="cont-box work-box" data-bgcolor="#fff">
-                <div class="cont-inner">
-                    <!-- cont-title-wrap -->
-                    <div class="cont-title-wrap">
-                        <h3 class="cont-tit reveal-tg">Work Experience</h3>
-                        <div class="stext reveal-tg">퍼블리셔 경력 3년 7개월</div>
-                    </div>
-                    <!-- // cont-title-wrap -->
-
-                    <!-- tab-list -->
-                    <ul class="tab-list reveal-tg">
-                        <li class="tab-item active">
-                            <button type="button" class="btn-tab" data-type="all">
-                                <span class="text">ALL</span>
-                            </button>
-                        </li>
-                        <li class="tab-item">
-                            <button type="button" class="btn-tab" data-type="fo">
-                                <span class="text">FO</span>
-                            </button>
-                        </li>
-                        <li class="tab-item">
-                            <button type="button" class="btn-tab" data-type="bo">
-                                <span class="text">BO</span>
-                            </button>
-                        </li>
-                        <li class="tab-item">
-                            <button type="button" class="btn-tab" data-type="portfolio">
-                                <span class="text">PORTFOLIO</span>
-                            </button>
-                        </li>
-                    </ul>
-                    <!-- // tab-list -->
-
-                    <!-- experience-list -->
-                    <ol class="experience-list">
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_10_dk.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box"></div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">👕</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">데상트 (미오픈)</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_09_appilogue.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box"></div>
-                                    <!-- // thumb-box -->
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">💻</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">글림 자사 프로젝트(미오픈)</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_08_gugus.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/gugus.png" alt="구구스 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">👜</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">구구스</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_07_bucket.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/bucketstore.jpg" alt="버킷스토어 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">👕</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">버킷스토어(구 크리스몰)</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_06_kt_mrss.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/kt_mrss.png" alt="KT MRSS 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">💻</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">KT MRSS</div>
-                                    <div class="service-type">BO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_05_kt_caike.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/kt_caike.png" alt="KT CAIKE 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">💻</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">KT CAIKE 고도화</div>
-                                    <div class="service-type">BO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_04_lotte.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/lotte_eatz.png" alt="롯데잇츠 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">🍔</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">롯데잇츠</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_03_kyobo.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/kyobo_book.png" alt="교보문고 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">📖</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">교보문고</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_02_vhom.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/hansol_vhom.png" alt="한솔홈데코 인테리어 플랫폼 사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">🏠</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">한솔홈데코 인테리어 플랫폼</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="html/experience/experience_01_ny.html">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="assets/images/experience/namyang_company.png" alt="남양유업 기업사이트" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VIEW DETAIL</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">🐮</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">남양유업 기업사이트 순차 리뉴얼</div>
-                                    <div class="service-type">FO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                        <li class="experience-item reveal-tg">
-                            <a class="link-site" href="https://sinbhs.github.io/portfolio" target="_blank">
-                                <!-- img-area -->
-                                <div class="img-area">
-                                    <!-- thumb-box -->
-                                    <div class="thumb-box">
-                                        <img src="https://sinbhs.github.io/portfolio/images/og_img.png"
-                                            alt="2021 송지우 개인 포트폴리오" />
-                                    </div>
-                                    <!-- // thumb-box -->
-
-                                    <!-- fake-btn-text -->
-                                    <div class="fake-btn-text">
-                                        <span class="text">VISIT SITE</span>
-                                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.77822 17.5564L17.5564 9.7782L9.77822 2.00002" stroke="black"
-                                                stroke-width="1.5">
-                                            </path>
-                                            <path d="M17.5564 9.77816H2.81876" stroke="black" stroke-width="1.5"></path>
-                                        </svg>
-                                    </div>
-                                    <!-- // fake-btn-text -->
-
-                                    <span class="media-emoji">❤️</span>
-                                </div>
-                                <!-- // img-area -->
-                                <!-- info-area -->
-                                <div class="info-area">
-                                    <div class="title">2021 개인 포트폴리오</div>
-                                    <div class="service-type">PORTFOLIO</div>
-                                </div>
-                                <!-- // info-area -->
-                            </a>
-                        </li>
-                        <!-- // repeat -->
-                    </ol>
-                    <!-- // experience-list -->
-                </div>
-                <!-- // cont-inner -->
-            </section>
-            <!-- // cont-box -->
+                    <!-- // cont-inner -->
+                </section>
+                <!-- // cont-box -->
+            </div>
+            <!-- // cover-contents -->
         </main>
         <!-- // container-wrapper -->
 

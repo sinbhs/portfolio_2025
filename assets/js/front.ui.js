@@ -285,14 +285,14 @@ portfolioPub.front = portfolioPub.front || (function () {
                 markers: false,
 
                 onEnter: () => {
-                    gsap.to('.container-wrapper', {
+                    gsap.to('.cover-contents', {
                         backgroundColor: bgColor,
                         color: textColor, // 텍스트 색상 변경
                         duration: 1.2,
                     });
                 },
                 onEnterBack: () => {
-                    gsap.to(".container-wrapper", {
+                    gsap.to(".cover-contents", {
                         backgroundColor: bgColor,
                         color: textColor, // 텍스트 색상 변경
                         duration: 1.2,
@@ -451,7 +451,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setTableCaption();
         breakpointChangeInit();
         setGoTop();
-        setBgChange();
+        //setBgChange();
         setWorkHoverCursor();
         revealIntersectionObserve();
         smoothScroll();
