@@ -1747,6 +1747,7 @@ span {
 	.wrapper.main .container-wrapper .cover-contents {
 		padding-top: 120px;
 		padding-bottom: 100px;
+		border-radius: 40px 40px 0 0;
 	}
 	.wrapper.main .container-wrapper .cover-contents .about-box .cont-inner {
 		display: -webkit-box;
