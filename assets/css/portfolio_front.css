@@ -1601,7 +1601,10 @@ span {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #FAFAFA;
+	background: rgba(255, 255, 255, 0.8);
+	-moz-backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(20px);
 	border-radius: 5em;
 	padding: 6px;
 	max-width: 30px;
@@ -1680,10 +1683,12 @@ span {
 	padding-left: 10px;
 }
 .wrapper.main .cover-contents .work-box .experience-list .experience-item .link-site:hover .fake-btn-text .text {
-	padding-right: 11px;
+	margin-right: 8px;
 	opacity: 1;
 }
 .wrapper.main .cover-contents .work-box .experience-list .experience-item .link-site:hover .fake-btn-text svg {
+	-moz-transform: rotate(0);
+	-webkit-transform: rotate(0);
 	transform: rotate(0);
 }
 .wrapper.main .cover-contents .work-box .experience-list .experience-item .link-site:hover .media-emoji {

@@ -107,8 +107,8 @@
             gsap.to(".intro-box", {
                 opacity: 0,
                 scrollTrigger: {
-                    trigger: ".container",               // .container를 기준으로 스크롤 트리거
-                    start: "top top",                     // .container가 화면 상단에 닿을 때 시작
+                    trigger: ".container-wrapper",               // container를 기준으로 스크롤 트리거
+                    start: "top top",                     // container가 화면 상단에 닿을 때 시작
                     end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`,  // .cover-contents의 높이만큼 스크롤이 진행될 때까지
                     scrub: true,                          // 스크롤에 맞춰 애니메이션 진행
                     onUpdate: (self) => {
