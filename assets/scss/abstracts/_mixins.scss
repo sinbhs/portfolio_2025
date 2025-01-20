@@ -273,36 +273,6 @@
 	}
 }
 
-// mobile : app only
-@mixin app_only($show:false) {
-	@if( $show ) {
-		.wrapper[data-app-show] &[data-app-only] {
-			@content;
-		}
-	}@else {
-		body &[data-app-only] {
-			@content;
-		}
-	}
-
-}
-
-// mobile : device mobile only
-// ** 개발파트와 협의 필요
-@mixin device_mobile_only($show:false) {
-	@if( $show ) {
-		@include size_desktop {
-			&[data-mobile-only] {
-				@content;
-			}
-		}
-	}@else {
-		body &[data-mobile-only] {
-			@content;
-		}
-	}
-}
-
 // mobile : device mobile - ios only
 @mixin device_mobile_ios {
 	body.ios &, body.mac & {

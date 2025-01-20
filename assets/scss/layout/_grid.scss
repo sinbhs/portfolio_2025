@@ -133,6 +133,10 @@ body {
     @include mixins.size_desktop {
         .cont-inner {
             padding: 0 12vw;
+
+            /* @at-root #{ selector-nest('.wrapper.main','#{&}') } {
+                padding: 0 70px;
+            } */
         }
     }
 }
