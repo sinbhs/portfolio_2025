@@ -451,7 +451,7 @@ portfolioPub.front = portfolioPub.front || (function () {
         setTableCaption();
         breakpointChangeInit();
         setGoTop();
-        //setBgChange();
+        //setBgChange(); 스타일 적용 x
         setWorkHoverCursor();
         revealIntersectionObserve();
         smoothScroll();
