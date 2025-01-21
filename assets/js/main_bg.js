@@ -65,7 +65,7 @@ function setupBackground() {
 }
 
 // 카메라 초기 위치 설정
-camera.position.z = 5;
+camera.position.z = 4;
 
 // 창 크기 변경 처리
 function onWindowResize() {

@@ -126,6 +126,42 @@
                 }
             });
 
+            // PC work title gsap intro
+            let mm = gsap.matchMedia();
+
+            mm.add("(min-width: 891px)", () => {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".work-box .experience-list",
+                        start: "0% 100%",
+                        end: "0 100%",
+                        scrub: 1,
+                    }
+                })
+                .to(".cover-contents", {backgroundColor: "#000", color: "#fff", ease: "none", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap", {position: "fixed", top: "0", left: "0", right: "0", bottom: "0", ease: "none", duration: 1}, 0)
+                .to(".work-box .experience-list", {paddingTop: "100vh", ease: "none", duration: 1}, 0)
+                .fromTo(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0)
+                .fromTo(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0);
+
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".work-box .experience-list",
+                        start: "100% 50%",
+                        end: "100% 40%",
+                        scrub: 1,
+                    }
+                })
+                .to(".cover-contents", {backgroundColor: "#fff", color: "#000", ease: "none", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0", ease: "none", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0);
+                
+                return () => { // optional
+                    //console.log('clean up');
+                };
+            });
+            
+
             // contact 영역으로 스크롤
             $(".btn-scroll-to-contact")
                 .off("click")
@@ -252,9 +288,7 @@
     <div class="wrapper main">
         <!-- skip-nav-->
         <div class="skip-nav">
-            <a href="#container"
-                onclick="document.getElementById('body').tabIndex = -1; document.getElementById('container').focus(); return false;">본문으로
-                가기</a>
+            <a href="#container" onclick="document.getElementById('body').tabIndex = -1; document.getElementById('container').focus(); return false;">본문으로 가기</a>
         </div>
         <!-- // skip-nav-->
         <!-- header-wrapper -->
@@ -296,7 +330,7 @@
             <!-- cover-contents -->
             <div class="cover-contents">
                 <!-- cont-box -->
-                <section class="cont-box about-box" data-bgcolor="#000">
+                <section class="cont-box about-box">
                     <div class="cont-inner">
                         <!-- left-area -->
                         <div class="left-area">
@@ -365,13 +399,17 @@
                     <!-- // cont-inner -->
                 </section>
                 <!-- // cont-box -->
+
                 <!-- cont-box -->
-                <section class="cont-box work-box" data-bgcolor="#fff">
+                <section class="cont-box work-box">
                     <div class="cont-inner">
                         <!-- cont-title-wrap -->
-                        <div class="cont-title-wrap">
-                            <h3 class="cont-tit reveal-tg">Work Experience</h3>
-                            <div class="stext reveal-tg">퍼블리셔 경력 3년 7개월</div>
+                        <div class="cont-title-wrap reveal-tg">
+                            <h3 class="cont-tit">
+                                <span class="word first">Work</span>
+                                <span class="word second">Experience</span>
+                            </h3>
+                            <div class="stext">퍼블리셔 경력 3년 7개월</div>
                         </div>
                         <!-- // cont-title-wrap -->
 

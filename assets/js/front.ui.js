@@ -229,11 +229,13 @@ portfolioPub.front = portfolioPub.front || (function () {
         const intersectionObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('cont-tit')) {
+                    /* if (entry.target.classList.contains('cont-tit')) {
                         titSplitRevealAni($(entry.target));
                     } else {
                         entry.target.classList.add('reveal');
-                    }
+                    } */
+
+                    entry.target.classList.add('reveal');
 
                     // 위 실행을 처리하고(1회) 관찰 중지
                     intersectionObserver.unobserve(entry.target)
@@ -249,8 +251,8 @@ portfolioPub.front = portfolioPub.front || (function () {
         });
 
         // 타이틀 split 애니메이션
-        function titSplitRevealAni(selector) {
-            selector = selector || '.cont-tit';
+        /* function titSplitRevealAni(selector) {
+            selector = selector || '.wrapper.main .cont-tit .word';
 
             selector.html(
                 selector.text()
@@ -263,43 +265,7 @@ portfolioPub.front = portfolioPub.front || (function () {
                 })
                 .join("")
             );
-        }
-    }
-
-    /*
-     * date : 250106
-     * last : 250113
-     * name : setBgChange()
-     * pram :
-     * desc : 배경색 변경 gsap
-     */
-    function setBgChange() {
-        gsap.utils.toArray('.work-box, .about-box').forEach((item) => {
-            let bgColor = item.getAttribute('data-bgcolor');
-            let textColor = bgColor === "#000" ? "#fff" : "#000"; // 검은 배경 흰 텍스트, 흰 배경 검은 텍스트
-
-            ScrollTrigger.create({
-                trigger: item,
-                start: 'top 50%',
-                end: 'bottom 50%',
-                markers: false,
-
-                onEnter: () => {
-                    gsap.to('.cover-contents', {
-                        backgroundColor: bgColor,
-                        color: textColor, // 텍스트 색상 변경
-                        duration: 1.2,
-                    });
-                },
-                onEnterBack: () => {
-                    gsap.to(".cover-contents", {
-                        backgroundColor: bgColor,
-                        color: textColor, // 텍스트 색상 변경
-                        duration: 1.2,
-                    });
-                },
-            });
-        });
+        } */
     }
 
     /*
@@ -368,14 +334,6 @@ portfolioPub.front = portfolioPub.front || (function () {
                 $(document).data('scrollEnd', setTimeout(onScroll, event));
             });
         };
-    }
-
-    // sps set
-    if (window.ScrollPosStyler) {
-        ScrollPosStyler.init({
-            classAbove: 'sps-abv',
-            classBelow: 'sps-blw',
-        });
     }
 
     /*
@@ -451,7 +409,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         setTableCaption();
         breakpointChangeInit();
         setGoTop();
-        //setBgChange(); 스타일 적용 x
         setWorkHoverCursor();
         revealIntersectionObserve();
         smoothScroll();
