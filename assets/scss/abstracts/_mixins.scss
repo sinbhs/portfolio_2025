@@ -260,12 +260,6 @@
 	}
 }
 
-@mixin size_tablet {
-	@media (min-width: variables.$breakpoint-desktop ) and (max-width: 1150px) {
-		@content;
-	}
-}
-
 // size : breakpoint mobile
 @mixin size_mobile {
 	@media (max-width: variables.$breakpoint-desktop - 1) {
