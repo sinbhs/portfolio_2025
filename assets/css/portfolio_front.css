@@ -1345,18 +1345,6 @@ span {
 	flex-direction: row;
 	background-color: #000;
 	color: #fff;
-	/* &:before {
-	    content: '';
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
-	    //@include mixins.ratio_images('../images/main/noise', 100% 100%, 0 0, variables.$colorBlack, 'gif');
-	    @include mixins.ratio_images('../images/main/bg_main', 100% 100%, 0 0, variables.$colorBlack, 'jpg');
-	    //opacity: .05;
-	    pointer-events: none;
-	} */
 }
 .wrapper.main .intro-box .intro-tit {
 	position: relative;
@@ -1630,9 +1618,9 @@ span {
 	transition: transform 0.5s ease-out;
 	opacity: 0.8;
 }
-.wrapper.main .cover-contents .about-box .intro-text-box {
+.wrapper.main .cover-contents .about-box .intro-text {
 	margin-bottom: 50px;
-	word-break: break-word;
+	word-break: keep-all;
 }
 @media (max-width: 890px) {
 	.wrapper.main .cover-contents .about-box .ico-sparkles.is-down {
@@ -1640,7 +1628,7 @@ span {
 		-webkit-transform: translateY(30px);
 		transform: translateY(30px);
 	}
-	.wrapper.main .cover-contents .about-box .intro-text-box .desc {
+	.wrapper.main .cover-contents .about-box .intro-text {
 		font-size: 14px;
 		line-height: 20px;
 		letter-spacing: -0.025em;
@@ -1663,10 +1651,9 @@ span {
 		left: -27px;
 		animation: moving-sparkle 1s infinite alternate;
 	}
-	.wrapper.main .cover-contents .about-box .cont-inner .left-area .intro-text-box {
+	.wrapper.main .cover-contents .about-box .cont-inner .left-area .intro-text {
 		width: 70%;
 		margin-bottom: 0;
-		word-break: break-word;
 	}
 }
 .wrapper.main .cover-contents .work-box .experience-list .experience-item {
