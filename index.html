@@ -134,12 +134,12 @@
                     scrollTrigger: {
                         trigger: ".work-box .experience-list",
                         start: "0% 100%",
-                        end: "0 100%",
+                        end: "0% 100%",
                         scrub: 1,
                     }
                 })
                 .to(".cover-contents", {backgroundColor: "#000", color: "#fff", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", {position: "fixed", top: "0", left: "0", right: "0", bottom: "0", ease: "none", duration: 1}, 0)
+                .to(".work-box .cont-title-wrap", {position: "fixed", inset: "0", ease: "none", duration: 1}, 0)
                 .to(".work-box .experience-list", {paddingTop: "100vh", ease: "none", duration: 1}, 0)
                 .fromTo(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0)
                 .fromTo(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0);
@@ -154,8 +154,9 @@
                 })
                 .to(".cover-contents", {backgroundColor: "#fff", color: "#000", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0);
-                
+                .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, 1); // footer 가리지 않기 위해 추가
+
                 return () => { // optional
                     //console.log('clean up');
                 };
