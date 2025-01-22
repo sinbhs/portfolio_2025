@@ -155,7 +155,7 @@
                 .to(".cover-contents", {backgroundColor: "#fff", color: "#000", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, 1); // footer 가리지 않기 위해 추가
+                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, "+=1"); // footer 가리지 않기 위해 추가
 
                 return () => { // optional
                     //console.log('clean up');
