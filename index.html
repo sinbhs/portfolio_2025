@@ -80,16 +80,17 @@
                 );
             });
 
-            // 인트로 gsap
+            // intro title gsap
             const introTl = gsap.timeline();
 
             introTl
-                .from(".intro-box .intro-tit .intro-reveal .char", {
+                .from(".intro-box .intro-tit .intro-reveal .char", {// split reveal gsap
                     yPercent: 110,
                     duration: 0.3,
                     stagger: 0.03,
                     ease: "power1",
                 })
+                // sparkle 아이콘 opacity 조절
                 .from(".intro-box .intro-tit", {
                     "--introAfterOpacity": 0,
                     duration: 0.3,
@@ -104,31 +105,32 @@
                     ease: "power1.inOut",
                 });
 
-            // intro 덮일 때 효과
+            // intro-box covered gsap effect
             gsap.to(".intro-box", {
                 opacity: 0,
                 scrollTrigger: {
-                    trigger: ".container-wrapper",               // container를 기준으로 스크롤 트리거
-                    start: "top top",                     // container가 화면 상단에 닿을 때 시작
-                    end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`,  // .cover-contents의 높이만큼 스크롤이 진행될 때까지
-                    scrub: true,                          // 스크롤에 맞춰 애니메이션 진행
+                    trigger: ".container-wrapper",
+                    start: "top top",
+                    end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`,  // .cover-contents의 높이만큼
+                    scrub: true,
                     onUpdate: (self) => {
-                        const introBoxHeight = document.querySelector(".intro-box").offsetHeight;  // .intro-box의 높이
-                        const coverHeight = document.querySelector(".cover-contents").offsetHeight; // .cover-contents의 높이
+                        const introBoxHeight = document.querySelector(".intro-box").offsetHeight;
+                        const coverHeight = document.querySelector(".cover-contents").offsetHeight;
                         const coveredPercentage = Math.min(self.progress * (coverHeight / introBoxHeight), 1); // 가려진 비율 계산 (최대 1로 제한)
                         
                         // opacity를 가려진 비율에 맞춰 조정
                         gsap.set(".intro-box", {
-                            opacity: 1 - coveredPercentage  // 가려질수록 opacity가 0으로 줄어들도록 설정
+                            opacity: 1 - coveredPercentage
                         });
                     }
                 }
             });
 
-            // PC work title gsap intro
+            // PC 해상도 work title gsap 모션
             let mm = gsap.matchMedia();
 
             mm.add("(min-width: 891px)", () => {
+                // 시작
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: ".work-box .experience-list",
@@ -143,6 +145,7 @@
                 .fromTo(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0)
                 .fromTo(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0);
 
+                // 끝
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: ".work-box .experience-list",
@@ -156,7 +159,7 @@
                 .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, 1); // footer 가리지 않기 위해 추가
 
-                return () => { // optional
+                return () => {
                     //console.log('clean up');
                     ScrollTrigger.refresh();
                 };
@@ -178,10 +181,10 @@
             if (!!workTabList) return false;
 
             let experienceItem = $(".experience-list .experience-item"),
-                experienceType = experienceItem.find(".service-type").text(); // 작업물 아이템 service-type
+                experienceType = experienceItem.find(".service-type").text();
 
-            var workTabList = $(".tab-list"), // sorting 탭
-                experienceList = $(".experience-list"); // 작업물 리스트
+            var workTabList = $(".tab-list"),
+                experienceList = $(".experience-list");
 
             $(".tab-list .tab-item .btn-tab")
                 .off("click")
@@ -222,7 +225,6 @@
                     const offsetX = event.pageX - $(this).offset().left - 50;
                     const offsetY = event.pageY - $(this).offset().top - 50;
 
-                    // GSAP 애니메이션 적용
                     gsap.to($emoji, {
                         left: offsetX.toFixed(0),
                         top: offsetY.toFixed(0),
@@ -234,7 +236,7 @@
 
             $(".experience-item .link-site").on("mouseleave", function () {
                 const $emoji = $(this).find(".media-emoji");
-                $(this).off("mousemove"); // mousemove 이벤트 해제
+                $(this).off("mousemove");
             });
 
             // footer marquee

@@ -129,6 +129,7 @@ function setGoTop() {
     var offset = $_headerWrapper.length > 0 ? $_headerWrapper.height() * 1.5 : 30;
     btnOnOff();
 
+    // 클릭 이벤트
     $_btnGoTop.off('click').on('click', function (e) {
         e.preventDefault();
         $('html, body').stop().queue('fx', []).animate({
@@ -136,11 +137,12 @@ function setGoTop() {
         }, 250);
     });
 
-
+    // 트랜지션 끝났을 때에만 class 노출 제어
     $_btnGoTop.on(_transitionEnd, function () {
         if (!$_btnGoTop.hasClass('is-active')) $_btnGoTop.addClass('is-hide');
     })
 
+    // 스크롤 범위에 따라 class로 노출 제어
     $(window).off('scroll', btnOnOff).on('scroll', btnOnOff);
 
     function btnOnOff() {
@@ -239,7 +241,7 @@ function revealIntersectionObserve() {
         if (isPastViewport || isInViewport) {
             item.classList.add('reveal');
         } else {
-            intersectionObserver.observe(item); // 나머지는 관찰
+            intersectionObserver.observe(item);
         }
     });
 }
@@ -321,7 +323,7 @@ function setPropertyVh() {
     document.documentElement.style.setProperty('--reVh', _resizeVh + 'px');
 }
 
-// smoothScroll
+// smoothScroll 기능 추가
 function smoothScroll() {
     const lenis = new Lenis();
 
