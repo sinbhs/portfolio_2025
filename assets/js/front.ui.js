@@ -3,7 +3,7 @@
  * desc : UI 공통 자바스크립트
  * writer : 송지우
  * date : 2025/01/06
- * last : 
+ * last : 2025/01/23
  */
 
 
@@ -271,37 +271,6 @@ portfolioPub.front = portfolioPub.front || (function () {
     /*
      * date : 250106
      * last : 250106
-     * name : setWorkHoverCursor()
-     * pram :
-     * desc : work hover cursor
-     */
-    function setWorkHoverCursor() {
-        $(".experience-item .link-site").on("mouseenter", function () {
-            const $emoji = $(this).find(".media-emoji");
-
-            $(this).on("mousemove", function (event) {
-                const offsetX = event.pageX - $(this).offset().left - 50;
-                const offsetY = event.pageY - $(this).offset().top - 50;
-
-                // GSAP 애니메이션 적용
-                gsap.to($emoji, {
-                    left: offsetX.toFixed(0),
-                    top: offsetY.toFixed(0),
-                    duration: .9,
-                    ease: "power3"
-                });
-            });
-        });
-
-        $(".experience-item .link-site").on("mouseleave", function () {
-            const $emoji = $(this).find(".media-emoji");
-            $(this).off("mousemove"); // mousemove 이벤트 해제
-        });
-    }
-
-    /*
-     * date : 250106
-     * last : 250106
      * name : createScrollStopListener(element, callback)
      * pram :
      *		@param element  - 스크롤 영역 요소
@@ -396,10 +365,10 @@ portfolioPub.front = portfolioPub.front || (function () {
     });
 
     $(document).ready(function () {
-        $_headerWrapper = $('.header-wrapper');
-        $_btnGoTop = $('.btn-go-top');
-        $_container = $('.container-wrapper');
         $_wrapper = $('.wrapper');
+        $_headerWrapper = $('.header-wrapper');
+        $_container = $('.container-wrapper');
+        $_btnGoTop = $('.btn-go-top');
 
         _vh = window.innerHeight;
         _resizeVh = window.innerHeight;
@@ -409,7 +378,6 @@ portfolioPub.front = portfolioPub.front || (function () {
         setTableCaption();
         breakpointChangeInit();
         setGoTop();
-        setWorkHoverCursor();
         revealIntersectionObserve();
         smoothScroll();
         setPropertyVh();

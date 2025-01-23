@@ -213,6 +213,29 @@
                     }
                 });
 
+            // work hover cursor
+            $(".experience-item .link-site").on("mouseenter", function () {
+                const $emoji = $(this).find(".media-emoji");
+
+                $(this).on("mousemove", function (event) {
+                    const offsetX = event.pageX - $(this).offset().left - 50;
+                    const offsetY = event.pageY - $(this).offset().top - 50;
+
+                    // GSAP 애니메이션 적용
+                    gsap.to($emoji, {
+                        left: offsetX.toFixed(0),
+                        top: offsetY.toFixed(0),
+                        duration: .9,
+                        ease: "power3"
+                    });
+                });
+            });
+
+            $(".experience-item .link-site").on("mouseleave", function () {
+                const $emoji = $(this).find(".media-emoji");
+                $(this).off("mousemove"); // mousemove 이벤트 해제
+            });
+
             // footer marquee
             if ($(".footer-marquee").length > 0) {
                 wrap = $(".footer-marquee");
