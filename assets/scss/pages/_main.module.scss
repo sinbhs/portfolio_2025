@@ -621,6 +621,7 @@
                         .cont-title-wrap {
                             @include mixins.justify_width(center, center);
                             width: 100%;
+                            margin-bottom: 0;
     
                             .cont-tit {
                                 width: 100%;

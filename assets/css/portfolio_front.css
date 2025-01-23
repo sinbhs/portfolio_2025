@@ -1974,6 +1974,7 @@ span {
 		-webkit-flex-direction: row;
 		flex-direction: row;
 		width: 100%;
+		margin-bottom: 0;
 	}
 	.wrapper.main .container-wrapper .cover-contents .work-box .cont-title-wrap .cont-tit {
 		width: 100%;

@@ -284,8 +284,7 @@
             }
 
             // 이력서 버튼 hover 효과
-            $(".link-notion")
-                .on("mouseenter", function (e) {
+            $(".link-notion").on("mouseenter", function (e) {
                     var parentOffset = $(this).offset(),
                         relX = e.pageX - parentOffset.left,
                         relY = e.pageY - parentOffset.top;
@@ -303,7 +302,12 @@
                         left: relX
                     });
                 });
-        });
+            });
+
+            // gsap resize scroll trigger update
+            $(window).on('resize orientationchange observerUpdate', function() {
+                ScrollTrigger.update;
+            })
     </script>
 </head>
 
@@ -860,7 +864,7 @@
                             <span class="text">
                                 &lt;title&gt;Song Jiwoo’s Portfolio&lt;/title&gt;
                                 &lt;h3&gt;Contact&lt;/h3&gt;
-                                &lt;p&gt;함께 일할 사람을 찾고 계신가요? 🤔&lt;/p&gt;
+                                &lt;p&gt;함께 일할 사람을 찾고 계신가요?🤔&lt;/p&gt;
                             </span>
                         </div>
                     </div>
