@@ -66,8 +66,8 @@
     <script type="module" src="assets/js/main_bg.js"></script>
     <script>
         $(function () {
-            // text split reveal 효과를 위한 span태그 분리
-            $(".reveal").each(function () {
+            // intro-reveal text split
+            $(".intro-reveal").each(function () {
                 $(this).html(
                     $(this)
                     .text()
@@ -84,7 +84,7 @@
             const introTl = gsap.timeline();
 
             introTl
-                .from(".intro-box .intro-tit .reveal .char", {
+                .from(".intro-box .intro-tit .intro-reveal .char", {
                     yPercent: 110,
                     duration: 0.3,
                     stagger: 0.03,
@@ -154,10 +154,11 @@
                 .to(".cover-contents", {backgroundColor: "#fff", color: "#000", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0", ease: "none", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, "+=1"); // footer 가리지 않기 위해 추가
+                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, 1); // footer 가리지 않기 위해 추가
 
                 return () => { // optional
                     //console.log('clean up');
+                    ScrollTrigger.refresh();
                 };
             });
             
@@ -197,7 +198,8 @@
                         // 리스트 필터링
                         if (sortingTarget === "all") {
                             $(".experience-list .experience-item").show(); // 전체 항목 표시
-                        } else {
+                        } 
+                        else {
                             $(".experience-list .experience-item").hide(); // 모두 숨기기
 
                             $(".experience-item", experienceList)
@@ -345,8 +347,8 @@
             <section class="cont-box intro-box">
                 <div class="cont-inner">
                     <h2 class="intro-tit">
-                        <span class="reveal ft-eng">Song Jiwoo's</span>
-                        <span class="reveal">Portfolio</span>
+                        <span class="intro-reveal ft-eng">Song Jiwoo's</span>
+                        <span class="intro-reveal">Portfolio</span>
                     </h2>
                 </div>
                 <!-- // cont-inner -->

@@ -22,27 +22,6 @@
         transform: scale(2.5);
     }    
 }
-
-@keyframes reveal {
-    0% {
-        opacity: 0;
-        @include mixins.prefix(transform, translateY(30px));
-    }
-    100% {
-        opacity: 1;
-        @include mixins.prefix(transform, translateY(0));
-    }
-}
-@-webkit-keyframes reveal {
-    0% {
-        opacity: 0;
-        @include mixins.prefix(transform, translateY(30px));
-    }
-    100% {
-        opacity: 1;
-        @include mixins.prefix(transform, translateY(0));
-    }
-}
   
 @keyframes waveName {
   0% {

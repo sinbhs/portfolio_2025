@@ -217,43 +217,31 @@ function revealIntersectionObserve() {
     const intersectionObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                /* if (entry.target.classList.contains('cont-tit')) {
-                    titSplitRevealAni($(entry.target));
-                } else {
-                    entry.target.classList.add('reveal');
-                } */
-
                 entry.target.classList.add('reveal');
 
                 // 위 실행을 처리하고(1회) 관찰 중지
                 intersectionObserver.unobserve(entry.target)
             }
         });
-    }, {
-        rootMargin: `0px 0px 0px 0px`,
+    }, 
+    {
+        rootMargin: `0px 0px 50px 0px`, // 50px만 보여도 보이도록함(scss 타겟 기본 위치 translateY(100px))
         threshold: 0,
     });
 
     document.querySelectorAll('.reveal-tg').forEach((item) => {
-        intersectionObserver.observe(item);
+        // 요소의 초기 상태 확인
+        const rect = item.getBoundingClientRect();
+        const isPastViewport = rect.bottom < 0; // 화면 상단을 지나갔는지 확인
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0; // 뷰포트에 있는지 확인
+
+        // 뷰포트를 지난 경우 또는 현재 뷰포트에 있는 경우 reveal 클래스 추가
+        if (isPastViewport || isInViewport) {
+            item.classList.add('reveal');
+        } else {
+            intersectionObserver.observe(item); // 나머지는 관찰
+        }
     });
-
-    // 타이틀 split 애니메이션
-    /* function titSplitRevealAni(selector) {
-        selector = selector || '.wrapper.main .cont-tit .word';
-
-        selector.html(
-            selector.text()
-            .split("")
-            .map((letter, idx) => {
-                if (letter === " ") return " ";
-                return `<span style="animation-delay:${
-                idx * 45
-            }ms" class="reveal-item">${letter}</span>`;
-            })
-            .join("")
-        );
-    } */
 }
 
 /*

@@ -28,7 +28,7 @@
                 --introAfterScale: 1;
                 z-index: 2;
 
-                .reveal {
+                .intro-reveal {
                     position: relative;
                     z-index: 2;
                     display: block;
@@ -109,6 +109,7 @@
                                 display: inline-block;
                                 animation: waveName 0.6s infinite alternate;
                                 vertical-align: top;
+                                font-size: inherit;
             
                                 ~ .wave-name {
                                     margin-left: 15px;
@@ -177,189 +178,21 @@
                  }
             }
             
-            // 구버전 work experience
-            /* .work-box {
-                .cont-title-wrap {
-                    .cont-tit {
-                        font-size: 30px;
-                        line-height: 34px;
-                    }
-
-                    .stext {
-                        margin-top: 5px;
-                        @include mixins.font_size_lg;
-                    }
-                }
-
-                // experience list
-                .experience-list {
-                    .experience-item {
-                        @include mixins.prefix(transition, 1s cubic-bezier(.175,.885,.32,1.275));
-                        @include mixins.prefix(transform, translateY(100%));
-            
-                        .img-area {
-                            position: relative;
-                            @include mixins.justify_width(end, start);
-                            width: 100%;
-                            padding: 15px;
-                            aspect-ratio: 960 / 612;
-                            overflow: hidden;
-            
-                            .thumb-box {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                right: 0;
-                                bottom: 0;
-                                border-radius: 8px;
-                                @include mixins.ratio_images('../images/common/comm_img_no_data', cover, center, '', 'jpg');
-                                overflow: hidden;
-                    
-                                img {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 50%;
-                                    @include mixins.prefix(transform, translateX(-50%));
-                                    width: 100%;
-                                    height: 100%;
-                                    -o-object-fit: cover;
-                                    object-fit: cover;
-                                    @include mixins.prefix(transition, .32s cubic-bezier(.28, .11, .32, 1));
-                                }
-                            }
-                    
-                            .fake-btn-text {
-                                position: relative;
-                                z-index: 5;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                background: rgba(#fff, 80%);
-                                @include mixins.prefix(backdrop-filter, blur(20px));
-                                border-radius: 5em;
-                                padding: 6px;
-                                max-width: 30px;
-                                transition: .32s all cubic-bezier(.55,0,.1,1);
-                    
-                                .text {
-                                    display: inline-flex;
-                                    align-items: flex-end;
-                                    overflow: hidden;
-                                    opacity: 0;
-                                    transition: .32s all cubic-bezier(.55,0,.1,1);
-                                    white-space: nowrap;
-                                    color: variables.$colorBlack;
-                                    @include mixins.font_size_sm;
-                                }
-                    
-                                svg {
-                                    width: 18px;
-                                    height: 18px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    flex-shrink: 0;
-                                    transform: rotate(-45deg);
-                                    transition: .32s transform cubic-bezier(.55,0,.1,1);
-                                }
-                            }
-                    
-                            .media-emoji {
-                                position: absolute;
-                                z-index: 10;
-                                top: 0;
-                                left: 0;
-                                font-size: 37px;
-                                opacity: 0;
-                                transition: .4s opacity cubic-bezier(.55,0,.1,1)
-                            }
-
-                            &:hover {
-                                .media-emoji {
-                                    opacity:1
-                                }
-                            }
-                        }
-            
-                        .info-area {
-                            @include mixins.justify_width(start, between);
-                            margin-top: 15px;
-            
-                            .title {
-                                @include mixins.font_size_lg('md');
-                            }
-            
-                            .service-type {
-                                color: variables.$colorGray01;
-                            }
-                        }
-            
-                        .link-site {
-                            position: relative;
-            
-                            &:hover {
-                                .fake-btn-text {
-                                    max-width: 100%;
-                                    padding: {
-                                        right: 10px;
-                                        left: 10px;
-                                    }
-                                }
-                            
-                                .fake-btn-text .text {
-                                    margin-right: 8px;
-                                    opacity: 1;
-                                }
-                            
-                                .fake-btn-text svg {
-                                    @include mixins.prefix(transform, rotate(0));
-                                }
-                            }
-                        }
-            
-                        &.reveal {
-                            opacity: 1;
-                            @include mixins.prefix(transform, translateY(0));
-                        }
-            
-                        ~ .experience-item {
-                            margin-top: 35px;
-                        }
-                    }
-                }
-            
-                @media (min-width: 600px) {
-                    .experience-list {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-                        gap: 50px 30px;
-            
-                        .experience-item {
-                            &:hover {
-                                .thumb-box {
-                    
-                                    img {
-                                        @include mixins.prefix(transform, translateX(-50%) scale(1.1));
-                                    }
-                                }
-                            }
-            
-                            & ~ .experience-item {
-                                margin-top: 0;
-                            }
-                        }
-                    }
-                }
-            } */
-
             // work experience
             .work-box {
+                .cont-title-wrap {
+                    .cont-tit {
+                        span {
+                            font-size: inherit;
+                            font-weight: inherit;
+                            line-height: inherit;
+                        }
+                    }
+                }
+
                 // experience list
                 .experience-list {
                     .experience-item {
-                        @include mixins.prefix(transition, 1s cubic-bezier(.175,.885,.32,1.275));
-                        @include mixins.prefix(transform, translateY(100%));
-            
                         .img-area {
                             position: relative;
                             @include mixins.justify_width(end, start);
@@ -479,20 +312,10 @@
                                 }
                             }
                         }
-            
-                        &.reveal {
-                            opacity: 1;
-                            @include mixins.prefix(transform, translateY(0));
-                        }
-            
-                        ~ .experience-item {
-                            margin-top: 35px;
-                        }
                     }
                 }
             }
         }
-
 
         // footer-wrapper
         .footer-wrapper {
@@ -510,7 +333,7 @@
                 }
     
                 .intro-tit {
-                    .reveal {
+                    .intro-reveal {
                         font-size: 12vw;
                     }
                 }
@@ -575,6 +398,12 @@
                                 }
                             }
                         }
+
+                        .experience-list {
+                            .experience-item ~ .experience-item {
+                                margin-top: 40px;
+                            }
+                        }
                     }
                 }
             }
@@ -594,7 +423,7 @@
                         padding-top: 0;
                         
                         .intro-tit {
-                            .reveal {
+                            .intro-reveal {
                                 font-size: 8rem;
                                 line-height: 136px;
                             }
@@ -631,8 +460,6 @@
                                 .word {
                                     display: block;
                                     font-family: variables.$fontEngDefault;
-                                    font-size: inherit;
-                                    line-height: inherit;
                                     text-align: center;
                                     color: #f9f9f9;
                                     font-weight: variables.$fontWeightRegular;

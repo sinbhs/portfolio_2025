@@ -15,9 +15,9 @@
 // 벤더 프리픽스
 @mixin prefix($property, $value, $prefixes: moz webkit) {
 	@each $prefix in $prefixes {
-		-#{$prefix}-#{$property}: $value;
+		-#{$prefix}-#{$property}: #{$value};
 	}
-	#{$property}: $value;
+	#{$property}: #{$value};
 }
 
 // Display Flex를 활용한 영역대비 사이즈 자동 조절

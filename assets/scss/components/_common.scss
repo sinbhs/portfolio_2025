@@ -12,8 +12,13 @@ span {
 }
 
 .reveal-tg {
+    opacity: 0;
+    @include mixins.prefix(transform, translateY(100px));
+    @include mixins.prefix(transition, 1s ease);
+
     &.reveal {
-        animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        opacity: 1;
+        @include mixins.prefix(transform, translateY(0));
     }
 }
 
@@ -57,34 +62,16 @@ span {
     font-size: 14px !important;
 }
 
-/* 타이틀 */
-%revealTitleStyle {
-    overflow: hidden;
-
-    .reveal-item {
-        display: inline-block;
-        transform: translateY(100%);
-        animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-    }
-
-    span:not(.ft-eng) {
-        font-size: inherit;
-        font-weight: inherit;
-    }
-}
-
 .cont-title-wrap {
     margin-bottom: 20px;
     overflow: hidden;
 }
 .cont-tit {
     @include mixins.font_size_xxxl;
-    @extend %revealTitleStyle;
 }
 
 .cont-tit-sm {
     @include mixins.font_size_xxl;
-    @extend %revealTitleStyle;
 }
 
 .scont-tit {
