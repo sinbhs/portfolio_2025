@@ -1387,17 +1387,14 @@ span {
 	line-height: 40px;
 	font-weight: 600;
 }
-.wrapper.main .cover-contents .about-box .cont-title-wrap .cont-tit .ft-eng {
-	font-size: 50px;
-	line-height: 59px;
-}
-.wrapper.main .cover-contents .about-box .cont-title-wrap .cont-tit .ft-eng .wave-name {
+.wrapper.main .cover-contents .about-box .cont-title-wrap .cont-tit .wave-name {
 	display: inline-block;
 	animation: waveName 0.6s infinite alternate;
 	vertical-align: top;
-	font-size: inherit;
+	font-size: 50px;
+	line-height: 59px;
 }
-.wrapper.main .cover-contents .about-box .cont-title-wrap .cont-tit .ft-eng .wave-name ~ .wave-name {
+.wrapper.main .cover-contents .about-box .cont-title-wrap .cont-tit .wave-name ~ .wave-name {
 	margin-left: 15px;
 }
 .wrapper.main .cover-contents .about-box .ico-sparkles {
