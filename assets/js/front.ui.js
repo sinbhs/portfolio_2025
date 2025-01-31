@@ -17,12 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var wrapper = document.querySelector(".wrapper");
     var headerWrapper = document.querySelector(".header-wrapper");
-    var container = document.querySelector(".container-wrapper");
     var btnGoTop = document.querySelector(".btn-go-top");
 
     /*
     * date : 20250106
-    * last : 20250113
+    * last : 20250131
     * name : setMoHeader()
     * pram :
     * desc : mobile header - scroll up/down, current time update
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var el = document.querySelector(".header-wrapper");
             pageHeight = wrapper.offsetHeight - getBodyHeight() - headerWrapper.offsetHeight;
 
-            if (wrapper.offsetHeight <= _resizeVh + 31) return;
+            if (wrapper.offsetHeight <= _resizeVh) return;
 
             if (_noScroll) {
                 if (el && !el.classList.contains("scroll-down")) {
