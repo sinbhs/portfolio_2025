@@ -3,7 +3,7 @@
  * desc : UI 공통 스크립트
  * writer : 송지우
  * date : 2025/01/06
- * last : 2025/01/23
+ * last : 2025/01/31
  */
 document.addEventListener("DOMContentLoaded", function () {
     var _scrollTop = window.scrollY;
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function setMoHeader() {
         if (!headerWrapper) return;
 
-        var classList = ["header-wrapper"];
         var offset = headerWrapper.offsetHeight / 2;
         var pageHeight = wrapper.offsetHeight - getBodyHeight() - headerWrapper.offsetHeight;
         var prevScrollTop = 0;
@@ -40,54 +39,46 @@ document.addEventListener("DOMContentLoaded", function () {
                 pageHeight = wrapper.offsetHeight - getBodyHeight() - headerWrapper.offsetHeight;
                 scrollUpDown();
                 if (_scrollTop === 0) {
-                    classList.forEach((target) => {
-                        document.querySelector("." + target)?.classList.remove("scroll-up", "scroll-down");
-                    });
+                    document.querySelector(".header-wrapper").classList.remove("scroll-up", "scroll-down");
                 }
             }
         });
 
         createScrollStopListener(window, function () {
             if (_sizeViewSta === "desktop") {
-                classList.forEach((target) => {
-                    document.querySelector("." + target)?.classList.remove("scroll-up", "scroll-down");
-                });
+                document.querySelector(".header-wrapper").classList.remove("scroll-up", "scroll-down");
             } else {
                 scrollUpDown();
             }
         });
 
         function scrollUpDown() {
+            var el = document.querySelector(".header-wrapper");
             pageHeight = wrapper.offsetHeight - getBodyHeight() - headerWrapper.offsetHeight;
+
             if (wrapper.offsetHeight <= _resizeVh + 31) return;
 
             if (_noScroll) {
-                classList.forEach((target) => {
-                    var el = document.querySelector("." + target);
-                    if (el && !el.classList.contains("scroll-down")) {
-                        el.classList.remove("scroll-up");
-                        el.classList.add("scroll-down");
-                    }
-                });
+                if (el && !el.classList.contains("scroll-down")) {
+                    el.classList.remove("scroll-up");
+                    el.classList.add("scroll-down");
+                }
                 return;
             }
 
-            classList.forEach((target) => {
-                var el = document.querySelector("." + target);
-                if (!el || el.classList.contains("fixed")) return;
+            if (!el) return;
 
-                if (_scrollTop === 0 || _scrollTop < offset) {
-                    el.classList.remove("scroll-up", "scroll-down");
-                } else {
-                    if (prevScrollTop < _scrollTop && _scrollTop > offset) {
-                        el.classList.remove("scroll-up");
-                        el.classList.add("scroll-down");
-                    } else if (_scrollTop < pageHeight && _scrollTop > offset) {
-                        el.classList.remove("scroll-down");
-                        el.classList.add("scroll-up");
-                    }
+            if (_scrollTop === 0 || _scrollTop < offset) {
+                el.classList.remove("scroll-up", "scroll-down");
+            } else {
+                if (prevScrollTop < _scrollTop && _scrollTop > offset) {
+                    el.classList.remove("scroll-up");
+                    el.classList.add("scroll-down");
+                } else if (_scrollTop < pageHeight && _scrollTop > offset) {
+                    el.classList.remove("scroll-down");
+                    el.classList.add("scroll-up");
                 }
-            });
+            }
 
             prevScrollTop = _scrollTop;
         }
@@ -118,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     * desc : 최상단 이동 버튼
     */
     function setGoTop() {
-        var offset = headerWrapper ? headerWrapper.offsetHeight * 1.5 : 30;
+        var offset = headerWrapper.offsetHeight * 1.5;
         btnOnOff();
 
         btnGoTop?.addEventListener("click", function (e) {
@@ -133,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("scroll", btnOnOff);
 
         function btnOnOff() {
-            offset = headerWrapper ? headerWrapper.offsetHeight * 1.5 : 30;
+            offset = headerWrapper.offsetHeight * 1.5;
             if (_scrollTop >= offset) {
                 btnGoTop.classList.remove("is-hide");
                 btnGoTop.classList.add("is-active");
