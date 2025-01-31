@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var el = document.querySelector(".header-wrapper");
             pageHeight = wrapper.offsetHeight - getBodyHeight() - headerWrapper.offsetHeight;
 
-            if (wrapper.offsetHeight <= _resizeVh) return;
+            if (wrapper.offsetHeight <= _vh) return;
 
             if (_noScroll) {
                 if (el && !el.classList.contains("scroll-down")) {
