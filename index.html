@@ -144,7 +144,7 @@
                 .to(".cover-contents", { backgroundColor: "#fff", color: "#000", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .first", { x: "-100%", opacity: "0", duration: 5}, 0)
                 .to(".work-box .cont-title-wrap .second", { x: "100%", opacity: "0", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", { height: "240px", duration: 0}, ">");
+                .to(".work-box .cont-title-wrap", { height: "240px", duration: 0}, .5);
 
                 return () => ScrollTrigger.refresh();
             });
