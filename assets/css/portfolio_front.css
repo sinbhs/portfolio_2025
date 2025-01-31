@@ -49,7 +49,7 @@ time, mark, audio, video {
 html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
-	min-height: var(--reVh, 1vh);
+	min-height: var(--vh, 1vh);
 	scroll-behavior: smooth;
 }
 
@@ -779,7 +779,7 @@ body {
 		-ms-flex-direction: column;
 		-webkit-flex-direction: column;
 		flex-direction: column;
-		min-height: var(--reVh, 1vh);
+		min-height: var(--vh, 1vh);
 	}
 	.container-wrapper .cont-box, .container-wrapper .gcont-box {
 		width: 100%;

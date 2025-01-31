@@ -9,15 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var _scrollTop = window.scrollY;
     var _transitionEnd = "transitionend webkitTransitionEnd oTransitionEnd otransitionend";
     var _vh = window.innerHeight;
-    var _resizeVh = window.innerHeight;
     var _resizeVw = window.innerWidth;
     var _desktopWidth = 890;
     var _sizeViewSta;
     var _noScroll = false;
 
-    var wrapper = document.querySelector(".wrapper");
-    var headerWrapper = document.querySelector(".header-wrapper");
-    var btnGoTop = document.querySelector(".btn-go-top");
+    const wrapper = document.querySelector(".wrapper");
+    const headerWrapper = document.querySelector(".header-wrapper");
+    const btnGoTop = document.querySelector(".btn-go-top");
 
     /*
     * date : 20250106
@@ -270,7 +269,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // vh
     function setPropertyVh() {
         document.documentElement.style.setProperty("--vh", _vh + "px");
-        document.documentElement.style.setProperty("--reVh", _resizeVh + "px");
     }
 
     // smoothScroll 기능 추가
@@ -292,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
     smoothScroll();
 
     window.addEventListener("resize", function () {
-        _resizeVh = window.innerHeight;
+        _vh = window.innerHeight;
         _resizeVw = window.innerWidth;
         _scrollTop = window.scrollY;
         breakpointChangeInit();

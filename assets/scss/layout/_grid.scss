@@ -82,7 +82,7 @@ body {
     // mobile
     @include mixins.size_mobile {
         @include mixins.justify_width(stretch, between, column);
-        min-height: var(--reVh, 1vh);
+        min-height: var(--vh, 1vh);
 
         .cont-box, .gcont-box {
             width: 100%;

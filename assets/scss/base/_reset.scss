@@ -22,7 +22,7 @@ time, mark, audio, video {
 	font-weight: variables.$fontWeightRegular;
 	font-style: normal;
 }
-html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; min-height: var(--reVh, 1vh); scroll-behavior: smooth;}
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; min-height: var(--vh, 1vh); scroll-behavior: smooth;}
 
 body {width: 100%; color: #000; background-color: #fff; }
 html, body { font-family: variables.$fontDefault; /*overscroll-behavior-y: none;*/ }
