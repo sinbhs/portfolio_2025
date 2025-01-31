@@ -53,7 +53,6 @@
 
     <!-- Vendors javascript
     ================================================== -->
-    <script src="assets/vendors/jquery-3.7.1/jquery-3.7.1.min.js"></script>
     <script src="assets/vendors/gsap-3.12.5/gsap.min.js"></script>
     <script src="assets/vendors/gsap-3.12.5/ScrollTrigger.min.js"></script>
     <script src="assets/vendors/lenis-1.1.19/lenis.min.js"></script>
@@ -65,26 +64,18 @@
      
     <script type="module" src="assets/js/main_bg.js"></script>
     <script>
-        $(function () {
+        document.addEventListener("DOMContentLoaded", () => {
             // intro-reveal text split
-            $(".intro-reveal").each(function () {
-                $(this).html(
-                    $(this)
-                    .text()
-                    .split("")
-                    .map((letter, idx) => {
-                        if (letter === " ") return " ";
-                        return `<span class="char">${letter}</span>`;
-                    })
-                    .join("")
-                );
+            document.querySelectorAll(".intro-reveal").forEach(el => {
+                el.innerHTML = el.textContent.split("").map(letter => {
+                    return letter === " " ? " " : `<span class="char">${letter}</span>`;
+                }).join("");
             });
 
             // intro title gsap
             const introTl = gsap.timeline();
-
             introTl
-                .from(".intro-box .intro-tit .intro-reveal .char", {// split reveal gsap
+                .from(".intro-box .intro-tit .intro-reveal .char", {
                     yPercent: 110,
                     duration: 0.3,
                     stagger: 0.03,
@@ -97,7 +88,7 @@
                     ease: "power1",
                 })
                 .to(".intro-box .intro-tit", {
-                    "--introAfterScale": gsap.utils.random(0.5, 1), 
+                    "--introAfterScale": gsap.utils.random(0.5, 1),
                     "--introAfterOpacity": gsap.utils.random(0.4, 1),
                     duration: 2,
                     repeat: -1,
@@ -111,25 +102,21 @@
                 scrollTrigger: {
                     trigger: ".container-wrapper",
                     start: "top top",
-                    end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`,  // .cover-contents의 높이만큼
+                    end: () => `+=${document.querySelector('.cover-contents').offsetHeight}`, // .cover-contents의 높이만큼
                     scrub: true,
                     onUpdate: (self) => {
                         const introBoxHeight = document.querySelector(".intro-box").offsetHeight;
                         const coverHeight = document.querySelector(".cover-contents").offsetHeight;
                         const coveredPercentage = Math.min(self.progress * (coverHeight / introBoxHeight), 1); // 가려진 비율 계산 (최대 1로 제한)
-                        
+
                         // opacity를 가려진 비율에 맞춰 조정
-                        gsap.set(".intro-box", {
-                            opacity: 1 - coveredPercentage
-                        });
+                        gsap.set(".intro-box", { opacity: 1 - coveredPercentage });
                     }
                 }
             });
 
             // PC 해상도 work title gsap 모션
-            let mm = gsap.matchMedia();
-
-            mm.add("(min-width: 891px)", () => {
+            gsap.matchMedia().add("(min-width: 891px)", () => {
                 // 시작
                 gsap.timeline({
                     scrollTrigger: {
@@ -139,11 +126,11 @@
                         scrub: 1,
                     }
                 })
-                .to(".cover-contents", {backgroundColor: "#000", color: "#fff", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", {position: "fixed", inset: "0", ease: "none", duration: 1}, 0)
-                .to(".work-box .experience-list", {paddingTop: "100vh", ease: "none", duration: 1}, 0)
-                .fromTo(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0)
-                .fromTo(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0"}, {x: "0", opacity: "1", ease: "none", duration: 5}, 0);
+                .to(".cover-contents", { backgroundColor: "#000", color: "#fff", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap", { position: "fixed", inset: "0", duration: 1}, 0)
+                .to(".work-box .experience-list", { paddingTop: "100vh", duration: 1}, 0)
+                .fromTo(".work-box .cont-title-wrap .first", { x: "-100%", opacity: "0" }, { x: "0", opacity: "1", duration: 5}, 0)
+                .fromTo(".work-box .cont-title-wrap .second", { x: "100%", opacity: "0" }, { x: "0", opacity: "1", duration: 5}, 0);
 
                 // 끝
                 gsap.timeline({
@@ -154,163 +141,82 @@
                         scrub: 1,
                     }
                 })
-                .to(".cover-contents", {backgroundColor: "#fff", color: "#000", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap .first", {x: "-100%", opacity: "0", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap .second", {x: "100%", opacity: "0", ease: "none", duration: 5}, 0)
-                .to(".work-box .cont-title-wrap", {height: "240", duration: 0}, 1); // footer 가리지 않기 위해 추가
+                .to(".cover-contents", { backgroundColor: "#fff", color: "#000", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap .first", { x: "-100%", opacity: "0", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap .second", { x: "100%", opacity: "0", duration: 5}, 0)
+                .to(".work-box .cont-title-wrap", { height: "240px", duration: 0}, ">");
 
-                return () => {
-                    //console.log('clean up');
-                    ScrollTrigger.refresh();
-                };
+                return () => ScrollTrigger.refresh();
             });
-            
 
             // contact 영역으로 스크롤
-            $(".btn-scroll-to-contact")
-                .off("click")
-                .on("click", function () {
-                    $("html, body").animate({
-                            scrollTop: $(document).height()
-                        },
-                        500 // 스크롤 속도
-                    );
-                });
+            document.querySelector(".btn-scroll-to-contact")?.addEventListener("click", () => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+            });
 
             // experience sorting tab
-            if (!!workTabList) return false;
-
-            let experienceItem = $(".experience-list .experience-item"),
-                experienceType = experienceItem.find(".service-type").text();
-
-            var workTabList = $(".tab-list"),
-                experienceList = $(".experience-list");
-
-            $(".tab-list .tab-item .btn-tab")
-                .off("click")
-                .on("click", function () {
-                    var btn = $(this),
-                        sortingTarget = btn.data("type"),
-                        tabItem = btn.closest(".tab-item");
-
-                    // tab item에 'active' 없는 경우
-                    if (!tabItem.hasClass("active")) {
-                        workTabList.find(".tab-item.active").removeClass("active");
-                        tabItem.addClass("active");
-
-                        // 리스트 필터링
-                        if (sortingTarget === "all") {
-                            $(".experience-list .experience-item").show(); // 전체 항목 표시
-                        } 
-                        else {
-                            $(".experience-list .experience-item").hide(); // 모두 숨기기
-
-                            $(".experience-item", experienceList)
-                                .filter(function () {
-                                    return (
-                                        $(this).find(".service-type").text().toLowerCase() ===
-                                        sortingTarget
-                                    );
-                                })
-                                .show(); // 조건에 맞는 항목만 표시
-                        }
-                    }
-                });
-
-            // work hover cursor
-            $(".experience-item .link-site").on("mouseenter", function () {
-                const $emoji = $(this).find(".media-emoji");
-
-                $(this).on("mousemove", function (event) {
-                    const offsetX = event.pageX - $(this).offset().left - 50;
-                    const offsetY = event.pageY - $(this).offset().top - 50;
-
-                    gsap.to($emoji, {
-                        left: offsetX.toFixed(0),
-                        top: offsetY.toFixed(0),
-                        duration: .9,
-                        ease: "power3"
+            document.querySelectorAll(".tab-list .tab-item .btn-tab").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const sortingTarget = btn.dataset.type;
+                    document.querySelector(".tab-list .tab-item.active")?.classList.remove("active");
+                    btn.closest(".tab-item").classList.add("active");
+                    
+                    // 리스트 필터링
+                    document.querySelectorAll(".experience-list .experience-item").forEach(item => {
+                        item.style.display = sortingTarget === "all" || item.querySelector(".service-type").textContent.toLowerCase() === sortingTarget ? "block" : "none";
                     });
                 });
             });
-
-            $(".experience-item .link-site").on("mouseleave", function () {
-                const $emoji = $(this).find(".media-emoji");
-                $(this).off("mousemove");
+            
+            // work hover cursor
+            document.querySelectorAll(".experience-item .link-site").forEach(link => {
+                const emoji = link.querySelector(".media-emoji");
+                link.addEventListener("mouseenter", () => {
+                    link.addEventListener("mousemove", event => {
+                        const rect = link.getBoundingClientRect();
+                        gsap.to(emoji, {
+                            left: event.clientX - rect.left - 50,
+                            top: event.clientY - rect.top - 50,
+                            duration: 0.9,
+                            ease: "power3"
+                        });
+                    });
+                });
             });
 
             // footer marquee
-            if ($(".footer-marquee").length > 0) {
-                wrap = $(".footer-marquee");
-                var wrapperWidth,
-                    marquee,
-                    original,
-                    marqueeText,
-                    dupLink,
-                    marqueeTextCnt,
-                    duplicateCnt,
-                    duration,
-                    weight;
-                    
-                wrapperWidth = wrap.outerWidth();
-                original = wrap.find(".original-wrap");
-                marquee = wrap.find(".marquee-box");
-                marqueeText = wrap.find(".marquee-box .marquee-item");
-                duplicateCnt = Math.max(
-                    Math.ceil((wrapperWidth * 2) / original.outerWidth()),
-                    2
-                );
-                weight = 2;
-
-                duration =
-                    (Math.floor((marqueeText.outerWidth() / wrapperWidth) * 1000) /
-                        100) *
-                    weight;
+            if (document.querySelector(".footer-marquee")) {
+                const wrap = document.querySelector(".footer-marquee");
+                const original = wrap.querySelector(".original-wrap");
+                const marquee = wrap.querySelector(".marquee-box");
+                let marqueeText = marquee.querySelector(".marquee-item");
+                const wrapperWidth = wrap.offsetWidth;
+                const duplicateCnt = Math.max(Math.ceil((wrapperWidth * 2) / original.offsetWidth), 2);
+                const duration = ((marqueeText.offsetWidth / wrapperWidth) * 1000) / 100 * 2;
                 // console.log(duration);
-                marquee.empty();
-                marquee.append(marqueeText);
-                marqueeTextCnt = 1;
 
-                while (marqueeTextCnt < duplicateCnt) {
-                    dupLink = marqueeText[0].cloneNode(true);
-                    dupLink.setAttribute("aria-hidden", true);
-                    marquee.append(dupLink);
-                    marqueeTextCnt++;
+                marquee.innerHTML = "";
+                for (let i = 0; i < duplicateCnt; i++) {
+                    let clone = marqueeText.cloneNode(true);
+                    clone.setAttribute("aria-hidden", true);
+                    marquee.appendChild(clone);
                 }
-
-                marqueeText = wrap.find(".marquee-box .marquee-item");
-                marqueeText.each(function (index) {
-                    $(this).css("animation-duration", duration + "s");
-                });
-
-                wrap.addClass("initialized");
+                wrap.classList.add("initialized");
             }
 
             // 이력서 버튼 hover 효과
-            $(".link-notion").on("mouseenter", function (e) {
-                    var parentOffset = $(this).offset(),
-                        relX = e.pageX - parentOffset.left,
-                        relY = e.pageY - parentOffset.top;
-                    $(this).find(".bg").css({
-                        top: relY,
-                        left: relX
-                    });
-                })
-                .on("mouseout", function (e) {
-                    var parentOffset = $(this).offset(),
-                        relX = e.pageX - parentOffset.left,
-                        relY = e.pageY - parentOffset.top;
-                    $(this).find(".bg").css({
-                        top: relY,
-                        left: relX
-                    });
+            document.querySelectorAll(".link-notion").forEach(link => {
+                link.addEventListener("mouseenter", e => {
+                    const rect = link.getBoundingClientRect();
+                    const bg = link.querySelector(".bg");
+                    bg.style.top = `${e.clientY - rect.top}px`;
+                    bg.style.left = `${e.clientX - rect.left}px`;
                 });
             });
 
             // gsap resize scroll trigger update
-            $(window).on('resize orientationchange observerUpdate', function() {
-                ScrollTrigger.update;
-            })
+            window.addEventListener("resize", () => ScrollTrigger.update());
+        });
     </script>
 </head>
 

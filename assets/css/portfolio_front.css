@@ -1757,6 +1757,7 @@ span {
 		-webkit-flex-direction: row;
 		flex-direction: row;
 		width: 100%;
+		height: 100vh;
 		margin-bottom: 0;
 	}
 	.wrapper.main .container-wrapper .cover-contents .work-box .cont-title-wrap .cont-tit {
@@ -1799,7 +1800,6 @@ span {
 		-webkit-flex-direction: row;
 		flex-direction: row;
 		flex-wrap: wrap;
-		margin-top: 240px;
 	}
 	.wrapper.main .container-wrapper .cover-contents .work-box .experience-list .experience-item {
 		width: 45%;
