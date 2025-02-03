@@ -184,25 +184,38 @@
                 });
             });
 
-            // footer marquee
-            if (document.querySelector(".footer-marquee")) {
-                const wrap = document.querySelector(".footer-marquee");
-                const original = wrap.querySelector(".original-wrap");
-                const marquee = wrap.querySelector(".marquee-box");
-                let marqueeText = marquee.querySelector(".marquee-item");
-                const wrapperWidth = wrap.offsetWidth;
-                const duplicateCnt = Math.max(Math.ceil((wrapperWidth * 2) / original.offsetWidth), 2);
-                const duration = ((marqueeText.offsetWidth / wrapperWidth) * 1000) / 100 * 2;
-                // console.log(duration);
+            const original = document.querySelector(".original-wrap"),
+                  originalWidth = original.offsetWidth;
 
-                marquee.innerHTML = "";
-                for (let i = 0; i < duplicateCnt; i++) {
-                    let clone = marqueeText.cloneNode(true);
-                    clone.setAttribute("aria-hidden", true);
-                    marquee.appendChild(clone);
+            //console.log(originalWidth);
+
+            // footer marquee
+            function fillMarqueeWrapper() {
+                if (document.querySelector(".footer-marquee")) {
+                    const wrap = document.querySelector(".footer-marquee");
+                    const marquee = wrap.querySelector(".marquee-box");
+                    const marqueeText = marquee.querySelector(".marquee-item");
+                    const wrapperWidth = wrap.offsetWidth;
+                    const duplicateCnt = Math.max(Math.ceil((wrapperWidth * 2) / originalWidth), 2);
+                    const duration = ((marqueeText.offsetWidth / wrapperWidth) * 1000) / 100 * 2;
+                    // console.log(duration);
+
+                    marquee.innerHTML = "";
+                    for (let i = 0; i < duplicateCnt; i++) {
+                        let clone = marqueeText.cloneNode(true);
+                        clone.setAttribute("aria-hidden", true);
+                        marquee.appendChild(clone);
+                    }
+                    wrap.classList.add("initialized");
                 }
-                wrap.classList.add("initialized");
             }
+
+            fillMarqueeWrapper();
+
+            new ResizeSensor(document.querySelector(".footer-marquee"), function () {
+                document.querySelector(".footer-marquee").classList.remove("initialized");
+                fillMarqueeWrapper();
+            });
 
             // 이력서 버튼 hover 효과
             document.querySelectorAll(".link-notion").forEach(link => {

@@ -84,12 +84,12 @@ body {
         @include mixins.justify_width(stretch, between, column);
         min-height: var(--vh, 1vh);
 
-        .cont-box, .gcont-box {
+        .cont-box {
             width: 100%;
 
             &:nth-last-of-type(1) {
                 .cont-inner {
-                    padding-bottom: calc(65px + env(safe-area-inset-bottom));
+                    padding-bottom: env(safe-area-inset-bottom);
                 }
             }
         }
@@ -113,7 +113,7 @@ body {
     }
 }
 
-.cont-box, .gcont-box {
+.cont-box {
     position: relative;
 
     .cont-inner {
